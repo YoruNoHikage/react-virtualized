@@ -1,11 +1,15 @@
 import _extends from "@babel/runtime/helpers/extends";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 /*:: import type {
   NoContentRenderer,
@@ -102,14 +106,12 @@ import clsx from 'clsx';
   width: number,
 };*/
 
-var List =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var List = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(List, _React$PureComponent);
 
-  function List() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(List);
 
+  function List() {
     var _this;
 
     _classCallCheck(this, List);
@@ -118,7 +120,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(List)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "Grid", void 0);
 
@@ -314,7 +316,7 @@ function (_React$PureComponent) {
           scrollToIndex = _this$props.scrollToIndex,
           width = _this$props.width;
       var classNames = clsx('ReactVirtualized__List', className);
-      return React.createElement(Grid, _extends({}, this.props, {
+      return /*#__PURE__*/React.createElement(Grid, _extends({}, this.props, {
         autoContainerWidth: true,
         cellRenderer: this._cellRenderer,
         className: classNames,

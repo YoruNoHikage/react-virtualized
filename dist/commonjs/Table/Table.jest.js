@@ -1,20 +1,22 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
 var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -36,9 +38,19 @@ var _Table = _interopRequireDefault(require("./Table"));
 
 var _SortDirection = _interopRequireDefault(require("./SortDirection"));
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _excluded = ["cellDataGetter", "cellRenderer", "columnData", "columnID", "columnStyle", "columnHeaderStyle", "disableSort", "headerRenderer", "maxWidth", "minWidth", "defaultSortDirection", "label"];
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 describe('Table', function () {
   var array = [];
@@ -94,9 +106,9 @@ describe('Table', function () {
         minWidth = _ref4.minWidth,
         defaultSortDirection = _ref4.defaultSortDirection,
         label = _ref4.label,
-        flexTableProps = (0, _objectWithoutProperties2["default"])(_ref4, ["cellDataGetter", "cellRenderer", "columnData", "columnID", "columnStyle", "columnHeaderStyle", "disableSort", "headerRenderer", "maxWidth", "minWidth", "defaultSortDirection", "label"]);
+        flexTableProps = (0, _objectWithoutProperties2["default"])(_ref4, _excluded);
 
-    return React.createElement(_Table["default"], (0, _extends2["default"])({
+    return /*#__PURE__*/React.createElement(_Table["default"], (0, _extends2["default"])({
       headerHeight: 20,
       height: 100,
       overscanRowCount: 0,
@@ -105,7 +117,7 @@ describe('Table', function () {
       rowGetter: immutableRowGetter,
       rowHeight: 10,
       width: 100
-    }, flexTableProps), React.createElement(_Column2["default"], {
+    }, flexTableProps), /*#__PURE__*/React.createElement(_Column2["default"], {
       label: label || 'Name',
       dataKey: "name",
       columnData: columnData,
@@ -118,7 +130,7 @@ describe('Table', function () {
       style: columnStyle,
       headerStyle: columnHeaderStyle,
       id: columnID
-    }), React.createElement(_Column2["default"], {
+    }), /*#__PURE__*/React.createElement(_Column2["default"], {
       label: "Email",
       dataKey: "email",
       maxWidth: maxWidth,
@@ -132,7 +144,7 @@ describe('Table', function () {
   });
   describe('children', function () {
     it('should accept Column children', function () {
-      var children = [React.createElement(_Column2["default"], {
+      var children = [/*#__PURE__*/React.createElement(_Column2["default"], {
         dataKey: "foo",
         width: 100
       })];
@@ -144,20 +156,20 @@ describe('Table', function () {
       expect(result instanceof Error).toEqual(false);
     });
     it('should accept subclasses of Column as children', function () {
-      var AnotherColumn =
-      /*#__PURE__*/
-      function (_Column) {
+      var AnotherColumn = /*#__PURE__*/function (_Column) {
         (0, _inherits2["default"])(AnotherColumn, _Column);
+
+        var _super = _createSuper(AnotherColumn);
 
         function AnotherColumn() {
           (0, _classCallCheck2["default"])(this, AnotherColumn);
-          return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(AnotherColumn).apply(this, arguments));
+          return _super.apply(this, arguments);
         }
 
-        return AnotherColumn;
+        return (0, _createClass2["default"])(AnotherColumn);
       }(_Column2["default"]);
 
-      var children = [React.createElement(AnotherColumn, {
+      var children = [/*#__PURE__*/React.createElement(AnotherColumn, {
         dataKey: "foo",
         width: 100
       })];
@@ -169,7 +181,7 @@ describe('Table', function () {
       expect(result instanceof Error).toEqual(false);
     });
     it('should not accept non-Column children', function () {
-      var children = [React.createElement("div", null)];
+      var children = [/*#__PURE__*/React.createElement("div", null)];
 
       var result = _Table["default"].propTypes.children({
         children: children
@@ -178,7 +190,7 @@ describe('Table', function () {
       expect(result instanceof Error).toEqual(true);
     });
     it('should accept falsy children to allow easier dynamic showing/hiding of columns', function () {
-      var children = [false, React.createElement(_Column2["default"], {
+      var children = [false, /*#__PURE__*/React.createElement(_Column2["default"], {
         dataKey: "foo",
         width: 100
       }), null];
@@ -380,7 +392,7 @@ describe('Table', function () {
     it('should not set a cell :title if the rendered cell content is not a string', function () {
       var rendered = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         cellRenderer: function cellRenderer() {
-          return React.createElement("div", null, "Custom");
+          return /*#__PURE__*/React.createElement("div", null, "Custom");
         }
       })));
       var nameColumn = rendered.querySelector('.ReactVirtualized__Table__rowColumn:first-of-type');
@@ -395,7 +407,7 @@ describe('Table', function () {
     });
     it('should not set a header :title if the rendered header label is not a string', function () {
       var rendered = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
-        label: React.createElement("div", null, "Custom")
+        label: /*#__PURE__*/React.createElement("div", null, "Custom")
       })));
       var nameColumn = rendered.querySelector('.ReactVirtualized__Table__headerTruncatedText:first-of-type');
       expect(nameColumn.getAttribute('title')).toEqual(null);
@@ -555,7 +567,7 @@ describe('Table', function () {
   });
   describe('headerRowRenderer', function () {
     it('should render a custom header row if one is provided', function () {
-      var headerRowRenderer = jest.fn().mockReturnValue(React.createElement("div", null, "foo bar"));
+      var headerRowRenderer = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", null, "foo bar"));
       var rendered = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         headerHeight: 33,
         headerRowRenderer: headerRowRenderer,
@@ -647,7 +659,7 @@ describe('Table', function () {
     it('should call :noRowsRenderer if :rowCount is 0', function () {
       var rendered = (0, _TestUtils.render)(getMarkup({
         noRowsRenderer: function noRowsRenderer() {
-          return React.createElement("div", null, "No rows!");
+          return /*#__PURE__*/React.createElement("div", null, "No rows!");
         },
         rowCount: 0
       }));
@@ -1327,7 +1339,7 @@ describe('Table', function () {
         (0, _TestUtils.render)(getMarkup(initialProperties));
         headerRendererCalled = true;
         cellRendererCalled = false;
-        (0, _TestUtils.render)(getMarkup(_objectSpread({}, initialProperties, (0, _defineProperty2["default"])({}, key, value))));
+        (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, initialProperties), {}, (0, _defineProperty2["default"])({}, key, value))));
         expect(headerRendererCalled).toEqual(true);
         expect(cellRendererCalled).toEqual(true);
       });

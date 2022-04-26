@@ -1,9 +1,14 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import * as React from 'react';
 import styles from './ColumnSizer.example.css';
 import AutoSizer from '../AutoSizer';
@@ -12,17 +17,17 @@ import Grid from '../Grid';
 import { ContentBox, ContentBoxHeader, ContentBoxParagraph } from '../demo/ContentBox';
 import { LabeledInput, InputRow } from '../demo/LabeledInput';
 
-var ColumnSizerExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var ColumnSizerExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(ColumnSizerExample, _React$PureComponent);
+
+  var _super = _createSuper(ColumnSizerExample);
 
   function ColumnSizerExample(props) {
     var _this;
 
     _classCallCheck(this, ColumnSizerExample);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ColumnSizerExample).call(this, props));
+    _this = _super.call(this, props);
     _this.state = {
       columnMaxWidth: 100,
       columnMinWidth: 75,
@@ -45,30 +50,30 @@ function (_React$PureComponent) {
           columnMaxWidth = _this$state.columnMaxWidth,
           columnMinWidth = _this$state.columnMinWidth,
           columnCount = _this$state.columnCount;
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "ColumnSizer",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/ColumnSizer/ColumnSizer.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/ColumnSizer.md"
-      }), React.createElement(ContentBoxParagraph, null, "This component decorates a ", React.createElement("code", null, "Grid"), " and calculates the width of its columns based on the current (", React.createElement("code", null, "Grid"), ") width."), React.createElement(InputRow, null, React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "This component decorates a ", /*#__PURE__*/React.createElement("code", null, "Grid"), " and calculates the width of its columns based on the current (", /*#__PURE__*/React.createElement("code", null, "Grid"), ") width."), /*#__PURE__*/React.createElement(InputRow, null, /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Num Columns",
         name: "columnCount",
         onChange: this._onColumnCountChange,
         value: columnCount
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Column Min Width",
         name: "columnMinWidth",
         onChange: this._noColumnMinWidthChange,
         value: columnMinWidth
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Column Max Width",
         name: "columnMaxWidth",
         onChange: this._noColumnMaxWidthChange,
         value: columnMaxWidth
-      })), React.createElement("div", null, React.createElement(AutoSizer, {
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(AutoSizer, {
         disableHeight: true
       }, function (_ref) {
         var width = _ref.width;
-        return React.createElement(ColumnSizer, {
+        return /*#__PURE__*/React.createElement(ColumnSizer, {
           columnMaxWidth: columnMaxWidth,
           columnMinWidth: columnMinWidth,
           columnCount: columnCount,
@@ -78,13 +83,13 @@ function (_React$PureComponent) {
           var adjustedWidth = _ref2.adjustedWidth,
               columnWidth = _ref2.columnWidth,
               registerChild = _ref2.registerChild;
-          return React.createElement("div", {
+          return /*#__PURE__*/React.createElement("div", {
             className: styles.GridContainer,
             style: {
               height: 50,
               width: adjustedWidth
             }
-          }, React.createElement(Grid, {
+          }, /*#__PURE__*/React.createElement(Grid, {
             ref: registerChild,
             columnWidth: columnWidth,
             columnCount: columnCount,
@@ -138,7 +143,7 @@ function (_React$PureComponent) {
   }, {
     key: "_noContentRenderer",
     value: function _noContentRenderer() {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: styles.noCells
       }, "No cells");
     }
@@ -150,7 +155,7 @@ function (_React$PureComponent) {
           rowIndex = _ref3.rowIndex,
           style = _ref3.style;
       var className = columnIndex === 0 ? styles.firstCell : styles.cell;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: className,
         key: key,
         style: style

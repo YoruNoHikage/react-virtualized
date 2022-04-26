@@ -5,42 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "createMultiSort", {
-  enumerable: true,
-  get: function get() {
-    return _createMultiSort["default"];
-  }
-});
-Object.defineProperty(exports, "defaultCellDataGetter", {
-  enumerable: true,
-  get: function get() {
-    return _defaultCellDataGetter["default"];
-  }
-});
-Object.defineProperty(exports, "defaultCellRenderer", {
-  enumerable: true,
-  get: function get() {
-    return _defaultCellRenderer["default"];
-  }
-});
-Object.defineProperty(exports, "defaultHeaderRowRenderer", {
-  enumerable: true,
-  get: function get() {
-    return _defaultHeaderRowRenderer["default"];
-  }
-});
-Object.defineProperty(exports, "defaultHeaderRenderer", {
-  enumerable: true,
-  get: function get() {
-    return _defaultHeaderRenderer["default"];
-  }
-});
-Object.defineProperty(exports, "defaultRowRenderer", {
-  enumerable: true,
-  get: function get() {
-    return _defaultRowRenderer["default"];
-  }
-});
 Object.defineProperty(exports, "Column", {
   enumerable: true,
   get: function get() {
@@ -65,7 +29,43 @@ Object.defineProperty(exports, "Table", {
     return _Table["default"];
   }
 });
+Object.defineProperty(exports, "createMultiSort", {
+  enumerable: true,
+  get: function get() {
+    return _createMultiSort["default"];
+  }
+});
 exports["default"] = void 0;
+Object.defineProperty(exports, "defaultCellDataGetter", {
+  enumerable: true,
+  get: function get() {
+    return _defaultCellDataGetter["default"];
+  }
+});
+Object.defineProperty(exports, "defaultCellRenderer", {
+  enumerable: true,
+  get: function get() {
+    return _defaultCellRenderer["default"];
+  }
+});
+Object.defineProperty(exports, "defaultHeaderRenderer", {
+  enumerable: true,
+  get: function get() {
+    return _defaultHeaderRenderer["default"];
+  }
+});
+Object.defineProperty(exports, "defaultHeaderRowRenderer", {
+  enumerable: true,
+  get: function get() {
+    return _defaultHeaderRowRenderer["default"];
+  }
+});
+Object.defineProperty(exports, "defaultRowRenderer", {
+  enumerable: true,
+  get: function get() {
+    return _defaultRowRenderer["default"];
+  }
+});
 
 var _createMultiSort = _interopRequireDefault(require("./createMultiSort"));
 

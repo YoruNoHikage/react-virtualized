@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -13,13 +13,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -37,14 +37,20 @@ var _Table = require("../Table");
 
 var _CellMeasurerExample = _interopRequireDefault(require("./CellMeasurer.example.css"));
 
-var DynamicHeightTableColumn =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var DynamicHeightTableColumn = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(DynamicHeightTableColumn, _React$PureComponent);
 
-  function DynamicHeightTableColumn() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(DynamicHeightTableColumn);
 
+  function DynamicHeightTableColumn() {
     var _this;
 
     (0, _classCallCheck2["default"])(this, DynamicHeightTableColumn);
@@ -53,7 +59,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(DynamicHeightTableColumn)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_cache", new _CellMeasurerCache["default"]({
       fixedWidth: true,
       minHeight: 25
@@ -66,13 +72,13 @@ function (_React$PureComponent) {
       var list = _this.props.list;
       var datum = list.get(rowIndex % list.size);
       var content = rowIndex % 5 === 0 ? '' : datum.randomLong;
-      return React.createElement(_CellMeasurer["default"], {
+      return /*#__PURE__*/React.createElement(_CellMeasurer["default"], {
         cache: _this._cache,
         columnIndex: 0,
         key: dataKey,
         parent: parent,
         rowIndex: rowIndex
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         className: _CellMeasurerExample["default"].tableColumn,
         style: {
           whiteSpace: 'normal'
@@ -98,7 +104,7 @@ function (_React$PureComponent) {
         this._cache.clearAll();
       }
 
-      return React.createElement(_Table.Table, {
+      return /*#__PURE__*/React.createElement(_Table.Table, {
         deferredMeasurementCache: this._cache,
         headerHeight: 20,
         height: 400,
@@ -108,17 +114,17 @@ function (_React$PureComponent) {
         rowGetter: this._rowGetter,
         rowCount: 1000,
         width: width
-      }, React.createElement(_Table.Column, {
+      }, /*#__PURE__*/React.createElement(_Table.Column, {
         className: _CellMeasurerExample["default"].tableColumn,
         dataKey: "name",
         label: "Name",
         width: 125
-      }), React.createElement(_Table.Column, {
+      }), /*#__PURE__*/React.createElement(_Table.Column, {
         className: _CellMeasurerExample["default"].tableColumn,
         dataKey: "color",
         label: "Color",
         width: 75
-      }), React.createElement(_Table.Column, {
+      }), /*#__PURE__*/React.createElement(_Table.Column, {
         width: width - 200,
         dataKey: "random",
         label: "Dynamic text",

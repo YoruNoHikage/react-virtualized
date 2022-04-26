@@ -20,9 +20,7 @@ var _intervalTree = _interopRequireDefault(require("../vendor/intervalTree"));
 // Position cache requirements:
 //   O(log(n)) lookup of cells to render for a given viewport size
 //   O(1) lookup of shortest measured column (so we know when to enter phase 1)
-var PositionCache =
-/*#__PURE__*/
-function () {
+var PositionCache = /*#__PURE__*/function () {
   function PositionCache() {
     (0, _classCallCheck2["default"])(this, PositionCache);
     (0, _defineProperty2["default"])(this, "_columnSizeMap", {});

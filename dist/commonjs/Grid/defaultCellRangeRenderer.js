@@ -119,7 +119,7 @@ function defaultCellRangeRenderer(_ref) {
       }
 
       if (!renderedCell.props.role) {
-        renderedCell = _react["default"].cloneElement(renderedCell, {
+        renderedCell = /*#__PURE__*/_react["default"].cloneElement(renderedCell, {
           role: 'gridcell'
         });
       }

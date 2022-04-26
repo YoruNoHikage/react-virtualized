@@ -13,7 +13,7 @@ describe('MultiGrid', function () {
         key = _ref.key,
         rowIndex = _ref.rowIndex,
         style = _ref.style;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "gridItem",
       key: key,
       style: style
@@ -22,7 +22,7 @@ describe('MultiGrid', function () {
 
   function getMarkup() {
     var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return React.createElement(MultiGrid, _extends({
+    return /*#__PURE__*/React.createElement(MultiGrid, _extends({
       cellRenderer: defaultCellRenderer,
       columnCount: 50,
       columnWidth: 50,
@@ -321,7 +321,7 @@ describe('MultiGrid', function () {
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (_ref5) {
         var key = _ref5.key;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: {}
         });
@@ -344,7 +344,7 @@ describe('MultiGrid', function () {
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (_ref6) {
         var key = _ref6.key;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: {}
         });
@@ -372,7 +372,7 @@ describe('MultiGrid', function () {
         var key = _ref7.key,
             parent = _ref7.parent;
         savedParent = parent;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: {}
         });

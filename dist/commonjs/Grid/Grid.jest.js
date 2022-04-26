@@ -1,20 +1,22 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
 var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
 var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -40,9 +42,17 @@ var _defaultOverscanIndicesGetter = require("./defaultOverscanIndicesGetter");
 
 var _maxElementSize = require("./utils/maxElementSize.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 var DEFAULT_COLUMN_WIDTH = 50;
 var DEFAULT_HEIGHT = 100;
@@ -65,7 +75,7 @@ describe('Grid', function () {
         key = _ref.key,
         rowIndex = _ref.rowIndex,
         style = _ref.style;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "gridItem",
       key: key,
       style: style
@@ -91,7 +101,7 @@ describe('Grid', function () {
 
   function getMarkup() {
     var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return React.createElement(_Grid["default"], (0, _extends2["default"])({
+    return /*#__PURE__*/React.createElement(_Grid["default"], (0, _extends2["default"])({
       cellRenderer: defaultCellRenderer,
       columnCount: NUM_COLUMNS,
       columnWidth: DEFAULT_COLUMN_WIDTH,
@@ -136,7 +146,7 @@ describe('Grid', function () {
         } else if (rowIndex === 0) {
           return false;
         } else {
-          return React.createElement("div", {
+          return /*#__PURE__*/React.createElement("div", {
             className: "cell",
             key: key,
             style: style
@@ -633,7 +643,7 @@ describe('Grid', function () {
       var grid = (0, _TestUtils.render)(getMarkup(props));
       expect(grid.state.scrollLeft).toEqual(2450);
       expect(grid.state.scrollTop).toEqual(920);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         columnCount: 0
       })));
       expect(grid.state.scrollLeft).toEqual(0);
@@ -641,7 +651,7 @@ describe('Grid', function () {
       (0, _TestUtils.render)(getMarkup(props));
       expect(grid.state.scrollLeft).toEqual(2450);
       expect(grid.state.scrollTop).toEqual(920);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         rowCount: 0
       })));
       expect(grid.state.scrollLeft).toEqual(0);
@@ -758,7 +768,7 @@ describe('Grid', function () {
     it('should call :noContentRenderer if :columnCount is 0', function () {
       var list = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         noContentRenderer: function noContentRenderer() {
-          return React.createElement("div", null, "No data");
+          return /*#__PURE__*/React.createElement("div", null, "No data");
         },
         columnCount: 0
       })));
@@ -767,7 +777,7 @@ describe('Grid', function () {
     it('should call :noContentRenderer if :rowCount is 0', function () {
       var list = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         noContentRenderer: function noContentRenderer() {
-          return React.createElement("div", null, "No data");
+          return /*#__PURE__*/React.createElement("div", null, "No data");
         },
         rowCount: 0
       })));
@@ -776,7 +786,7 @@ describe('Grid', function () {
 
     it('should render an empty body if :rowCount or :columnCount changes to 0', function () {
       function noContentRenderer() {
-        return React.createElement("div", null, "No data");
+        return /*#__PURE__*/React.createElement("div", null, "No data");
       }
 
       var list = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
@@ -814,13 +824,13 @@ describe('Grid', function () {
       var list = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         height: 0,
         noContentRenderer: function noContentRenderer() {
-          return React.createElement("div", null, "No data");
+          return /*#__PURE__*/React.createElement("div", null, "No data");
         }
       })));
       expect(list.textContent).toEqual('');
       list = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         noContentRenderer: function noContentRenderer() {
-          return React.createElement("div", null, "No data");
+          return /*#__PURE__*/React.createElement("div", null, "No data");
         },
         width: 0
       })));
@@ -1318,79 +1328,85 @@ describe('Grid', function () {
       expect(grid.state.scrollDirectionHorizontal).toEqual(_defaultOverscanIndicesGetter.SCROLL_DIRECTION_BACKWARD);
       expect(grid.state.scrollDirectionVertical).toEqual(_defaultOverscanIndicesGetter.SCROLL_DIRECTION_BACKWARD);
     });
-    it('should overscan in the direction being scrolled', function _callee(done) {
-      var helper, onSectionRenderedResolve, onSectionRendered, grid, onSectionRenderedPromise;
-      return _regenerator["default"].async(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              onSectionRendered = function _ref5(params) {
-                helper.onSectionRendered(params);
+    it('should overscan in the direction being scrolled', /*#__PURE__*/function () {
+      var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(done) {
+        var helper, onSectionRenderedResolve, onSectionRendered, grid, onSectionRenderedPromise;
+        return _regenerator["default"].wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                onSectionRendered = function _onSectionRendered(params) {
+                  helper.onSectionRendered(params);
 
-                if (onSectionRenderedResolve) {
-                  onSectionRenderedResolve();
-                }
-              };
+                  if (onSectionRenderedResolve) {
+                    onSectionRenderedResolve();
+                  }
+                };
 
-              helper = createHelper();
-              grid = (0, _TestUtils.render)(getMarkup({
-                onSectionRendered: onSectionRendered,
-                overscanColumnCount: 2,
-                overscanRowCount: 5
-              })); // Wait until the onSectionRendered handler / debouncer has processed
+                helper = createHelper();
+                grid = (0, _TestUtils.render)(getMarkup({
+                  onSectionRendered: onSectionRendered,
+                  overscanColumnCount: 2,
+                  overscanRowCount: 5
+                })); // Wait until the onSectionRendered handler / debouncer has processed
 
-              onSectionRenderedPromise = new Promise(function (resolve) {
-                onSectionRenderedResolve = resolve;
-              });
-              simulateScroll({
-                grid: grid,
-                scrollLeft: 200,
-                scrollTop: 200
-              });
-              _context.next = 7;
-              return _regenerator["default"].awrap(onSectionRenderedPromise);
+                onSectionRenderedPromise = new Promise(function (resolve) {
+                  onSectionRenderedResolve = resolve;
+                });
+                simulateScroll({
+                  grid: grid,
+                  scrollLeft: 200,
+                  scrollTop: 200
+                });
+                _context.next = 7;
+                return onSectionRenderedPromise;
 
-            case 7:
-              // It should overscan in the direction being scrolled while scroll is in progress
-              expect(helper.columnOverscanStartIndex()).toEqual(4);
-              expect(helper.columnOverscanStopIndex()).toEqual(9);
-              expect(helper.columnStartIndex()).toEqual(4);
-              expect(helper.columnStopIndex()).toEqual(7);
-              expect(helper.rowOverscanStartIndex()).toEqual(10);
-              expect(helper.rowOverscanStopIndex()).toEqual(19);
-              expect(helper.rowStartIndex()).toEqual(10);
-              expect(helper.rowStopIndex()).toEqual(14); // Wait until the onSectionRendered handler / debouncer has processed
+              case 7:
+                // It should overscan in the direction being scrolled while scroll is in progress
+                expect(helper.columnOverscanStartIndex()).toEqual(4);
+                expect(helper.columnOverscanStopIndex()).toEqual(9);
+                expect(helper.columnStartIndex()).toEqual(4);
+                expect(helper.columnStopIndex()).toEqual(7);
+                expect(helper.rowOverscanStartIndex()).toEqual(10);
+                expect(helper.rowOverscanStopIndex()).toEqual(19);
+                expect(helper.rowStartIndex()).toEqual(10);
+                expect(helper.rowStopIndex()).toEqual(14); // Wait until the onSectionRendered handler / debouncer has processed
 
-              onSectionRenderedPromise = new Promise(function (resolve) {
-                onSectionRenderedResolve = resolve;
-              });
-              simulateScroll({
-                grid: grid,
-                scrollLeft: 100,
-                scrollTop: 100
-              });
-              _context.next = 19;
-              return _regenerator["default"].awrap(onSectionRenderedPromise);
+                onSectionRenderedPromise = new Promise(function (resolve) {
+                  onSectionRenderedResolve = resolve;
+                });
+                simulateScroll({
+                  grid: grid,
+                  scrollLeft: 100,
+                  scrollTop: 100
+                });
+                _context.next = 19;
+                return onSectionRenderedPromise;
 
-            case 19:
-              // It reset overscan once scrolling has finished
-              expect(helper.columnOverscanStartIndex()).toEqual(0);
-              expect(helper.columnOverscanStopIndex()).toEqual(5);
-              expect(helper.columnStartIndex()).toEqual(2);
-              expect(helper.columnStopIndex()).toEqual(5);
-              expect(helper.rowOverscanStartIndex()).toEqual(0);
-              expect(helper.rowOverscanStopIndex()).toEqual(9);
-              expect(helper.rowStartIndex()).toEqual(5);
-              expect(helper.rowStopIndex()).toEqual(9);
-              done();
+              case 19:
+                // It reset overscan once scrolling has finished
+                expect(helper.columnOverscanStartIndex()).toEqual(0);
+                expect(helper.columnOverscanStopIndex()).toEqual(5);
+                expect(helper.columnStartIndex()).toEqual(2);
+                expect(helper.columnStopIndex()).toEqual(5);
+                expect(helper.rowOverscanStartIndex()).toEqual(0);
+                expect(helper.rowOverscanStopIndex()).toEqual(9);
+                expect(helper.rowStartIndex()).toEqual(5);
+                expect(helper.rowStopIndex()).toEqual(9);
+                done();
 
-            case 28:
-            case "end":
-              return _context.stop();
+              case 28:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      });
-    });
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref5.apply(this, arguments);
+      };
+    }());
   });
   describe('cellRangeRenderer', function () {
     it('should use a custom :cellRangeRenderer if specified', function () {
@@ -1400,7 +1416,7 @@ describe('Grid', function () {
         cellRangeRenderer: function cellRangeRenderer(params) {
           cellRangeRendererParams = params;
           cellRangeRendererCalled++;
-          return [React.createElement("div", {
+          return [/*#__PURE__*/React.createElement("div", {
             key: "0"
           }, "Fake content")];
         }
@@ -1439,60 +1455,66 @@ describe('Grid', function () {
       expect(_Grid["default"]._getEstimatedRowSize(grid.props)).toEqual(15);
     });
   });
-  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', function _callee2(done) {
-    var cellRendererCalls, cellRenderer, grid;
-    return _regenerator["default"].async(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            cellRenderer = function _ref7(_ref6) {
-              var columnIndex = _ref6.columnIndex,
-                  isScrolling = _ref6.isScrolling,
-                  key = _ref6.key,
-                  rowIndex = _ref6.rowIndex,
-                  style = _ref6.style;
-              cellRendererCalls.push(isScrolling);
-              return defaultCellRenderer({
-                columnIndex: columnIndex,
-                key: key,
-                rowIndex: rowIndex,
-                style: style
+  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', /*#__PURE__*/function () {
+    var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(done) {
+      var cellRendererCalls, cellRenderer, grid;
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              cellRenderer = function _cellRenderer(_ref7) {
+                var columnIndex = _ref7.columnIndex,
+                    isScrolling = _ref7.isScrolling,
+                    key = _ref7.key,
+                    rowIndex = _ref7.rowIndex,
+                    style = _ref7.style;
+                cellRendererCalls.push(isScrolling);
+                return defaultCellRenderer({
+                  columnIndex: columnIndex,
+                  key: key,
+                  rowIndex: rowIndex,
+                  style: style
+                });
+              };
+
+              cellRendererCalls = [];
+              grid = (0, _TestUtils.render)(getMarkup({
+                cellRenderer: cellRenderer
+              }));
+              expect(cellRendererCalls[0]).toEqual(false);
+              cellRendererCalls.splice(0); // Give React time to process the queued setState()
+
+              _context2.next = 7;
+              return new Promise(function (resolve) {
+                return setTimeout(resolve, 1);
               });
-            };
 
-            cellRendererCalls = [];
-            grid = (0, _TestUtils.render)(getMarkup({
-              cellRenderer: cellRenderer
-            }));
-            expect(cellRendererCalls[0]).toEqual(false);
-            cellRendererCalls.splice(0); // Give React time to process the queued setState()
+            case 7:
+              simulateScroll({
+                grid: grid,
+                scrollTop: 100
+              });
+              expect(cellRendererCalls[0]).toEqual(true);
+              done();
 
-            _context2.next = 7;
-            return _regenerator["default"].awrap(new Promise(function (resolve) {
-              return setTimeout(resolve, 1);
-            }));
-
-          case 7:
-            simulateScroll({
-              grid: grid,
-              scrollTop: 100
-            });
-            expect(cellRendererCalls[0]).toEqual(true);
-            done();
-
-          case 10:
-          case "end":
-            return _context2.stop();
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
         }
-      }
-    });
-  });
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref6.apply(this, arguments);
+    };
+  }());
   it('should pass the cellRenderer an :isScrolling flag based on props override', function () {
     var cellRenderer = jest.fn();
     cellRenderer.mockImplementation(function (_ref8) {
       var key = _ref8.key,
           style = _ref8.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: key,
         style: style
       });
@@ -1560,7 +1582,7 @@ describe('Grid', function () {
         scrollToRow: 0,
         width: 100
       };
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollToRow: 0
       })));
       expect(cellRendererCalls).toEqual([{
@@ -1571,7 +1593,7 @@ describe('Grid', function () {
         rowIndex: 1
       }]);
       cellRendererCalls.splice(0);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollToRow: 1
       })));
       expect(cellRendererCalls).toEqual([{
@@ -1611,7 +1633,7 @@ describe('Grid', function () {
         scrollToRow: 0,
         width: 100
       };
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollToRow: 0
       })));
       expect(cellRendererCalls).toEqual([{
@@ -1622,7 +1644,7 @@ describe('Grid', function () {
         rowIndex: 1
       }]);
       cellRendererCalls.splice(0);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollToRow: 1
       })));
       expect(cellRendererCalls).toEqual([{
@@ -1660,7 +1682,7 @@ describe('Grid', function () {
         rowHeight: 20,
         width: 100
       };
-      var grid = (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      var grid = (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollToRow: 0
       })));
       expect(cellRendererCalls).toEqual([{
@@ -1678,7 +1700,7 @@ describe('Grid', function () {
       // This means that only row 3 should be newly-created
       // The others should come from the cache
 
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollToRow: 3
       })));
       expect(cellRendererCalls).toEqual([{
@@ -1686,80 +1708,86 @@ describe('Grid', function () {
         rowIndex: 3
       }]);
     });
-    it('should clear cache once :isScrolling is false', function _callee3(done) {
-      var cellRendererCalls, cellRenderer, props, grid;
-      return _regenerator["default"].async(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              cellRenderer = function _ref13(_ref12) {
-                var columnIndex = _ref12.columnIndex,
-                    key = _ref12.key,
-                    rowIndex = _ref12.rowIndex,
-                    style = _ref12.style;
-                cellRendererCalls.push({
-                  columnIndex: columnIndex,
-                  rowIndex: rowIndex
+    it('should clear cache once :isScrolling is false', /*#__PURE__*/function () {
+      var _ref12 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(done) {
+        var cellRendererCalls, cellRenderer, props, grid;
+        return _regenerator["default"].wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                cellRenderer = function _cellRenderer2(_ref13) {
+                  var columnIndex = _ref13.columnIndex,
+                      key = _ref13.key,
+                      rowIndex = _ref13.rowIndex,
+                      style = _ref13.style;
+                  cellRendererCalls.push({
+                    columnIndex: columnIndex,
+                    rowIndex: rowIndex
+                  });
+                  return defaultCellRenderer({
+                    columnIndex: columnIndex,
+                    key: key,
+                    rowIndex: rowIndex,
+                    style: style
+                  });
+                };
+
+                cellRendererCalls = [];
+                props = {
+                  cellRenderer: cellRenderer,
+                  columnWidth: 100,
+                  height: 40,
+                  rowHeight: 20,
+                  scrollToRow: 0,
+                  width: 100
+                };
+                grid = (0, _TestUtils.render)(getMarkup(props));
+                expect(cellRendererCalls).toEqual([{
+                  columnIndex: 0,
+                  rowIndex: 0
+                }, {
+                  columnIndex: 0,
+                  rowIndex: 1
+                }]);
+                simulateScroll({
+                  grid: grid,
+                  scrollTop: 1
+                }); // Allow scrolling timeout to complete so that cell cache is reset
+
+                _context3.next = 8;
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2);
                 });
-                return defaultCellRenderer({
-                  columnIndex: columnIndex,
-                  key: key,
-                  rowIndex: rowIndex,
-                  style: style
-                });
-              };
 
-              cellRendererCalls = [];
-              props = {
-                cellRenderer: cellRenderer,
-                columnWidth: 100,
-                height: 40,
-                rowHeight: 20,
-                scrollToRow: 0,
-                width: 100
-              };
-              grid = (0, _TestUtils.render)(getMarkup(props));
-              expect(cellRendererCalls).toEqual([{
-                columnIndex: 0,
-                rowIndex: 0
-              }, {
-                columnIndex: 0,
-                rowIndex: 1
-              }]);
-              simulateScroll({
-                grid: grid,
-                scrollTop: 1
-              }); // Allow scrolling timeout to complete so that cell cache is reset
+              case 8:
+                cellRendererCalls.splice(0);
+                (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
+                  scrollToRow: 1
+                })));
+                expect(cellRendererCalls.length).not.toEqual(0);
+                done();
 
-              _context3.next = 8;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
-                return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2);
-              }));
-
-            case 8:
-              cellRendererCalls.splice(0);
-              (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
-                scrollToRow: 1
-              })));
-              expect(cellRendererCalls.length).not.toEqual(0);
-              done();
-
-            case 12:
-            case "end":
-              return _context3.stop();
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
           }
-        }
-      });
-    });
-    it('should clear cache once :isScrolling via props is false', function _callee4() {
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref12.apply(this, arguments);
+      };
+    }());
+    it('should clear cache once :isScrolling via props is false', /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
       var cellRenderer, props, scrollingStyle;
-      return _regenerator["default"].async(function _callee4$(_context4) {
+      return _regenerator["default"].wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               cellRenderer = jest.fn();
               cellRenderer.mockImplementation(function (params) {
-                return React.createElement("div", {
+                return /*#__PURE__*/React.createElement("div", {
                   key: params.key,
                   style: params.style
                 });
@@ -1777,14 +1805,14 @@ describe('Grid', function () {
 
               scrollingStyle = cellRenderer.mock.calls[0][0].style;
               cellRenderer.mockReset();
-              (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+              (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
                 isScrolling: false
               })));
               expect(cellRenderer.mock.calls[0][0].style).toBe(scrollingStyle);
               expect(cellRenderer).toHaveBeenCalledTimes(1); // Reset cache
 
               cellRenderer.mockReset();
-              (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+              (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
                 isScrolling: true
               })));
               expect(cellRenderer.mock.calls[0][0].style).not.toBe(scrollingStyle);
@@ -1795,16 +1823,16 @@ describe('Grid', function () {
               return _context4.stop();
           }
         }
-      });
-    });
+      }, _callee4);
+    })));
     it('should clear cache if :recomputeGridSize is called', function () {
       var cellRendererCalls = [];
 
-      function cellRenderer(_ref14) {
-        var columnIndex = _ref14.columnIndex,
-            key = _ref14.key,
-            rowIndex = _ref14.rowIndex,
-            style = _ref14.style;
+      function cellRenderer(_ref15) {
+        var columnIndex = _ref15.columnIndex,
+            key = _ref15.key,
+            rowIndex = _ref15.rowIndex,
+            style = _ref15.style;
         cellRendererCalls.push({
           columnIndex: columnIndex,
           rowIndex: rowIndex
@@ -1844,11 +1872,11 @@ describe('Grid', function () {
     it('should not clear cache if :isScrollingOptOut is true', function () {
       var cellRendererCalls = [];
 
-      function cellRenderer(_ref15) {
-        var columnIndex = _ref15.columnIndex,
-            key = _ref15.key,
-            rowIndex = _ref15.rowIndex,
-            style = _ref15.style;
+      function cellRenderer(_ref16) {
+        var columnIndex = _ref16.columnIndex,
+            key = _ref16.key,
+            rowIndex = _ref16.rowIndex,
+            style = _ref16.style;
         cellRendererCalls.push({
           columnIndex: columnIndex,
           rowIndex: rowIndex
@@ -1880,24 +1908,24 @@ describe('Grid', function () {
         rowIndex: 1
       }]);
       cellRendererCalls.splice(0);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         isScrolling: false
       }))); // Visible cells are cached
 
       expect(cellRendererCalls.length).toEqual(0);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         isScrolling: true
       }))); // Only cleared non-visible cells
 
       expect(cellRendererCalls.length).toEqual(0);
     });
-    it('should not trigger render by _debounceScrollEndedCallback if process slow table', function _callee5() {
+    it('should not trigger render by _debounceScrollEndedCallback if process slow table', /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5() {
       var scrollingResetTimeInterval, cellRangeRendererCalls, cellRangeRenderer, props, grid, i;
-      return _regenerator["default"].async(function _callee5$(_context5) {
+      return _regenerator["default"].wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              cellRangeRenderer = function _ref16(props) {
+              cellRangeRenderer = function _cellRangeRenderer(props) {
                 var startTime = Date.now();
 
                 while (Date.now() - startTime <= scrollingResetTimeInterval) {
@@ -1933,9 +1961,9 @@ describe('Grid', function () {
               }); // small wait for maybe early _debounceScrollEndedCallback
 
               _context5.next = 13;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, scrollingResetTimeInterval / 2);
-              }));
+              });
 
             case 13:
               expect(cellRangeRendererCalls).toEqual(1);
@@ -1949,9 +1977,9 @@ describe('Grid', function () {
               cellRangeRendererCalls = 0; // wait for real _debounceScrollEndedCallback
 
               _context5.next = 20;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, scrollingResetTimeInterval * 1.5);
-              }));
+              });
 
             case 20:
               expect(cellRangeRendererCalls).toEqual(1);
@@ -1961,74 +1989,80 @@ describe('Grid', function () {
               return _context5.stop();
           }
         }
-      });
-    });
-    it('should support a custom :scrollingResetTimeInterval prop', function _callee6(done) {
-      var cellRendererCalls, scrollingResetTimeInterval, cellRenderer, props, grid;
-      return _regenerator["default"].async(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              cellRenderer = function _ref18(_ref17) {
-                var columnIndex = _ref17.columnIndex,
-                    key = _ref17.key,
-                    rowIndex = _ref17.rowIndex,
-                    style = _ref17.style;
-                cellRendererCalls.push({
-                  columnIndex: columnIndex,
-                  rowIndex: rowIndex
+      }, _callee5);
+    })));
+    it('should support a custom :scrollingResetTimeInterval prop', /*#__PURE__*/function () {
+      var _ref18 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(done) {
+        var cellRendererCalls, scrollingResetTimeInterval, cellRenderer, props, grid;
+        return _regenerator["default"].wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                cellRenderer = function _cellRenderer3(_ref19) {
+                  var columnIndex = _ref19.columnIndex,
+                      key = _ref19.key,
+                      rowIndex = _ref19.rowIndex,
+                      style = _ref19.style;
+                  cellRendererCalls.push({
+                    columnIndex: columnIndex,
+                    rowIndex: rowIndex
+                  });
+                  return defaultCellRenderer({
+                    columnIndex: columnIndex,
+                    key: key,
+                    rowIndex: rowIndex,
+                    style: style
+                  });
+                };
+
+                cellRendererCalls = [];
+                scrollingResetTimeInterval = _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2;
+                props = {
+                  cellRenderer: cellRenderer,
+                  scrollingResetTimeInterval: scrollingResetTimeInterval
+                };
+                grid = (0, _TestUtils.render)(getMarkup(props));
+                expect(cellRendererCalls.length > 0).toEqual(true);
+                simulateScroll({
+                  grid: grid,
+                  scrollTop: 1
                 });
-                return defaultCellRenderer({
-                  columnIndex: columnIndex,
-                  key: key,
-                  rowIndex: rowIndex,
-                  style: style
+                _context6.next = 9;
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL);
                 });
-              };
 
-              cellRendererCalls = [];
-              scrollingResetTimeInterval = _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2;
-              props = {
-                cellRenderer: cellRenderer,
-                scrollingResetTimeInterval: scrollingResetTimeInterval
-              };
-              grid = (0, _TestUtils.render)(getMarkup(props));
-              expect(cellRendererCalls.length > 0).toEqual(true);
-              simulateScroll({
-                grid: grid,
-                scrollTop: 1
-              });
-              _context6.next = 9;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
-                return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL);
-              }));
+              case 9:
+                cellRendererCalls.splice(0);
+                (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
+                  className: 'foo'
+                })));
+                expect(cellRendererCalls.length).toEqual(0);
+                _context6.next = 14;
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2);
+                });
 
-            case 9:
-              cellRendererCalls.splice(0);
-              (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
-                className: 'foo'
-              })));
-              expect(cellRendererCalls.length).toEqual(0);
-              _context6.next = 14;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
-                return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2);
-              }));
+              case 14:
+                cellRendererCalls.splice(0);
+                (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
+                  className: 'bar'
+                })));
+                expect(cellRendererCalls.length).not.toEqual(0);
+                done();
 
-            case 14:
-              cellRendererCalls.splice(0);
-              (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
-                className: 'bar'
-              })));
-              expect(cellRendererCalls.length).not.toEqual(0);
-              done();
-
-            case 18:
-            case "end":
-              return _context6.stop();
+              case 18:
+              case "end":
+                return _context6.stop();
+            }
           }
-        }
-      });
-    });
+        }, _callee6);
+      }));
+
+      return function (_x4) {
+        return _ref18.apply(this, arguments);
+      };
+    }());
   });
   describe('measureAllCells', function () {
     it('should measure any unmeasured columns and rows', function () {
@@ -2058,14 +2092,14 @@ describe('Grid', function () {
       var columnIndices = [];
       var rowIndices = [];
 
-      function columnWidth(_ref19) {
-        var index = _ref19.index;
+      function columnWidth(_ref20) {
+        var index = _ref20.index;
         columnIndices.push(index);
         return 10;
       }
 
-      function rowHeight(_ref20) {
-        var index = _ref20.index;
+      function rowHeight(_ref21) {
+        var index = _ref21.index;
         rowIndices.push(index);
         return 10;
       }
@@ -2199,11 +2233,11 @@ describe('Grid', function () {
     it('should not re-render unless props have changed', function () {
       var cellRendererCalled = false;
 
-      function cellRenderer(_ref21) {
-        var key = _ref21.key,
-            style = _ref21.style;
+      function cellRenderer(_ref22) {
+        var key = _ref22.key,
+            style = _ref22.style;
         cellRendererCalled = true;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         });
@@ -2221,14 +2255,14 @@ describe('Grid', function () {
     it('should not re-render grid components if they extend PureComponent', function () {
       var componentUpdates = 0;
 
-      var GridComponent =
-      /*#__PURE__*/
-      function (_React$PureComponent) {
+      var GridComponent = /*#__PURE__*/function (_React$PureComponent) {
         (0, _inherits2["default"])(GridComponent, _React$PureComponent);
+
+        var _super = _createSuper(GridComponent);
 
         function GridComponent() {
           (0, _classCallCheck2["default"])(this, GridComponent);
-          return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(GridComponent).apply(this, arguments));
+          return _super.apply(this, arguments);
         }
 
         (0, _createClass2["default"])(GridComponent, [{
@@ -2243,7 +2277,7 @@ describe('Grid', function () {
                 columnIndex = _this$props.columnIndex,
                 rowIndex = _this$props.rowIndex,
                 style = _this$props.style;
-            return React.createElement("div", {
+            return /*#__PURE__*/React.createElement("div", {
               className: "gridItem",
               style: style
             }, "row:".concat(rowIndex, ", column:").concat(columnIndex));
@@ -2252,12 +2286,12 @@ describe('Grid', function () {
         return GridComponent;
       }(React.PureComponent);
 
-      function cellRenderer(_ref22) {
-        var columnIndex = _ref22.columnIndex,
-            key = _ref22.key,
-            rowIndex = _ref22.rowIndex,
-            style = _ref22.style;
-        return React.createElement(GridComponent, {
+      function cellRenderer(_ref23) {
+        var columnIndex = _ref23.columnIndex,
+            key = _ref23.key,
+            rowIndex = _ref23.rowIndex,
+            style = _ref23.style;
+        return /*#__PURE__*/React.createElement(GridComponent, {
           key: key,
           columnIndex: columnIndex,
           rowIndex: rowIndex,
@@ -2280,44 +2314,50 @@ describe('Grid', function () {
       });
       expect(componentUpdates).toEqual(0);
     });
-    it('should clear all but the visible rows from the style cache once :isScrolling is false', function _callee7(done) {
-      var props, grid;
-      return _regenerator["default"].async(function _callee7$(_context7) {
-        while (1) {
-          switch (_context7.prev = _context7.next) {
-            case 0:
-              props = {
-                columnWidth: 50,
-                height: 100,
-                overscanColumnCount: 0,
-                overscanRowCount: 0,
-                rowHeight: 50,
-                width: 100
-              };
-              grid = (0, _TestUtils.render)(getMarkup(props));
-              expect(Object.keys(grid._styleCache).length).toBe(4);
-              simulateScroll({
-                grid: grid,
-                scrollTop: 50
-              });
-              expect(Object.keys(grid._styleCache).length).toBe(6); // Allow scrolling timeout to complete so that cell cache is reset
+    it('should clear all but the visible rows from the style cache once :isScrolling is false', /*#__PURE__*/function () {
+      var _ref24 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(done) {
+        var props, grid;
+        return _regenerator["default"].wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                props = {
+                  columnWidth: 50,
+                  height: 100,
+                  overscanColumnCount: 0,
+                  overscanRowCount: 0,
+                  rowHeight: 50,
+                  width: 100
+                };
+                grid = (0, _TestUtils.render)(getMarkup(props));
+                expect(Object.keys(grid._styleCache).length).toBe(4);
+                simulateScroll({
+                  grid: grid,
+                  scrollTop: 50
+                });
+                expect(Object.keys(grid._styleCache).length).toBe(6); // Allow scrolling timeout to complete so that cell cache is reset
 
-              _context7.next = 7;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
-                return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2);
-              }));
+                _context7.next = 7;
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, _Grid.DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2);
+                });
 
-            case 7:
-              expect(Object.keys(grid._styleCache).length).toBe(4);
-              done();
+              case 7:
+                expect(Object.keys(grid._styleCache).length).toBe(4);
+                done();
 
-            case 9:
-            case "end":
-              return _context7.stop();
+              case 9:
+              case "end":
+                return _context7.stop();
+            }
           }
-        }
-      });
-    });
+        }, _callee7);
+      }));
+
+      return function (_x5) {
+        return _ref24.apply(this, arguments);
+      };
+    }());
     it('should clear style cache if :recomputeGridSize is called', function () {
       var props = {
         columnWidth: 50,
@@ -2329,7 +2369,7 @@ describe('Grid', function () {
       };
       var grid = (0, _TestUtils.render)(getMarkup(props));
       expect(Object.keys(grid._styleCache).length).toBe(4);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollTop: 50
       })));
       expect(Object.keys(grid._styleCache).length).toBe(6);
@@ -2341,7 +2381,7 @@ describe('Grid', function () {
 
       function cellRenderer(params) {
         cellRendererCalls.push(params);
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: params.key,
           style: params.style
         });
@@ -2359,7 +2399,7 @@ describe('Grid', function () {
       (0, _TestUtils.render)(getMarkup(props));
       expect(cellRendererCalls.length).toEqual(1);
       expect(cellRendererCalls[0].style.width).toEqual(100);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         columnWidth: 50,
         width: 50
       })));
@@ -2372,7 +2412,7 @@ describe('Grid', function () {
 
     function cellRenderer(params) {
       cellRendererCalls.push(params);
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: params.key,
         style: params.style
       });
@@ -2418,7 +2458,7 @@ describe('Grid', function () {
       spyOn(console, 'warn');
 
       function cellRenderer(params) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: params.key
         });
       }
@@ -2436,14 +2476,14 @@ describe('Grid', function () {
       });
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (params) {
-        return React.createElement(_CellMeasurer.CellMeasurer, {
+        return /*#__PURE__*/React.createElement(_CellMeasurer.CellMeasurer, {
           cache: cache,
           columnIndex: params.columnIndex,
           key: params.key,
           parent: params.parent,
           rowIndex: params.rowIndex,
           style: params.style
-        }, React.createElement("div", null));
+        }, /*#__PURE__*/React.createElement("div", null));
       });
       (0, _TestUtils.render)(getMarkup({
         cellRenderer: cellRenderer,
@@ -2472,7 +2512,7 @@ describe('Grid', function () {
           });
         }
 
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: params.key,
           style: params.style
         });
@@ -2493,7 +2533,7 @@ describe('Grid', function () {
       });
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (params) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: params.key,
           style: params.style
         });
@@ -2518,7 +2558,7 @@ describe('Grid', function () {
           });
         }
 
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: params.key,
           style: params.style
         });
@@ -2536,7 +2576,7 @@ describe('Grid', function () {
       cache.set(0, 0, 100, 30);
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (params) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: params.key,
           style: params.style
         });

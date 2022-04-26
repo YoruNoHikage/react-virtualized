@@ -19,18 +19,16 @@ var _CellSizeAndPositionManager = _interopRequireDefault(require("./CellSizeAndP
 
 var _maxElementSize = require("./maxElementSize.js");
 
-/*:: import type {Alignment, CellSizeGetter, VisibleCellRange} from '../types';*/
+var _excluded = ["maxScrollSize"];
 
 /**
  * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
  */
-var ScalingCellSizeAndPositionManager =
-/*#__PURE__*/
-function () {
+var ScalingCellSizeAndPositionManager = /*#__PURE__*/function () {
   function ScalingCellSizeAndPositionManager(_ref) {
     var _ref$maxScrollSize = _ref.maxScrollSize,
         maxScrollSize = _ref$maxScrollSize === void 0 ? (0, _maxElementSize.getMaxElementSize)() : _ref$maxScrollSize,
-        params = (0, _objectWithoutProperties2["default"])(_ref, ["maxScrollSize"]);
+        params = (0, _objectWithoutProperties2["default"])(_ref, _excluded);
     (0, _classCallCheck2["default"])(this, ScalingCellSizeAndPositionManager);
     (0, _defineProperty2["default"])(this, "_cellSizeAndPositionManager", void 0);
     (0, _defineProperty2["default"])(this, "_maxScrollSize", void 0);

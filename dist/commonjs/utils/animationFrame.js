@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.caf = exports.raf = void 0;
+exports.raf = exports.caf = void 0;
 
 /*:: type Callback = (timestamp: number) => void;*/
 

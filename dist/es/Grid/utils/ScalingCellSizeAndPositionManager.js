@@ -2,6 +2,7 @@ import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProper
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+var _excluded = ["maxScrollSize"];
 
 /*:: import type {Alignment, CellSizeGetter, VisibleCellRange} from '../types';*/
 import CellSizeAndPositionManager from './CellSizeAndPositionManager';
@@ -21,13 +22,11 @@ import { getMaxElementSize } from './maxElementSize.js';
 /**
  * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
  */
-var ScalingCellSizeAndPositionManager =
-/*#__PURE__*/
-function () {
+var ScalingCellSizeAndPositionManager = /*#__PURE__*/function () {
   function ScalingCellSizeAndPositionManager(_ref) {
     var _ref$maxScrollSize = _ref.maxScrollSize,
         maxScrollSize = _ref$maxScrollSize === void 0 ? getMaxElementSize() : _ref$maxScrollSize,
-        params = _objectWithoutProperties(_ref, ["maxScrollSize"]);
+        params = _objectWithoutProperties(_ref, _excluded);
 
     _classCallCheck(this, ScalingCellSizeAndPositionManager);
 

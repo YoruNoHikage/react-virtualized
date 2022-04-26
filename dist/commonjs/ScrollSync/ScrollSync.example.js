@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -13,13 +13,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var React = _interopRequireWildcard(require("react"));
 
@@ -37,21 +37,29 @@ var _ScrollSyncExample = _interopRequireDefault(require("./ScrollSync.example.cs
 
 var _scrollbarSize = _interopRequireDefault(require("dom-helpers/scrollbarSize"));
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var LEFT_COLOR_FROM = hexToRgb('#471061');
 var LEFT_COLOR_TO = hexToRgb('#BC3959');
 var TOP_COLOR_FROM = hexToRgb('#000000');
 var TOP_COLOR_TO = hexToRgb('#333333');
 
-var GridExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var GridExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(GridExample, _React$PureComponent);
+
+  var _super = _createSuper(GridExample);
 
   function GridExample(props, context) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, GridExample);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(GridExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this.state = {
       columnWidth: 75,
       columnCount: 50,
@@ -80,11 +88,11 @@ function (_React$PureComponent) {
           overscanRowCount = _this$state.overscanRowCount,
           rowHeight = _this$state.rowHeight,
           rowCount = _this$state.rowCount;
-      return React.createElement(_ContentBox.ContentBox, null, React.createElement(_ContentBox.ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, null, /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "ScrollSync",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/ScrollSync/ScrollSync.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/ScrollSync.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, "High order component that simplifies the process of synchronizing scrolling between two or more virtualized components."), React.createElement(_ContentBox.ContentBoxParagraph, null, "This example shows two ", React.createElement("code", null, "Grid"), "s and one ", React.createElement("code", null, "List"), ' ', "configured to mimic a spreadsheet with a fixed header and first column. It also shows how a scroll callback can be used to control UI properties such as background color."), React.createElement(_ScrollSync["default"], null, function (_ref) {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "High order component that simplifies the process of synchronizing scrolling between two or more virtualized components."), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "This example shows two ", /*#__PURE__*/React.createElement("code", null, "Grid"), "s and one ", /*#__PURE__*/React.createElement("code", null, "List"), ' ', "configured to mimic a spreadsheet with a fixed header and first column. It also shows how a scroll callback can be used to control UI properties such as background color."), /*#__PURE__*/React.createElement(_ScrollSync["default"], null, function (_ref) {
         var clientHeight = _ref.clientHeight,
             clientWidth = _ref.clientWidth,
             onScroll = _ref.onScroll,
@@ -100,9 +108,9 @@ function (_React$PureComponent) {
         var topColor = '#ffffff';
         var middleBackgroundColor = mixColors(leftBackgroundColor, topBackgroundColor, 0.5);
         var middleColor = '#ffffff';
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: _ScrollSyncExample["default"].GridRow
-        }, React.createElement("div", {
+        }, /*#__PURE__*/React.createElement("div", {
           className: _ScrollSyncExample["default"].LeftSideGridContainer,
           style: {
             position: 'absolute',
@@ -111,7 +119,7 @@ function (_React$PureComponent) {
             color: leftColor,
             backgroundColor: "rgb(".concat(topBackgroundColor.r, ",").concat(topBackgroundColor.g, ",").concat(topBackgroundColor.b, ")")
           }
-        }, React.createElement(_Grid["default"], {
+        }, /*#__PURE__*/React.createElement(_Grid["default"], {
           cellRenderer: _this2._renderLeftHeaderCell,
           className: _ScrollSyncExample["default"].HeaderGrid,
           width: columnWidth,
@@ -120,7 +128,7 @@ function (_React$PureComponent) {
           columnWidth: columnWidth,
           rowCount: 1,
           columnCount: 1
-        })), React.createElement("div", {
+        })), /*#__PURE__*/React.createElement("div", {
           className: _ScrollSyncExample["default"].LeftSideGridContainer,
           style: {
             position: 'absolute',
@@ -129,7 +137,7 @@ function (_React$PureComponent) {
             color: leftColor,
             backgroundColor: "rgb(".concat(leftBackgroundColor.r, ",").concat(leftBackgroundColor.g, ",").concat(leftBackgroundColor.b, ")")
           }
-        }, React.createElement(_Grid["default"], {
+        }, /*#__PURE__*/React.createElement(_Grid["default"], {
           overscanColumnCount: overscanColumnCount,
           overscanRowCount: overscanRowCount,
           cellRenderer: _this2._renderLeftSideCell,
@@ -141,20 +149,20 @@ function (_React$PureComponent) {
           rowCount: rowCount,
           scrollTop: scrollTop,
           width: columnWidth
-        })), React.createElement("div", {
+        })), /*#__PURE__*/React.createElement("div", {
           className: _ScrollSyncExample["default"].GridColumn
-        }, React.createElement(_AutoSizer["default"], {
+        }, /*#__PURE__*/React.createElement(_AutoSizer["default"], {
           disableHeight: true
         }, function (_ref2) {
           var width = _ref2.width;
-          return React.createElement("div", null, React.createElement("div", {
+          return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
             style: {
               backgroundColor: "rgb(".concat(topBackgroundColor.r, ",").concat(topBackgroundColor.g, ",").concat(topBackgroundColor.b, ")"),
               color: topColor,
               height: rowHeight,
               width: width - (0, _scrollbarSize["default"])()
             }
-          }, React.createElement(_Grid["default"], {
+          }, /*#__PURE__*/React.createElement(_Grid["default"], {
             className: _ScrollSyncExample["default"].HeaderGrid,
             columnWidth: columnWidth,
             columnCount: columnCount,
@@ -165,14 +173,14 @@ function (_React$PureComponent) {
             rowCount: 1,
             scrollLeft: scrollLeft,
             width: width - (0, _scrollbarSize["default"])()
-          })), React.createElement("div", {
+          })), /*#__PURE__*/React.createElement("div", {
             style: {
               backgroundColor: "rgb(".concat(middleBackgroundColor.r, ",").concat(middleBackgroundColor.g, ",").concat(middleBackgroundColor.b, ")"),
               color: middleColor,
               height: height,
               width: width
             }
-          }, React.createElement(_Grid["default"], {
+          }, /*#__PURE__*/React.createElement(_Grid["default"], {
             className: _ScrollSyncExample["default"].BodyGrid,
             columnWidth: columnWidth,
             columnCount: columnCount,
@@ -232,7 +240,7 @@ function (_React$PureComponent) {
       var columnIndex = _ref5.columnIndex,
           key = _ref5.key,
           style = _ref5.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _ScrollSyncExample["default"].headerCell,
         key: key,
         style: style
@@ -247,7 +255,7 @@ function (_React$PureComponent) {
           style = _ref6.style;
       var rowClass = rowIndex % 2 === 0 ? columnIndex % 2 === 0 ? _ScrollSyncExample["default"].evenRow : _ScrollSyncExample["default"].oddRow : columnIndex % 2 !== 0 ? _ScrollSyncExample["default"].evenRow : _ScrollSyncExample["default"].oddRow;
       var classNames = (0, _clsx["default"])(rowClass, _ScrollSyncExample["default"].cell);
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: classNames,
         key: key,
         style: style

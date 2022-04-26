@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -13,13 +13,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -41,20 +41,28 @@ var _clsx2 = _interopRequireDefault(require("clsx"));
 
 var _GridExample = _interopRequireDefault(require("./Grid.example.css"));
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var GridExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var GridExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(GridExample, _React$PureComponent);
+
+  var _super = _createSuper(GridExample);
 
   function GridExample(props, context) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, GridExample);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(GridExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this.state = {
       columnCount: 1000,
       height: 300,
@@ -95,13 +103,13 @@ function (_React$PureComponent) {
           scrollToColumn = _this$state.scrollToColumn,
           scrollToRow = _this$state.scrollToRow,
           useDynamicRowHeight = _this$state.useDynamicRowHeight;
-      return React.createElement(_ContentBox.ContentBox, null, React.createElement(_ContentBox.ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, null, /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "Grid",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/Grid/Grid.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/Grid.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, "Renders tabular data with virtualization along the vertical and horizontal axes. Row heights and column widths must be calculated ahead of time and specified as a fixed size or returned by a getter function."), React.createElement(_ContentBox.ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "Renders tabular data with virtualization along the vertical and horizontal axes. Row heights and column widths must be calculated ahead of time and specified as a fixed size or returned by a getter function."), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: _GridExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Use dynamic row height?",
         className: _GridExample["default"].checkbox,
         type: "checkbox",
@@ -109,29 +117,29 @@ function (_React$PureComponent) {
         onChange: function onChange(event) {
           return _this2._updateUseDynamicRowHeights(event.target.checked);
         }
-      }), "Use dynamic row height?")), React.createElement(_LabeledInput.InputRow, null, React.createElement(_LabeledInput.LabeledInput, {
+      }), "Use dynamic row height?")), /*#__PURE__*/React.createElement(_LabeledInput.InputRow, null, /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Num columns",
         name: "columnCount",
         onChange: this._onColumnCountChange,
         value: columnCount
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Num rows",
         name: "rowCount",
         onChange: this._onRowCountChange,
         value: rowCount
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Scroll to column",
         name: "onScrollToColumn",
         placeholder: "Index...",
         onChange: this._onScrollToColumnChange,
         value: scrollToColumn || ''
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Scroll to row",
         name: "onScrollToRow",
         placeholder: "Index...",
         onChange: this._onScrollToRowChange,
         value: scrollToRow || ''
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "List height",
         name: "height",
         onChange: function onChange(event) {
@@ -140,7 +148,7 @@ function (_React$PureComponent) {
           });
         },
         value: height
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         disabled: useDynamicRowHeight,
         label: "Row height",
         name: "rowHeight",
@@ -150,7 +158,7 @@ function (_React$PureComponent) {
           });
         },
         value: rowHeight
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Overscan columns",
         name: "overscanColumnCount",
         onChange: function onChange(event) {
@@ -159,7 +167,7 @@ function (_React$PureComponent) {
           });
         },
         value: overscanColumnCount
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Overscan rows",
         name: "overscanRowCount",
         onChange: function onChange(event) {
@@ -168,11 +176,11 @@ function (_React$PureComponent) {
           });
         },
         value: overscanRowCount
-      })), React.createElement(_AutoSizer["default"], {
+      })), /*#__PURE__*/React.createElement(_AutoSizer["default"], {
         disableHeight: true
       }, function (_ref) {
         var width = _ref.width;
-        return React.createElement(_Grid["default"], {
+        return /*#__PURE__*/React.createElement(_Grid["default"], {
           cellRenderer: _this2._cellRenderer,
           className: _GridExample["default"].BodyGrid,
           columnWidth: _this2._getColumnWidth,
@@ -252,7 +260,7 @@ function (_React$PureComponent) {
   }, {
     key: "_noContentRenderer",
     value: function _noContentRenderer() {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _GridExample["default"].noCells
       }, "No cells");
     }
@@ -285,7 +293,7 @@ function (_React$PureComponent) {
       }
 
       var classNames = (0, _clsx2["default"])(rowClass, _GridExample["default"].cell, (0, _defineProperty2["default"])({}, _GridExample["default"].centeredCell, columnIndex > 2));
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: classNames,
         key: key,
         style: style
@@ -304,10 +312,10 @@ function (_React$PureComponent) {
       // These are frozen by React now (as of 16.0.0).
       // Since Grid caches and re-uses them, they aren't safe to modify.
 
-      style = _objectSpread({}, style, {
+      style = _objectSpread(_objectSpread({}, style), {}, {
         backgroundColor: datum.color
       });
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: classNames,
         key: key,
         style: style

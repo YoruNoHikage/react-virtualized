@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -17,17 +22,17 @@ import SortDirection from './SortDirection';
 import SortIndicator from './SortIndicator';
 import styles from './Table.example.css';
 
-var TableExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var TableExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(TableExample, _React$PureComponent);
+
+  var _super = _createSuper(TableExample);
 
   function TableExample(props, context) {
     var _this;
 
     _classCallCheck(this, TableExample);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TableExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     var sortBy = 'index';
     var sortDirection = SortDirection.ASC;
 
@@ -84,13 +89,13 @@ function (_React$PureComponent) {
         return _this2._getDatum(sortedList, index);
       };
 
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "Table",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/Table/Table.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/Table.md"
-      }), React.createElement(ContentBoxParagraph, null, "The table layout below is created with flexboxes. This allows it to have a fixed header and scrollable body content. It also makes use of", ' ', React.createElement("code", null, "Grid"), " for windowing table content so that large lists are rendered efficiently. Adjust its configurable properties below to see how it reacts."), React.createElement(ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "The table layout below is created with flexboxes. This allows it to have a fixed header and scrollable body content. It also makes use of", ' ', /*#__PURE__*/React.createElement("code", null, "Grid"), " for windowing table content so that large lists are rendered efficiently. Adjust its configurable properties below to see how it reacts."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Use dynamic row heights?",
         checked: useDynamicRowHeight,
         className: styles.checkbox,
@@ -98,9 +103,9 @@ function (_React$PureComponent) {
         onChange: function onChange(event) {
           return _this2._updateUseDynamicRowHeight(event.target.checked);
         }
-      }), "Use dynamic row heights?"), React.createElement("label", {
+      }), "Use dynamic row heights?"), /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Hide index?",
         checked: hideIndexRow,
         className: styles.checkbox,
@@ -110,9 +115,9 @@ function (_React$PureComponent) {
             hideIndexRow: event.target.checked
           });
         }
-      }), "Hide index?"), React.createElement("label", {
+      }), "Hide index?"), /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Hide header?",
         checked: disableHeader,
         className: styles.checkbox,
@@ -122,18 +127,18 @@ function (_React$PureComponent) {
             disableHeader: event.target.checked
           });
         }
-      }), "Hide header?")), React.createElement(InputRow, null, React.createElement(LabeledInput, {
+      }), "Hide header?")), /*#__PURE__*/React.createElement(InputRow, null, /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Num rows",
         name: "rowCount",
         onChange: this._onRowCountChange,
         value: rowCount
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Scroll to",
         name: "onScrollToRow",
         placeholder: "Index...",
         onChange: this._onScrollToRowChange,
         value: scrollToIndex || ''
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "List height",
         name: "height",
         onChange: function onChange(event) {
@@ -142,7 +147,7 @@ function (_React$PureComponent) {
           });
         },
         value: height
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         disabled: useDynamicRowHeight,
         label: "Row height",
         name: "rowHeight",
@@ -152,7 +157,7 @@ function (_React$PureComponent) {
           });
         },
         value: rowHeight
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Header height",
         name: "headerHeight",
         onChange: function onChange(event) {
@@ -161,7 +166,7 @@ function (_React$PureComponent) {
           });
         },
         value: headerHeight
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Overscan",
         name: "overscanRowCount",
         onChange: function onChange(event) {
@@ -170,11 +175,11 @@ function (_React$PureComponent) {
           });
         },
         value: overscanRowCount
-      })), React.createElement("div", null, React.createElement(AutoSizer, {
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(AutoSizer, {
         disableHeight: true
       }, function (_ref2) {
         var width = _ref2.width;
-        return React.createElement(Table, {
+        return /*#__PURE__*/React.createElement(Table, {
           ref: "Table",
           disableHeader: disableHeader,
           headerClassName: styles.headerColumn,
@@ -191,7 +196,7 @@ function (_React$PureComponent) {
           sortBy: sortBy,
           sortDirection: sortDirection,
           width: width
-        }, !hideIndexRow && React.createElement(Column, {
+        }, !hideIndexRow && /*#__PURE__*/React.createElement(Column, {
           label: "Index",
           cellDataGetter: function cellDataGetter(_ref3) {
             var rowData = _ref3.rowData;
@@ -200,12 +205,12 @@ function (_React$PureComponent) {
           dataKey: "index",
           disableSort: !_this2._isSortEnabled(),
           width: 60
-        }), React.createElement(Column, {
+        }), /*#__PURE__*/React.createElement(Column, {
           dataKey: "name",
           disableSort: !_this2._isSortEnabled(),
           headerRenderer: _this2._headerRenderer,
           width: 90
-        }), React.createElement(Column, {
+        }), /*#__PURE__*/React.createElement(Column, {
           width: 210,
           disableSort: true,
           label: "The description label is really long so that it will be truncated",
@@ -237,7 +242,7 @@ function (_React$PureComponent) {
       var dataKey = _ref6.dataKey,
           sortBy = _ref6.sortBy,
           sortDirection = _ref6.sortDirection;
-      return React.createElement("div", null, "Full Name", sortBy === dataKey && React.createElement(SortIndicator, {
+      return /*#__PURE__*/React.createElement("div", null, "Full Name", sortBy === dataKey && /*#__PURE__*/React.createElement(SortIndicator, {
         sortDirection: sortDirection
       }));
     }
@@ -251,7 +256,7 @@ function (_React$PureComponent) {
   }, {
     key: "_noRowsRenderer",
     value: function _noRowsRenderer() {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: styles.noRows
       }, "No rows");
     }

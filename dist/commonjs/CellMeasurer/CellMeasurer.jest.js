@@ -2,7 +2,7 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 var React = _interopRequireWildcard(require("react"));
 
@@ -13,6 +13,10 @@ var _TestUtils = require("../TestUtils");
 var _CellMeasurer = _interopRequireDefault(require("./CellMeasurer"));
 
 var _CellMeasurerCache = _interopRequireWildcard(require("./CellMeasurerCache"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // Accounts for the fact that JSDom doesn't support measurements.
 function mockClientWidthAndHeight(_ref) {
@@ -56,10 +60,10 @@ function renderHelper() {
     fixedWidth: true
   }) : _ref3$cache,
       _ref3$children = _ref3.children,
-      children = _ref3$children === void 0 ? React.createElement("div", null) : _ref3$children,
+      children = _ref3$children === void 0 ? /*#__PURE__*/React.createElement("div", null) : _ref3$children,
       parent = _ref3.parent;
 
-  (0, _TestUtils.render)(React.createElement(_CellMeasurer["default"], {
+  (0, _TestUtils.render)( /*#__PURE__*/React.createElement(_CellMeasurer["default"], {
     cache: cache,
     columnIndex: 0,
     parent: parent,
@@ -257,7 +261,7 @@ describe('CellMeasurer', function () {
     var cache = new _CellMeasurerCache["default"]({
       fixedWidth: true
     });
-    var children = jest.fn().mockReturnValue(React.createElement("div", null));
+    var children = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", null));
     renderHelper({
       cache: cache,
       children: children
@@ -290,14 +294,14 @@ describe('CellMeasurer', function () {
     var parent = createParent({
       cache: cache
     });
-    var child = jest.fn().mockReturnValue(React.createElement("div", {
+    var child = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", {
       style: {
         width: 100,
         height: 30
       }
     }));
     var measurer;
-    var node = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(React.createElement(_CellMeasurer["default"], {
+    var node = (0, _reactDom.findDOMNode)((0, _TestUtils.render)( /*#__PURE__*/React.createElement(_CellMeasurer["default"], {
       ref: function ref(_ref6) {
         measurer = _ref6;
       },
@@ -345,13 +349,13 @@ describe('CellMeasurer', function () {
     var parent = createParent({
       cache: cache
     });
-    var child = jest.fn().mockReturnValue(React.createElement("div", {
+    var child = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", {
       style: {
         width: 100,
         height: 30
       }
     }));
-    var node = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(React.createElement(_CellMeasurer["default"], {
+    var node = (0, _reactDom.findDOMNode)((0, _TestUtils.render)( /*#__PURE__*/React.createElement(_CellMeasurer["default"], {
       cache: cache,
       columnIndex: 0,
       parent: parent,

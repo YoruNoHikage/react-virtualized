@@ -18,9 +18,7 @@ var _CellMeasurer = require("../CellMeasurer");
 /**
  * Caches measurements for a given cell.
  */
-var CellMeasurerCacheDecorator =
-/*#__PURE__*/
-function () {
+var CellMeasurerCacheDecorator = /*#__PURE__*/function () {
   function CellMeasurerCacheDecorator() {
     var _this = this;
 
@@ -72,6 +70,20 @@ function () {
     /*: void*/
     {
       this._cellMeasurerCache.clearAll();
+    }
+  }, {
+    key: "defaultHeight",
+    get: function get()
+    /*: number*/
+    {
+      return this._cellMeasurerCache.defaultHeight;
+    }
+  }, {
+    key: "defaultWidth",
+    get: function get()
+    /*: number*/
+    {
+      return this._cellMeasurerCache.defaultWidth;
     }
   }, {
     key: "hasFixedHeight",
@@ -141,20 +153,6 @@ function () {
       ), (height
       /*: number*/
       ));
-    }
-  }, {
-    key: "defaultHeight",
-    get: function get()
-    /*: number*/
-    {
-      return this._cellMeasurerCache.defaultHeight;
-    }
-  }, {
-    key: "defaultWidth",
-    get: function get()
-    /*: number*/
-    {
-      return this._cellMeasurerCache.defaultWidth;
     }
   }]);
   return CellMeasurerCacheDecorator;

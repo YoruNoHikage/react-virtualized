@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -19,6 +19,10 @@ var _immutable = _interopRequireDefault(require("immutable"));
 var _List = _interopRequireDefault(require("./List"));
 
 var _Grid = require("../Grid");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 describe('List', function () {
   var array = [];
@@ -47,14 +51,14 @@ describe('List', function () {
       var index = _ref2.index,
           key = _ref2.key,
           style = _ref2.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "listItem",
         key: key,
         style: style
       }, names.get(index));
     }
 
-    return React.createElement(_List["default"], (0, _extends2["default"])({
+    return /*#__PURE__*/React.createElement(_List["default"], (0, _extends2["default"])({
       height: 100,
       overscanIndicesGetter: overscanIndicesGetter,
       overscanRowCount: 0,
@@ -198,7 +202,7 @@ describe('List', function () {
     it('should call :noRowsRenderer if :rowCount is 0', function () {
       var rendered = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         noRowsRenderer: function noRowsRenderer() {
-          return React.createElement("div", null, "No rows!");
+          return /*#__PURE__*/React.createElement("div", null, "No rows!");
         },
         rowCount: 0
       })));
@@ -464,7 +468,7 @@ describe('List', function () {
         var index = _ref4.index,
             key = _ref4.key,
             style = _ref4.style;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index, marker);
@@ -526,7 +530,7 @@ describe('List', function () {
             key = _ref5.key,
             style = _ref5.style;
         rowRendererCalled = true;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index);

@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import * as React from 'react';
 import { ContentBox, ContentBoxHeader, ContentBoxParagraph } from '../demo/ContentBox';
 import ArrowKeyStepper from './';
@@ -21,14 +26,12 @@ import styles from './ArrowKeyStepper.example.css';
   scrollToRow: number,
 };*/
 
-var ArrowKeyStepperExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var ArrowKeyStepperExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(ArrowKeyStepperExample, _React$PureComponent);
 
-  function ArrowKeyStepperExample() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(ArrowKeyStepperExample);
 
+  function ArrowKeyStepperExample() {
     var _this;
 
     _classCallCheck(this, ArrowKeyStepperExample);
@@ -37,7 +40,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ArrowKeyStepperExample)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       mode: 'edges',
@@ -64,7 +67,7 @@ function (_React$PureComponent) {
           scrollToRow = _ref3.scrollToRow,
           style = _ref3.style;
       var className = clsx(styles.Cell, _defineProperty({}, styles.FocusedCell, columnIndex === scrollToColumn && rowIndex === scrollToRow));
-      return React.createElement("span", {
+      return /*#__PURE__*/React.createElement("span", {
         role: "none",
         className: className,
         key: key,
@@ -113,11 +116,11 @@ function (_React$PureComponent) {
           isClickable = _this$state.isClickable,
           scrollToColumn = _this$state.scrollToColumn,
           scrollToRow = _this$state.scrollToRow;
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "ArrowKeyStepper",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/ArrowKeyStepper/ArrowKeyStepper.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/ArrowKeyStepper.md"
-      }), React.createElement(ContentBoxParagraph, null, "This high-order component decorates a ", React.createElement("code", null, "List"), ",", ' ', React.createElement("code", null, "Table"), ", or ", React.createElement("code", null, "Grid"), " and responds to arrow-key events by scrolling one row or column at a time. Focus in the `Grid` below and use the left, right, up, or down arrow keys to move around within the grid."), React.createElement(ContentBoxParagraph, null, "Note that unlike the other HOCs in react-virtualized, the", ' ', React.createElement("code", null, "ArrowKeyStepper"), " adds a ", React.createElement("code", null, "<div>"), " element around its children in order to attach a key-down event handler."), React.createElement(ContentBoxParagraph, null, React.createElement("strong", null, "mode"), ":", React.createElement("label", null, React.createElement("input", {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "This high-order component decorates a ", /*#__PURE__*/React.createElement("code", null, "List"), ",", ' ', /*#__PURE__*/React.createElement("code", null, "Table"), ", or ", /*#__PURE__*/React.createElement("code", null, "Grid"), " and responds to arrow-key events by scrolling one row or column at a time. Focus in the `Grid` below and use the left, right, up, or down arrow keys to move around within the grid."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "Note that unlike the other HOCs in react-virtualized, the", ' ', /*#__PURE__*/React.createElement("code", null, "ArrowKeyStepper"), " adds a ", /*#__PURE__*/React.createElement("code", null, "<div>"), " element around its children in order to attach a key-down event handler."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("strong", null, "mode"), ":", /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Set mode equal to \"cells\"",
         checked: mode === 'cells',
         className: styles.Radio,
@@ -128,7 +131,7 @@ function (_React$PureComponent) {
           });
         },
         value: "cells"
-      }), "cells"), React.createElement("label", null, React.createElement("input", {
+      }), "cells"), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Set mode equal to \"edges\"",
         checked: mode === 'edges',
         className: styles.Radio,
@@ -139,15 +142,15 @@ function (_React$PureComponent) {
           });
         },
         value: "edges"
-      }), "edges (default)")), React.createElement(ContentBoxParagraph, null, React.createElement("label", {
+      }), "edges (default)")), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Enable click selection? (resets selection)",
         className: styles.checkbox,
         type: "checkbox",
         checked: isClickable,
         onChange: this._onClickableChange
-      }), "Enable click selection? (resets selection)")), React.createElement(ArrowKeyStepper, {
+      }), "Enable click selection? (resets selection)")), /*#__PURE__*/React.createElement(ArrowKeyStepper, {
         columnCount: 100,
         isControlled: isClickable,
         onScrollToChange: isClickable ? this._selectCell : undefined,
@@ -159,11 +162,11 @@ function (_React$PureComponent) {
         var onSectionRendered = _ref5.onSectionRendered,
             scrollToColumn = _ref5.scrollToColumn,
             scrollToRow = _ref5.scrollToRow;
-        return React.createElement("div", null, React.createElement(ContentBoxParagraph, null, "Most-recently-stepped column: ".concat(scrollToColumn, ", row: ").concat(scrollToRow)), React.createElement(AutoSizer, {
+        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "Most-recently-stepped column: ".concat(scrollToColumn, ", row: ").concat(scrollToRow)), /*#__PURE__*/React.createElement(AutoSizer, {
           disableHeight: true
         }, function (_ref6) {
           var width = _ref6.width;
-          return React.createElement(Grid, {
+          return /*#__PURE__*/React.createElement(Grid, {
             className: styles.Grid,
             columnWidth: _this2._getColumnWidth,
             columnCount: 100,

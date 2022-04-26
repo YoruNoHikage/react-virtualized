@@ -10,19 +10,19 @@ function ChildComponent(_ref) {
       scrollLeft = _ref.scrollLeft,
       scrollTop = _ref.scrollTop,
       scrollWidth = _ref.scrollWidth;
-  return React.createElement("div", null, "clientHeight:".concat(clientHeight), "clientWidth:".concat(clientWidth), "scrollHeight:".concat(scrollHeight), "scrollLeft:".concat(scrollLeft), "scrollTop:".concat(scrollTop), "scrollWidth:".concat(scrollWidth));
+  return /*#__PURE__*/React.createElement("div", null, "clientHeight:".concat(clientHeight), "clientWidth:".concat(clientWidth), "scrollHeight:".concat(scrollHeight), "scrollLeft:".concat(scrollLeft), "scrollTop:".concat(scrollTop), "scrollWidth:".concat(scrollWidth));
 }
 
 describe('ScrollSync', function () {
   it('should pass through an initial value of 0 for :scrollLeft and :scrollTop', function () {
-    var component = render(React.createElement(ScrollSync, null, function (_ref2) {
+    var component = render( /*#__PURE__*/React.createElement(ScrollSync, null, function (_ref2) {
       var clientHeight = _ref2.clientHeight,
           clientWidth = _ref2.clientWidth,
           scrollHeight = _ref2.scrollHeight,
           scrollLeft = _ref2.scrollLeft,
           scrollTop = _ref2.scrollTop,
           scrollWidth = _ref2.scrollWidth;
-      return React.createElement(ChildComponent, {
+      return /*#__PURE__*/React.createElement(ChildComponent, {
         clientHeight: clientHeight,
         clientWidth: clientWidth,
         scrollHeight: scrollHeight,
@@ -40,9 +40,9 @@ describe('ScrollSync', function () {
   });
   it('should update :scrollLeft and :scrollTop when :onScroll is called', function () {
     var onScroll;
-    var component = render(React.createElement(ScrollSync, null, function (params) {
+    var component = render( /*#__PURE__*/React.createElement(ScrollSync, null, function (params) {
       onScroll = params.onScroll;
-      return React.createElement(ChildComponent, params);
+      return /*#__PURE__*/React.createElement(ChildComponent, params);
     }));
     onScroll({
       clientHeight: 400,

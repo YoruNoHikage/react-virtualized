@@ -32,14 +32,14 @@ describe('List', function () {
       var index = _ref2.index,
           key = _ref2.key,
           style = _ref2.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "listItem",
         key: key,
         style: style
       }, names.get(index));
     }
 
-    return React.createElement(List, _extends({
+    return /*#__PURE__*/React.createElement(List, _extends({
       height: 100,
       overscanIndicesGetter: overscanIndicesGetter,
       overscanRowCount: 0,
@@ -183,7 +183,7 @@ describe('List', function () {
     it('should call :noRowsRenderer if :rowCount is 0', function () {
       var rendered = findDOMNode(render(getMarkup({
         noRowsRenderer: function noRowsRenderer() {
-          return React.createElement("div", null, "No rows!");
+          return /*#__PURE__*/React.createElement("div", null, "No rows!");
         },
         rowCount: 0
       })));
@@ -448,7 +448,7 @@ describe('List', function () {
         var index = _ref4.index,
             key = _ref4.key,
             style = _ref4.style;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index, marker);
@@ -510,7 +510,7 @@ describe('List', function () {
             key = _ref5.key,
             style = _ref5.style;
         rowRendererCalled = true;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index);

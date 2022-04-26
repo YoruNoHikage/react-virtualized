@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -13,13 +13,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -45,16 +45,24 @@ var _SortIndicator = _interopRequireDefault(require("./SortIndicator"));
 
 var _TableExample = _interopRequireDefault(require("./Table.example.css"));
 
-var TableExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var TableExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(TableExample, _React$PureComponent);
+
+  var _super = _createSuper(TableExample);
 
   function TableExample(props, context) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, TableExample);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(TableExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     var sortBy = 'index';
     var sortDirection = _SortDirection["default"].ASC;
 
@@ -111,13 +119,13 @@ function (_React$PureComponent) {
         return _this2._getDatum(sortedList, index);
       };
 
-      return React.createElement(_ContentBox.ContentBox, null, React.createElement(_ContentBox.ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, null, /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "Table",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/Table/Table.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/Table.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, "The table layout below is created with flexboxes. This allows it to have a fixed header and scrollable body content. It also makes use of", ' ', React.createElement("code", null, "Grid"), " for windowing table content so that large lists are rendered efficiently. Adjust its configurable properties below to see how it reacts."), React.createElement(_ContentBox.ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "The table layout below is created with flexboxes. This allows it to have a fixed header and scrollable body content. It also makes use of", ' ', /*#__PURE__*/React.createElement("code", null, "Grid"), " for windowing table content so that large lists are rendered efficiently. Adjust its configurable properties below to see how it reacts."), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: _TableExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Use dynamic row heights?",
         checked: useDynamicRowHeight,
         className: _TableExample["default"].checkbox,
@@ -125,9 +133,9 @@ function (_React$PureComponent) {
         onChange: function onChange(event) {
           return _this2._updateUseDynamicRowHeight(event.target.checked);
         }
-      }), "Use dynamic row heights?"), React.createElement("label", {
+      }), "Use dynamic row heights?"), /*#__PURE__*/React.createElement("label", {
         className: _TableExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Hide index?",
         checked: hideIndexRow,
         className: _TableExample["default"].checkbox,
@@ -137,9 +145,9 @@ function (_React$PureComponent) {
             hideIndexRow: event.target.checked
           });
         }
-      }), "Hide index?"), React.createElement("label", {
+      }), "Hide index?"), /*#__PURE__*/React.createElement("label", {
         className: _TableExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Hide header?",
         checked: disableHeader,
         className: _TableExample["default"].checkbox,
@@ -149,18 +157,18 @@ function (_React$PureComponent) {
             disableHeader: event.target.checked
           });
         }
-      }), "Hide header?")), React.createElement(_LabeledInput.InputRow, null, React.createElement(_LabeledInput.LabeledInput, {
+      }), "Hide header?")), /*#__PURE__*/React.createElement(_LabeledInput.InputRow, null, /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Num rows",
         name: "rowCount",
         onChange: this._onRowCountChange,
         value: rowCount
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Scroll to",
         name: "onScrollToRow",
         placeholder: "Index...",
         onChange: this._onScrollToRowChange,
         value: scrollToIndex || ''
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "List height",
         name: "height",
         onChange: function onChange(event) {
@@ -169,7 +177,7 @@ function (_React$PureComponent) {
           });
         },
         value: height
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         disabled: useDynamicRowHeight,
         label: "Row height",
         name: "rowHeight",
@@ -179,7 +187,7 @@ function (_React$PureComponent) {
           });
         },
         value: rowHeight
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Header height",
         name: "headerHeight",
         onChange: function onChange(event) {
@@ -188,7 +196,7 @@ function (_React$PureComponent) {
           });
         },
         value: headerHeight
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Overscan",
         name: "overscanRowCount",
         onChange: function onChange(event) {
@@ -197,11 +205,11 @@ function (_React$PureComponent) {
           });
         },
         value: overscanRowCount
-      })), React.createElement("div", null, React.createElement(_AutoSizer["default"], {
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_AutoSizer["default"], {
         disableHeight: true
       }, function (_ref2) {
         var width = _ref2.width;
-        return React.createElement(_Table["default"], {
+        return /*#__PURE__*/React.createElement(_Table["default"], {
           ref: "Table",
           disableHeader: disableHeader,
           headerClassName: _TableExample["default"].headerColumn,
@@ -218,7 +226,7 @@ function (_React$PureComponent) {
           sortBy: sortBy,
           sortDirection: sortDirection,
           width: width
-        }, !hideIndexRow && React.createElement(_Column["default"], {
+        }, !hideIndexRow && /*#__PURE__*/React.createElement(_Column["default"], {
           label: "Index",
           cellDataGetter: function cellDataGetter(_ref3) {
             var rowData = _ref3.rowData;
@@ -227,12 +235,12 @@ function (_React$PureComponent) {
           dataKey: "index",
           disableSort: !_this2._isSortEnabled(),
           width: 60
-        }), React.createElement(_Column["default"], {
+        }), /*#__PURE__*/React.createElement(_Column["default"], {
           dataKey: "name",
           disableSort: !_this2._isSortEnabled(),
           headerRenderer: _this2._headerRenderer,
           width: 90
-        }), React.createElement(_Column["default"], {
+        }), /*#__PURE__*/React.createElement(_Column["default"], {
           width: 210,
           disableSort: true,
           label: "The description label is really long so that it will be truncated",
@@ -264,7 +272,7 @@ function (_React$PureComponent) {
       var dataKey = _ref6.dataKey,
           sortBy = _ref6.sortBy,
           sortDirection = _ref6.sortDirection;
-      return React.createElement("div", null, "Full Name", sortBy === dataKey && React.createElement(_SortIndicator["default"], {
+      return /*#__PURE__*/React.createElement("div", null, "Full Name", sortBy === dataKey && /*#__PURE__*/React.createElement(_SortIndicator["default"], {
         sortDirection: sortDirection
       }));
     }
@@ -278,7 +286,7 @@ function (_React$PureComponent) {
   }, {
     key: "_noRowsRenderer",
     value: function _noRowsRenderer() {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _TableExample["default"].noRows
       }, "No rows");
     }

@@ -10,13 +10,13 @@ import Grid from './Grid';
 /*:: declare var expect: any;*/
 
 test('should render Grid with dom server', function () {
-  var rendered = ReactDOMServer.renderToString(React.createElement(Grid, {
+  var rendered = ReactDOMServer.renderToString( /*#__PURE__*/React.createElement(Grid, {
     cellRenderer: function cellRenderer(_ref) {
       var style = _ref.style,
           key = _ref.key,
           rowIndex = _ref.rowIndex,
           columnIndex = _ref.columnIndex;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         style: style,
         key: key
       }, rowIndex + ':' + columnIndex);
@@ -33,13 +33,13 @@ test('should render Grid with dom server', function () {
   expect(rendered).not.toContain('25:25');
 });
 test('should support :scrollToColumn and :scrollToRow in server render', function () {
-  var rendered = ReactDOMServer.renderToString(React.createElement(Grid, {
+  var rendered = ReactDOMServer.renderToString( /*#__PURE__*/React.createElement(Grid, {
     cellRenderer: function cellRenderer(_ref2) {
       var style = _ref2.style,
           key = _ref2.key,
           rowIndex = _ref2.rowIndex,
           columnIndex = _ref2.columnIndex;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         style: style,
         key: key
       }, rowIndex + ':' + columnIndex);

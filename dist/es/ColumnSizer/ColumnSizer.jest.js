@@ -20,14 +20,14 @@ describe('ColumnSizer', function () {
           key = _ref2.key,
           rowIndex = _ref2.rowIndex,
           style = _ref2.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "gridItem",
         key: key,
         style: style
       }, "row:".concat(rowIndex, ", column:").concat(columnIndex));
     }
 
-    return React.createElement(ColumnSizer, {
+    return /*#__PURE__*/React.createElement(ColumnSizer, {
       columnMinWidth: columnMinWidth,
       columnMaxWidth: columnMaxWidth,
       columnCount: columnCount,
@@ -36,7 +36,7 @@ describe('ColumnSizer', function () {
       var adjustedWidth = _ref3.adjustedWidth,
           columnWidth = _ref3.columnWidth,
           registerChild = _ref3.registerChild;
-      return React.createElement("div", null, React.createElement(Grid, {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Grid, {
         columnCount: columnCount,
         columnWidth: columnWidth,
         height: 50,
@@ -45,7 +45,7 @@ describe('ColumnSizer', function () {
         rowHeight: 50,
         rowCount: 1,
         width: adjustedWidth
-      }), React.createElement("div", {
+      }), /*#__PURE__*/React.createElement("div", {
         className: "debug"
       }, "adjustedWidth:".concat(adjustedWidth, " columnWidth:").concat(columnWidth)));
     });
@@ -111,14 +111,14 @@ describe('ColumnSizer', function () {
   it('should error if the registered child is not a Grid or a MultiGrid', function () {
     spyOn(console, 'error');
     expect(function () {
-      render(React.createElement(ColumnSizer, {
+      render( /*#__PURE__*/React.createElement(ColumnSizer, {
         columnMinWidth: 100,
         columnMaxWidth: 100,
         columnCount: 100,
         width: 100
       }, function (_ref4) {
         var registerChild = _ref4.registerChild;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           ref: registerChild
         });
       }));

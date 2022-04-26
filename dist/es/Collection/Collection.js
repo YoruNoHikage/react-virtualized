@@ -1,11 +1,16 @@
 import _extends from "@babel/runtime/helpers/extends";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import CollectionView from './CollectionView';
@@ -17,17 +22,17 @@ import getUpdatedOffsetForIndex from '../utils/getUpdatedOffsetForIndex';
  * Renders scattered or non-linear data.
  * Unlike Grid, which renders checkerboard data, Collection can render arbitrarily positioned- even overlapping- data.
  */
-var Collection =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var Collection = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(Collection, _React$PureComponent);
+
+  var _super = _createSuper(Collection);
 
   function Collection(props, context) {
     var _this;
 
     _classCallCheck(this, Collection);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Collection).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this._cellMetadata = [];
     _this._lastRenderedCellIndices = []; // Cell cache during scroll (for performance)
 
@@ -60,7 +65,7 @@ function (_React$PureComponent) {
     value: function render() {
       var props = _extends({}, this.props);
 
-      return React.createElement(CollectionView, _extends({
+      return /*#__PURE__*/React.createElement(CollectionView, _extends({
         cellLayoutManager: this,
         isScrollingChange: this._isScrollingChange,
         ref: this._setCollectionViewRef

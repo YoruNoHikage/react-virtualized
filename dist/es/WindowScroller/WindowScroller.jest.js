@@ -1,5 +1,7 @@
-import _regeneratorRuntime from "@babel/runtime/regenerator";
+import _asyncToGenerator from "@babel/runtime/helpers/asyncToGenerator";
 import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+var _excluded = ["headerElements", "documentOffset", "renderFn"];
+import _regeneratorRuntime from "@babel/runtime/regenerator";
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { render } from '../TestUtils';
@@ -31,10 +33,10 @@ function getMarkup() {
       headerElements = _ref2.headerElements,
       documentOffset = _ref2.documentOffset,
       renderFn = _ref2.renderFn,
-      props = _objectWithoutProperties(_ref2, ["headerElements", "documentOffset", "renderFn"]);
+      props = _objectWithoutProperties(_ref2, _excluded);
 
-  var windowScroller = React.createElement(WindowScroller, props, function (params) {
-    return React.createElement("div", null, renderFn && renderFn(params));
+  var windowScroller = /*#__PURE__*/React.createElement(WindowScroller, props, function (params) {
+    return /*#__PURE__*/React.createElement("div", null, renderFn && renderFn(params));
   }); // JSDome doesn't implement a working getBoundingClientRect()
   // But WindowScroller requires it
 
@@ -45,7 +47,7 @@ function getMarkup() {
   });
 
   if (headerElements) {
-    return React.createElement("div", null, headerElements, windowScroller);
+    return /*#__PURE__*/React.createElement("div", null, headerElements, windowScroller);
   } else {
     return windowScroller;
   }
@@ -168,8 +170,8 @@ describe('WindowScroller', function () {
       height: 500
     }));
   });
-  it('should restore pointerEvents on body after IS_SCROLLING_TIMEOUT', function _callee() {
-    return _regeneratorRuntime.async(function _callee$(_context) {
+  it('should restore pointerEvents on body after IS_SCROLLING_TIMEOUT', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+    return _regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -180,9 +182,9 @@ describe('WindowScroller', function () {
             });
             expect(document.body.style.pointerEvents).toEqual('none');
             _context.next = 6;
-            return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+            return new Promise(function (resolve) {
               return setTimeout(resolve, IS_SCROLLING_TIMEOUT + 100);
-            }));
+            });
 
           case 6:
             expect(document.body.style.pointerEvents).toEqual('all');
@@ -192,8 +194,8 @@ describe('WindowScroller', function () {
             return _context.stop();
         }
       }
-    });
-  });
+    }, _callee);
+  })));
   it('should restore pointerEvents on body after unmount', function () {
     render(getMarkup());
     document.body.style.pointerEvents = 'all';
@@ -205,9 +207,9 @@ describe('WindowScroller', function () {
     expect(document.body.style.pointerEvents).toEqual('all');
   });
   describe('onScroll', function () {
-    it('should trigger callback when window scrolls', function _callee2() {
+    it('should trigger callback when window scrolls', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
       var onScroll;
-      return _regeneratorRuntime.async(function _callee2$(_context2) {
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
@@ -220,9 +222,9 @@ describe('WindowScroller', function () {
               }); // Allow scrolling timeout to complete so that the component computes state
 
               _context2.next = 5;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 150);
-              }));
+              });
 
             case 5:
               expect(onScroll).toHaveBeenCalledWith({
@@ -235,9 +237,9 @@ describe('WindowScroller', function () {
               }); // Allow scrolling timeout to complete so that the component computes state
 
               _context2.next = 9;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 150);
-              }));
+              });
 
             case 9:
               expect(onScroll).toHaveBeenCalledWith({
@@ -250,11 +252,11 @@ describe('WindowScroller', function () {
               return _context2.stop();
           }
         }
-      });
-    });
-    it('should update :scrollTop when window is scrolled', function _callee3() {
+      }, _callee2);
+    })));
+    it('should update :scrollTop when window is scrolled', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
       var renderFn, component, componentScrollTop;
-      return _regeneratorRuntime.async(function _callee3$(_context3) {
+      return _regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
@@ -271,9 +273,9 @@ describe('WindowScroller', function () {
               }); // Allow scrolling timeout to complete so that the component computes state
 
               _context3.next = 6;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 150);
-              }));
+              });
 
             case 6:
               componentScrollTop = window.scrollY - component._positionFromTop;
@@ -287,11 +289,11 @@ describe('WindowScroller', function () {
               return _context3.stop();
           }
         }
-      });
-    });
-    it('should specify :isScrolling when scrolling and reset after scrolling', function _callee4() {
+      }, _callee3);
+    })));
+    it('should specify :isScrolling when scrolling and reset after scrolling', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4() {
       var renderFn;
-      return _regeneratorRuntime.async(function _callee4$(_context4) {
+      return _regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
@@ -306,9 +308,9 @@ describe('WindowScroller', function () {
                 isScrolling: true
               }));
               _context4.next = 6;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 250);
-              }));
+              });
 
             case 6:
               expect(renderFn).lastCalledWith(expect.objectContaining({
@@ -320,11 +322,11 @@ describe('WindowScroller', function () {
               return _context4.stop();
           }
         }
-      });
-    });
-    it('should support a custom :scrollingResetTimeInterval prop', function _callee5() {
+      }, _callee4);
+    })));
+    it('should support a custom :scrollingResetTimeInterval prop', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5() {
       var renderFn;
-      return _regeneratorRuntime.async(function _callee5$(_context5) {
+      return _regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
@@ -343,27 +345,27 @@ describe('WindowScroller', function () {
                 isScrolling: true
               }));
               _context5.next = 7;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 100);
-              }));
+              });
 
             case 7:
               expect(renderFn).lastCalledWith(expect.objectContaining({
                 isScrolling: true
               }));
               _context5.next = 10;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 100);
-              }));
+              });
 
             case 10:
               expect(renderFn).lastCalledWith(expect.objectContaining({
                 isScrolling: true
               }));
               _context5.next = 13;
-              return _regeneratorRuntime.awrap(new Promise(function (resolve) {
+              return new Promise(function (resolve) {
                 return setTimeout(resolve, 400);
-              }));
+              });
 
             case 13:
               expect(renderFn).lastCalledWith(expect.objectContaining({
@@ -375,8 +377,8 @@ describe('WindowScroller', function () {
               return _context5.stop();
           }
         }
-      });
-    });
+      }, _callee5);
+    })));
   });
   describe('onResize', function () {
     it('should trigger callback on init and when window resizes', function () {
@@ -419,13 +421,13 @@ describe('WindowScroller', function () {
     it('should calculate the initial offset from the top of the page when mounted', function () {
       var windowScroller;
       render(getMarkup({
-        headerElements: React.createElement("div", {
+        headerElements: /*#__PURE__*/React.createElement("div", {
           style: {
             height: 100
           }
         }),
-        ref: function ref(_ref5) {
-          windowScroller = _ref5;
+        ref: function ref(_ref10) {
+          windowScroller = _ref10;
         }
       }));
       expect(windowScroller._positionFromTop).toBe(100);
@@ -433,15 +435,15 @@ describe('WindowScroller', function () {
     it('should recalculate the offset from the top when the window resizes', function () {
       var windowScroller;
       render(getMarkup({
-        headerElements: React.createElement("div", {
+        headerElements: /*#__PURE__*/React.createElement("div", {
           id: "header",
           style: {
             height: 100,
             width: 150
           }
         }),
-        ref: function ref(_ref6) {
-          windowScroller = _ref6;
+        ref: function ref(_ref11) {
+          windowScroller = _ref11;
         }
       }));
       expect(windowScroller._positionFromTop).toBe(100);
@@ -462,15 +464,15 @@ describe('WindowScroller', function () {
     it('should recalculate the offset from the top if called externally', function () {
       var windowScroller;
       render(getMarkup({
-        headerElements: React.createElement("div", {
+        headerElements: /*#__PURE__*/React.createElement("div", {
           id: "header",
           style: {
             height: 100,
             width: 150
           }
         }),
-        ref: function ref(_ref7) {
-          windowScroller = _ref7;
+        ref: function ref(_ref12) {
+          windowScroller = _ref12;
         }
       }));
       expect(windowScroller._positionFromTop).toBe(100);
@@ -504,8 +506,8 @@ describe('WindowScroller', function () {
       var renderFn = jest.fn();
       var windowScroller;
       render(getMarkup({
-        ref: function ref(_ref8) {
-          windowScroller = _ref8;
+        ref: function ref(_ref13) {
+          windowScroller = _ref13;
         },
         renderFn: renderFn
       }));
@@ -533,8 +535,8 @@ describe('WindowScroller', function () {
       var renderFn = jest.fn();
       var divEl = document.createElement('div');
       render(getMarkup({
-        ref: function ref(_ref9) {
-          windowScroller = _ref9;
+        ref: function ref(_ref14) {
+          windowScroller = _ref14;
         },
         renderFn: renderFn,
         scrollElement: divEl

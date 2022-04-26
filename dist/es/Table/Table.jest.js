@@ -1,15 +1,21 @@
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 import _slicedToArray from "@babel/runtime/helpers/slicedToArray";
+import _createClass from "@babel/runtime/helpers/createClass";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _inherits from "@babel/runtime/helpers/inherits";
 import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
-import _inherits from "@babel/runtime/helpers/inherits";
 import _extends from "@babel/runtime/helpers/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+var _excluded = ["cellDataGetter", "cellRenderer", "columnData", "columnID", "columnStyle", "columnHeaderStyle", "disableSort", "headerRenderer", "maxWidth", "minWidth", "defaultSortDirection", "label"];
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
@@ -72,9 +78,9 @@ describe('Table', function () {
         minWidth = _ref4.minWidth,
         defaultSortDirection = _ref4.defaultSortDirection,
         label = _ref4.label,
-        flexTableProps = _objectWithoutProperties(_ref4, ["cellDataGetter", "cellRenderer", "columnData", "columnID", "columnStyle", "columnHeaderStyle", "disableSort", "headerRenderer", "maxWidth", "minWidth", "defaultSortDirection", "label"]);
+        flexTableProps = _objectWithoutProperties(_ref4, _excluded);
 
-    return React.createElement(Table, _extends({
+    return /*#__PURE__*/React.createElement(Table, _extends({
       headerHeight: 20,
       height: 100,
       overscanRowCount: 0,
@@ -83,7 +89,7 @@ describe('Table', function () {
       rowGetter: immutableRowGetter,
       rowHeight: 10,
       width: 100
-    }, flexTableProps), React.createElement(Column, {
+    }, flexTableProps), /*#__PURE__*/React.createElement(Column, {
       label: label || 'Name',
       dataKey: "name",
       columnData: columnData,
@@ -96,7 +102,7 @@ describe('Table', function () {
       style: columnStyle,
       headerStyle: columnHeaderStyle,
       id: columnID
-    }), React.createElement(Column, {
+    }), /*#__PURE__*/React.createElement(Column, {
       label: "Email",
       dataKey: "email",
       maxWidth: maxWidth,
@@ -110,7 +116,7 @@ describe('Table', function () {
   });
   describe('children', function () {
     it('should accept Column children', function () {
-      var children = [React.createElement(Column, {
+      var children = [/*#__PURE__*/React.createElement(Column, {
         dataKey: "foo",
         width: 100
       })];
@@ -120,21 +126,21 @@ describe('Table', function () {
       expect(result instanceof Error).toEqual(false);
     });
     it('should accept subclasses of Column as children', function () {
-      var AnotherColumn =
-      /*#__PURE__*/
-      function (_Column) {
+      var AnotherColumn = /*#__PURE__*/function (_Column) {
         _inherits(AnotherColumn, _Column);
+
+        var _super = _createSuper(AnotherColumn);
 
         function AnotherColumn() {
           _classCallCheck(this, AnotherColumn);
 
-          return _possibleConstructorReturn(this, _getPrototypeOf(AnotherColumn).apply(this, arguments));
+          return _super.apply(this, arguments);
         }
 
-        return AnotherColumn;
+        return _createClass(AnotherColumn);
       }(Column);
 
-      var children = [React.createElement(AnotherColumn, {
+      var children = [/*#__PURE__*/React.createElement(AnotherColumn, {
         dataKey: "foo",
         width: 100
       })];
@@ -144,14 +150,14 @@ describe('Table', function () {
       expect(result instanceof Error).toEqual(false);
     });
     it('should not accept non-Column children', function () {
-      var children = [React.createElement("div", null)];
+      var children = [/*#__PURE__*/React.createElement("div", null)];
       var result = Table.propTypes.children({
         children: children
       }, 'children', 'Table');
       expect(result instanceof Error).toEqual(true);
     });
     it('should accept falsy children to allow easier dynamic showing/hiding of columns', function () {
-      var children = [false, React.createElement(Column, {
+      var children = [false, /*#__PURE__*/React.createElement(Column, {
         dataKey: "foo",
         width: 100
       }), null];
@@ -351,7 +357,7 @@ describe('Table', function () {
     it('should not set a cell :title if the rendered cell content is not a string', function () {
       var rendered = findDOMNode(render(getMarkup({
         cellRenderer: function cellRenderer() {
-          return React.createElement("div", null, "Custom");
+          return /*#__PURE__*/React.createElement("div", null, "Custom");
         }
       })));
       var nameColumn = rendered.querySelector('.ReactVirtualized__Table__rowColumn:first-of-type');
@@ -366,7 +372,7 @@ describe('Table', function () {
     });
     it('should not set a header :title if the rendered header label is not a string', function () {
       var rendered = findDOMNode(render(getMarkup({
-        label: React.createElement("div", null, "Custom")
+        label: /*#__PURE__*/React.createElement("div", null, "Custom")
       })));
       var nameColumn = rendered.querySelector('.ReactVirtualized__Table__headerTruncatedText:first-of-type');
       expect(nameColumn.getAttribute('title')).toEqual(null);
@@ -514,7 +520,7 @@ describe('Table', function () {
   });
   describe('headerRowRenderer', function () {
     it('should render a custom header row if one is provided', function () {
-      var headerRowRenderer = jest.fn().mockReturnValue(React.createElement("div", null, "foo bar"));
+      var headerRowRenderer = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", null, "foo bar"));
       var rendered = findDOMNode(render(getMarkup({
         headerHeight: 33,
         headerRowRenderer: headerRowRenderer,
@@ -602,7 +608,7 @@ describe('Table', function () {
     it('should call :noRowsRenderer if :rowCount is 0', function () {
       var rendered = render(getMarkup({
         noRowsRenderer: function noRowsRenderer() {
-          return React.createElement("div", null, "No rows!");
+          return /*#__PURE__*/React.createElement("div", null, "No rows!");
         },
         rowCount: 0
       }));
@@ -1264,7 +1270,7 @@ describe('Table', function () {
         render(getMarkup(initialProperties));
         headerRendererCalled = true;
         cellRendererCalled = false;
-        render(getMarkup(_objectSpread({}, initialProperties, _defineProperty({}, key, value))));
+        render(getMarkup(_objectSpread(_objectSpread({}, initialProperties), {}, _defineProperty({}, key, value))));
         expect(headerRendererCalled).toEqual(true);
         expect(cellRendererCalled).toEqual(true);
       });

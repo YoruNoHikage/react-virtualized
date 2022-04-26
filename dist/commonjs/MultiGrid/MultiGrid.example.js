@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -15,13 +15,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -41,6 +41,14 @@ var _MultiGrid = _interopRequireDefault(require("./MultiGrid"));
 
 var _MultiGridExample = _interopRequireDefault(require("./MultiGrid.example.css"));
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var STYLE = {
   border: '1px solid #ddd'
 };
@@ -58,16 +66,16 @@ var STYLE_TOP_RIGHT_GRID = {
   fontWeight: 'bold'
 };
 
-var MultiGridExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var MultiGridExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(MultiGridExample, _React$PureComponent);
+
+  var _super = _createSuper(MultiGridExample);
 
   function MultiGridExample(props, context) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, MultiGridExample);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(MultiGridExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this.state = {
       fixedColumnCount: 2,
       fixedRowCount: 1,
@@ -87,15 +95,15 @@ function (_React$PureComponent) {
     value: function render() {
       var _this2 = this;
 
-      return React.createElement(_ContentBox.ContentBox, null, React.createElement(_ContentBox.ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, null, /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "MultiGrid",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/MultiGrid/MultiGrid.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/MultiGrid.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, "This component stitches together several grids to provide a fixed column/row interface."), React.createElement(_LabeledInput.InputRow, null, this._createLabeledInput('fixedColumnCount', this._onFixedColumnCountChange), this._createLabeledInput('fixedRowCount', this._onFixedRowCountChange), this._createLabeledInput('scrollToColumn', this._onScrollToColumnChange), this._createLabeledInput('scrollToRow', this._onScrollToRowChange)), React.createElement(_AutoSizer["default"], {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "This component stitches together several grids to provide a fixed column/row interface."), /*#__PURE__*/React.createElement(_LabeledInput.InputRow, null, this._createLabeledInput('fixedColumnCount', this._onFixedColumnCountChange), this._createLabeledInput('fixedRowCount', this._onFixedRowCountChange), this._createLabeledInput('scrollToColumn', this._onScrollToColumnChange), this._createLabeledInput('scrollToRow', this._onScrollToRowChange)), /*#__PURE__*/React.createElement(_AutoSizer["default"], {
         disableHeight: true
       }, function (_ref) {
         var width = _ref.width;
-        return React.createElement(_MultiGrid["default"], (0, _extends2["default"])({}, _this2.state, {
+        return /*#__PURE__*/React.createElement(_MultiGrid["default"], (0, _extends2["default"])({}, _this2.state, {
           cellRenderer: _this2._cellRenderer,
           columnWidth: 75,
           columnCount: 50,
@@ -121,7 +129,7 @@ function (_React$PureComponent) {
           key = _ref2.key,
           rowIndex = _ref2.rowIndex,
           style = _ref2.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _MultiGridExample["default"].Cell,
         key: key,
         style: style
@@ -142,7 +150,7 @@ function (_React$PureComponent) {
     key: "_createLabeledInput",
     value: function _createLabeledInput(property, eventHandler) {
       var value = this.state[property];
-      return React.createElement(_LabeledInput.LabeledInput, {
+      return /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: property,
         name: property,
         onChange: eventHandler,

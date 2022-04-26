@@ -1,11 +1,16 @@
 import _extends from "@babel/runtime/helpers/extends";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import { List as ImmutableList } from 'immutable';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -19,14 +24,12 @@ import styles from './AutoSizer.example.css';
   hideDescription: boolean,
 };*/
 
-var AutoSizerExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var AutoSizerExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(AutoSizerExample, _React$PureComponent);
 
-  function AutoSizerExample() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(AutoSizerExample);
 
+  function AutoSizerExample() {
     var _this;
 
     _classCallCheck(this, AutoSizerExample);
@@ -35,7 +38,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AutoSizerExample)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       hideDescription: false
@@ -47,7 +50,7 @@ function (_React$PureComponent) {
           style = _ref.style;
       var list = _this.context.list;
       var row = list.get(index);
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: key,
         className: styles.row,
         style: style
@@ -64,17 +67,17 @@ function (_React$PureComponent) {
 
       var list = this.context.list;
       var hideDescription = this.state.hideDescription;
-      return React.createElement(ContentBox, _extends({}, this.props, {
+      return /*#__PURE__*/React.createElement(ContentBox, _extends({}, this.props, {
         style: {
           height: 400
         }
-      }), React.createElement(ContentBoxHeader, {
+      }), /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "AutoSizer",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/AutoSizer/AutoSizer.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/AutoSizer.md"
-      }), React.createElement(ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Hide description (to show resize)?",
         className: styles.checkbox,
         type: "checkbox",
@@ -84,15 +87,15 @@ function (_React$PureComponent) {
             hideDescription: event.target.checked
           });
         }
-      }), "Hide description (to show resize)?")), !hideDescription && React.createElement(ContentBoxParagraph, null, "This component decorates ", React.createElement("code", null, "List"), ", ", React.createElement("code", null, "Table"), ", or any other component and automatically manages its width and height. It uses Sebastian Decima's", ' ', React.createElement("a", {
+      }), "Hide description (to show resize)?")), !hideDescription && /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "This component decorates ", /*#__PURE__*/React.createElement("code", null, "List"), ", ", /*#__PURE__*/React.createElement("code", null, "Table"), ", or any other component and automatically manages its width and height. It uses Sebastian Decima's", ' ', /*#__PURE__*/React.createElement("a", {
         href: "https://github.com/sdecima/javascript-detect-element-resize",
         target: "_blank"
-      }, "element resize event"), ' ', "to determine the appropriate size. In this example", ' ', React.createElement("code", null, "AutoSizer"), " grows to fill the remaining width and height of this flex column."), React.createElement("div", {
+      }, "element resize event"), ' ', "to determine the appropriate size. In this example", ' ', /*#__PURE__*/React.createElement("code", null, "AutoSizer"), " grows to fill the remaining width and height of this flex column."), /*#__PURE__*/React.createElement("div", {
         className: styles.AutoSizerWrapper
-      }, React.createElement(AutoSizer, null, function (_ref2) {
+      }, /*#__PURE__*/React.createElement(AutoSizer, null, function (_ref2) {
         var width = _ref2.width,
             height = _ref2.height;
-        return React.createElement(List, {
+        return /*#__PURE__*/React.createElement(List, {
           className: styles.List,
           height: height,
           rowCount: list.size,

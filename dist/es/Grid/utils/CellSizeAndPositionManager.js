@@ -36,9 +36,7 @@ import _defineProperty from "@babel/runtime/helpers/defineProperty";
 /**
  * Just-in-time calculates and caches size and position information for a collection of cells.
  */
-var CellSizeAndPositionManager =
-/*#__PURE__*/
-function () {
+var CellSizeAndPositionManager = /*#__PURE__*/function () {
   // Cache of size and position data for cells, mapped by cell index.
   // Note that invalid values may exist in this map so only rely on cells up to this._lastMeasuredIndex
   // Measurements for cells up to this index can be trusted; cells afterward should be estimated.

@@ -1,24 +1,26 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf5 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _InfiniteLoader = _interopRequireWildcard(require("./InfiniteLoader"));
 
@@ -27,6 +29,14 @@ var React = _interopRequireWildcard(require("react"));
 var _List = _interopRequireDefault(require("../List"));
 
 var _TestUtils = require("../TestUtils");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 describe('InfiniteLoader', function () {
   var innerOnRowsRendered;
@@ -61,7 +71,7 @@ describe('InfiniteLoader', function () {
         key = _ref3.key,
         style = _ref3.style;
     rowRendererCalls.push(index);
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       key: key,
       style: style
     });
@@ -87,7 +97,7 @@ describe('InfiniteLoader', function () {
         _ref4$width = _ref4.width,
         width = _ref4$width === void 0 ? 200 : _ref4$width;
 
-    return React.createElement(_InfiniteLoader["default"], {
+    return /*#__PURE__*/React.createElement(_InfiniteLoader["default"], {
       isRowLoaded: isRowLoaded,
       loadMoreRows: loadMoreRows,
       minimumBatchSize: minimumBatchSize,
@@ -97,7 +107,7 @@ describe('InfiniteLoader', function () {
       var onRowsRendered = _ref5.onRowsRendered,
           registerChild = _ref5.registerChild;
       innerOnRowsRendered = onRowsRendered;
-      return React.createElement(_List["default"], {
+      return /*#__PURE__*/React.createElement(_List["default"], {
         ref: registerChild,
         height: height,
         onRowsRendered: onRowsRendered,
@@ -136,73 +146,85 @@ describe('InfiniteLoader', function () {
       stopIndex: 9
     }]);
   });
-  it('should :forceUpdate once rows have loaded if :loadMoreRows returns a Promise', function _callee(done) {
-    var savedResolve, loadMoreRows;
-    return _regenerator["default"].async(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            loadMoreRows = function _ref6() {
-              return new Promise(function (resolve) {
-                savedResolve = resolve;
-              });
-            };
+  it('should :forceUpdate once rows have loaded if :loadMoreRows returns a Promise', /*#__PURE__*/function () {
+    var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(done) {
+      var savedResolve, loadMoreRows;
+      return _regenerator["default"].wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              loadMoreRows = function _loadMoreRows() {
+                return new Promise(function (resolve) {
+                  savedResolve = resolve;
+                });
+              };
 
-            (0, _TestUtils.render)(getMarkup({
-              loadMoreRows: loadMoreRows
-            }));
-            rowRendererCalls.splice(0);
-            _context.next = 5;
-            return _regenerator["default"].awrap(savedResolve());
+              (0, _TestUtils.render)(getMarkup({
+                loadMoreRows: loadMoreRows
+              }));
+              rowRendererCalls.splice(0);
+              _context.next = 5;
+              return savedResolve();
 
-          case 5:
-            expect(rowRendererCalls.length > 0).toEqual(true);
-            done();
+            case 5:
+              expect(rowRendererCalls.length > 0).toEqual(true);
+              done();
 
-          case 7:
-          case "end":
-            return _context.stop();
+            case 7:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    });
-  });
-  it('should not :forceUpdate once rows have loaded rows are no longer visible', function _callee2(done) {
-    var resolves, loadMoreRows;
-    return _regenerator["default"].async(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            loadMoreRows = function _ref7() {
-              return new Promise(function (resolve) {
-                resolves.push(resolve);
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref6.apply(this, arguments);
+    };
+  }());
+  it('should not :forceUpdate once rows have loaded rows are no longer visible', /*#__PURE__*/function () {
+    var _ref7 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(done) {
+      var resolves, loadMoreRows;
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              loadMoreRows = function _loadMoreRows2() {
+                return new Promise(function (resolve) {
+                  resolves.push(resolve);
+                });
+              };
+
+              resolves = [];
+              (0, _TestUtils.render)(getMarkup({
+                loadMoreRows: loadMoreRows
+              })); // Simulate a new range of rows being loaded
+
+              innerOnRowsRendered({
+                startIndex: 100,
+                stopIndex: 101
               });
-            };
+              rowRendererCalls.splice(0);
+              _context2.next = 7;
+              return resolves[0]();
 
-            resolves = [];
-            (0, _TestUtils.render)(getMarkup({
-              loadMoreRows: loadMoreRows
-            })); // Simulate a new range of rows being loaded
+            case 7:
+              // Resolve the first request only, not the simulated row-change
+              expect(rowRendererCalls.length).toEqual(0);
+              done();
 
-            innerOnRowsRendered({
-              startIndex: 100,
-              stopIndex: 101
-            });
-            rowRendererCalls.splice(0);
-            _context2.next = 7;
-            return _regenerator["default"].awrap(resolves[0]());
-
-          case 7:
-            // Resolve the first request only, not the simulated row-change
-            expect(rowRendererCalls.length).toEqual(0);
-            done();
-
-          case 9:
-          case "end":
-            return _context2.stop();
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
         }
-      }
-    });
-  });
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref7.apply(this, arguments);
+    };
+  }());
   describe('minimumBatchSize', function () {
     it('should respect the specified :minimumBatchSize when scrolling down', function () {
       (0, _TestUtils.render)(getMarkup({
@@ -514,14 +536,12 @@ describe('forceUpdateReactVirtualizedComponent', function () {
   it('should call :recomputeGridSize if defined', function () {
     var recomputeGridSize = jest.fn();
 
-    var TestComponent =
-    /*#__PURE__*/
-    function (_React$Component) {
+    var TestComponent = /*#__PURE__*/function (_React$Component) {
       (0, _inherits2["default"])(TestComponent, _React$Component);
 
-      function TestComponent() {
-        var _getPrototypeOf2;
+      var _super = _createSuper(TestComponent);
 
+      function TestComponent() {
         var _this;
 
         (0, _classCallCheck2["default"])(this, TestComponent);
@@ -530,7 +550,7 @@ describe('forceUpdateReactVirtualizedComponent', function () {
           args[_key] = arguments[_key];
         }
 
-        _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf5["default"])(TestComponent)).call.apply(_getPrototypeOf2, [this].concat(args)));
+        _this = _super.call.apply(_super, [this].concat(args));
         (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "recomputeGridSize", recomputeGridSize);
         return _this;
       }
@@ -538,27 +558,25 @@ describe('forceUpdateReactVirtualizedComponent', function () {
       (0, _createClass2["default"])(TestComponent, [{
         key: "render",
         value: function render() {
-          return React.createElement("div", null);
+          return /*#__PURE__*/React.createElement("div", null);
         }
       }]);
       return TestComponent;
     }(React.Component);
 
-    (0, _InfiniteLoader.forceUpdateReactVirtualizedComponent)((0, _TestUtils.render)(React.createElement(TestComponent, null)), 10);
+    (0, _InfiniteLoader.forceUpdateReactVirtualizedComponent)((0, _TestUtils.render)( /*#__PURE__*/React.createElement(TestComponent, null)), 10);
     expect(recomputeGridSize).toHaveBeenCalledTimes(1);
     expect(recomputeGridSize).toHaveBeenCalledWith(10);
   });
   it('should called :recomputeRowHeights if defined', function () {
     var recomputeRowHeights = jest.fn();
 
-    var TestComponent =
-    /*#__PURE__*/
-    function (_React$Component2) {
+    var TestComponent = /*#__PURE__*/function (_React$Component2) {
       (0, _inherits2["default"])(TestComponent, _React$Component2);
 
-      function TestComponent() {
-        var _getPrototypeOf3;
+      var _super2 = _createSuper(TestComponent);
 
+      function TestComponent() {
         var _this2;
 
         (0, _classCallCheck2["default"])(this, TestComponent);
@@ -567,7 +585,7 @@ describe('forceUpdateReactVirtualizedComponent', function () {
           args[_key2] = arguments[_key2];
         }
 
-        _this2 = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf3 = (0, _getPrototypeOf5["default"])(TestComponent)).call.apply(_getPrototypeOf3, [this].concat(args)));
+        _this2 = _super2.call.apply(_super2, [this].concat(args));
         (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this2), "recomputeRowHeights", recomputeRowHeights);
         return _this2;
       }
@@ -575,27 +593,25 @@ describe('forceUpdateReactVirtualizedComponent', function () {
       (0, _createClass2["default"])(TestComponent, [{
         key: "render",
         value: function render() {
-          return React.createElement("div", null);
+          return /*#__PURE__*/React.createElement("div", null);
         }
       }]);
       return TestComponent;
     }(React.Component);
 
-    (0, _InfiniteLoader.forceUpdateReactVirtualizedComponent)((0, _TestUtils.render)(React.createElement(TestComponent, null)), 10);
+    (0, _InfiniteLoader.forceUpdateReactVirtualizedComponent)((0, _TestUtils.render)( /*#__PURE__*/React.createElement(TestComponent, null)), 10);
     expect(recomputeRowHeights).toHaveBeenCalledTimes(1);
     expect(recomputeRowHeights).toHaveBeenCalledWith(10);
   });
   it('should call :forceUpdate otherwise', function () {
     var forceUpdate = jest.fn();
 
-    var TestComponent =
-    /*#__PURE__*/
-    function (_React$Component3) {
+    var TestComponent = /*#__PURE__*/function (_React$Component3) {
       (0, _inherits2["default"])(TestComponent, _React$Component3);
 
-      function TestComponent() {
-        var _getPrototypeOf4;
+      var _super3 = _createSuper(TestComponent);
 
+      function TestComponent() {
         var _this3;
 
         (0, _classCallCheck2["default"])(this, TestComponent);
@@ -604,7 +620,7 @@ describe('forceUpdateReactVirtualizedComponent', function () {
           args[_key3] = arguments[_key3];
         }
 
-        _this3 = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf4 = (0, _getPrototypeOf5["default"])(TestComponent)).call.apply(_getPrototypeOf4, [this].concat(args)));
+        _this3 = _super3.call.apply(_super3, [this].concat(args));
         (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this3), "forceUpdate", forceUpdate);
         return _this3;
       }
@@ -612,13 +628,13 @@ describe('forceUpdateReactVirtualizedComponent', function () {
       (0, _createClass2["default"])(TestComponent, [{
         key: "render",
         value: function render() {
-          return React.createElement("div", null);
+          return /*#__PURE__*/React.createElement("div", null);
         }
       }]);
       return TestComponent;
     }(React.Component);
 
-    (0, _InfiniteLoader.forceUpdateReactVirtualizedComponent)((0, _TestUtils.render)(React.createElement(TestComponent, null)), 10);
+    (0, _InfiniteLoader.forceUpdateReactVirtualizedComponent)((0, _TestUtils.render)( /*#__PURE__*/React.createElement(TestComponent, null)), 10);
     expect(forceUpdate).toHaveBeenCalledTimes(1);
   });
 });

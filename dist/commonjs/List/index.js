@@ -5,13 +5,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "default", {
+Object.defineProperty(exports, "List", {
   enumerable: true,
   get: function get() {
     return _List["default"];
   }
 });
-Object.defineProperty(exports, "List", {
+Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function get() {
     return _List["default"];

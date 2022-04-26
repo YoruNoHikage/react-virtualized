@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -15,13 +15,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -47,9 +47,17 @@ var _reactLifecyclesCompat = require("react-lifecycles-compat");
 
 var _requestAnimationTimeout = require("../utils/requestAnimationTimeout");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 /**
  * Specifies the number of milliseconds during which to disable pointer events while a scroll is in progress.
@@ -69,7 +77,9 @@ var SCROLL_POSITION_CHANGE_REASONS = {
 
 var renderNull
 /*: NoContentRenderer*/
-= function renderNull() {
+= function renderNull
+/*: NoContentRenderer*/
+() {
   return null;
 };
 /*:: type ScrollPosition = {
@@ -276,10 +286,10 @@ var renderNull
  * Renders tabular data with virtualization along the vertical and horizontal axes.
  * Row heights and column widths must be known ahead of time and specified as properties.
  */
-var Grid =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var Grid = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(Grid, _React$PureComponent);
+
+  var _super = _createSuper(Grid);
 
   // Invokes onSectionRendered callback only when start/stop row or column indices change
   function Grid(props
@@ -288,7 +298,7 @@ function (_React$PureComponent) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, Grid);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(Grid).call(this, props));
+    _this = _super.call(this, props);
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onGridRenderedMemoizer", (0, _createCallbackMemoizer["default"])());
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onScrollMemoizer", (0, _createCallbackMemoizer["default"])(false));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_deferredInvalidateColumnIndex", null);
@@ -418,7 +428,7 @@ function (_React$PureComponent) {
           _ref$rowIndex = _ref.rowIndex,
           rowIndex = _ref$rowIndex === void 0 ? this.props.scrollToRow : _ref$rowIndex;
 
-      var offsetProps = _objectSpread({}, this.props, {
+      var offsetProps = _objectSpread(_objectSpread({}, this.props), {}, {
         scrollToAlignment: alignment,
         scrollToColumn: columnIndex,
         scrollToRow: rowIndex
@@ -599,13 +609,13 @@ function (_React$PureComponent) {
       // This can cause a funky scroll offset because of the vertical scrollbar width.
 
       if (columnCount > 1 && columnIndex !== undefined) {
-        this._updateScrollLeftForScrollToColumn(_objectSpread({}, props, {
+        this._updateScrollLeftForScrollToColumn(_objectSpread(_objectSpread({}, props), {}, {
           scrollToColumn: columnIndex
         }));
       }
 
       if (rowIndex !== undefined) {
-        this._updateScrollTopForScrollToRow(_objectSpread({}, props, {
+        this._updateScrollTopForScrollToRow(_objectSpread(_objectSpread({}, props), {}, {
           scrollToRow: rowIndex
         }));
       }
@@ -633,7 +643,7 @@ function (_React$PureComponent) {
 
       if (!instanceProps.scrollbarSizeMeasured) {
         this.setState(function (prevState) {
-          var stateUpdate = _objectSpread({}, prevState, {
+          var stateUpdate = _objectSpread(_objectSpread({}, prevState), {}, {
             needToResetStyleCache: false
           });
 
@@ -905,7 +915,7 @@ function (_React$PureComponent) {
       gridStyle.overflowY = totalRowsHeight + horizontalScrollBarSize <= height ? 'hidden' : 'auto';
       var childrenToDisplay = this._childrenToDisplay;
       var showNoContentRenderer = childrenToDisplay.length === 0 && height > 0 && width > 0;
-      return React.createElement("div", (0, _extends2["default"])({
+      return /*#__PURE__*/React.createElement("div", (0, _extends2["default"])({
         ref: this._setScrollingContainerRef
       }, containerProps, {
         "aria-label": this.props['aria-label'],
@@ -914,9 +924,9 @@ function (_React$PureComponent) {
         id: id,
         onScroll: this._onScroll,
         role: role,
-        style: _objectSpread({}, gridStyle, {}, style),
+        style: _objectSpread(_objectSpread({}, gridStyle), style),
         tabIndex: tabIndex
-      }), childrenToDisplay.length > 0 && React.createElement("div", {
+      }), childrenToDisplay.length > 0 && /*#__PURE__*/React.createElement("div", {
         className: "ReactVirtualized__Grid__innerScrollContainer",
         role: containerRole,
         style: _objectSpread({
@@ -1083,12 +1093,12 @@ function (_React$PureComponent) {
     }
   }, {
     key: "_handleInvalidatedGridSize",
-
+    value:
     /**
      * Check for batched CellMeasurer size invalidations.
      * This will occur the first time one or more previously unmeasured cells are rendered.
      */
-    value: function _handleInvalidatedGridSize() {
+    function _handleInvalidatedGridSize() {
       if (typeof this._deferredInvalidateColumnIndex === 'number' && typeof this._deferredInvalidateRowIndex === 'number') {
         var columnIndex = this._deferredInvalidateColumnIndex;
         var rowIndex = this._deferredInvalidateRowIndex;
@@ -1163,12 +1173,12 @@ function (_React$PureComponent) {
     }
   }, {
     key: "scrollToPosition",
-
+    value:
     /**
      * Scroll to the specified offset(s).
      * Useful for animating position changes.
      */
-    value: function scrollToPosition(_ref8) {
+    function scrollToPosition(_ref8) {
       var scrollLeft = _ref8.scrollLeft,
           scrollTop = _ref8.scrollTop;
 
@@ -1370,7 +1380,7 @@ function (_React$PureComponent) {
       }
 
       newState.instanceProps = instanceProps;
-      return _objectSpread({}, newState, {}, maybeStateA, {}, maybeStateB);
+      return _objectSpread(_objectSpread(_objectSpread({}, newState), maybeStateA), maybeStateB);
     }
   }, {
     key: "_getEstimatedColumnSize",
@@ -1388,12 +1398,12 @@ function (_React$PureComponent) {
     }
   }, {
     key: "_getScrollToPositionStateUpdate",
-
+    value:
     /**
      * Get the updated state after scrolling to
      * scrollLeft and scrollTop
      */
-    value: function _getScrollToPositionStateUpdate(_ref9)
+    function _getScrollToPositionStateUpdate(_ref9)
     /*: $Shape<State>*/
     {
       var prevState = _ref9.prevState,

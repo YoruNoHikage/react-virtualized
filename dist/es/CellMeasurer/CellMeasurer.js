@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 /*:: import type {CellMeasureCache} from './types';*/
@@ -33,14 +38,12 @@ import { findDOMNode } from 'react-dom';
  * Measurements are stored in a per-cell cache.
  * Cached-content is not be re-measured.
  */
-var CellMeasurer =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var CellMeasurer = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(CellMeasurer, _React$PureComponent);
 
-  function CellMeasurer() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(CellMeasurer);
 
+  function CellMeasurer() {
     var _this;
 
     _classCallCheck(this, CellMeasurer);
@@ -49,7 +52,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CellMeasurer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "_child", void 0);
 

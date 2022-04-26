@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import Immutable from 'immutable';
@@ -18,17 +23,17 @@ import styles from './Collection.example.css'; // Defines a pattern of sizes and
 var GUTTER_SIZE = 3;
 var CELL_WIDTH = 75;
 
-var CollectionExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var CollectionExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(CollectionExample, _React$PureComponent);
+
+  var _super = _createSuper(CollectionExample);
 
   function CollectionExample(props, context) {
     var _this;
 
     _classCallCheck(this, CollectionExample);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(CollectionExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this.state = {
       cellCount: context.list.size,
       columnCount: _this._getColumnCount(context.list.size),
@@ -62,13 +67,13 @@ function (_React$PureComponent) {
           scrollToCell = _this$state.scrollToCell,
           showScrollingPlaceholder = _this$state.showScrollingPlaceholder,
           verticalOverscanSize = _this$state.verticalOverscanSize;
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "Collection",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/Collection/Collection.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/Collection.md"
-      }), React.createElement(ContentBoxParagraph, null, "Renders scattered or non-linear data. Unlike ", React.createElement("code", null, "Grid"), ", which renders checkerboard data, ", React.createElement("code", null, "Collection"), " can render arbitrarily positioned- even overlapping- data."), React.createElement(ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "Renders scattered or non-linear data. Unlike ", /*#__PURE__*/React.createElement("code", null, "Grid"), ", which renders checkerboard data, ", /*#__PURE__*/React.createElement("code", null, "Collection"), " can render arbitrarily positioned- even overlapping- data."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Show placeholder while scrolling?",
         checked: showScrollingPlaceholder,
         className: styles.checkbox,
@@ -78,37 +83,37 @@ function (_React$PureComponent) {
             showScrollingPlaceholder: event.target.checked
           });
         }
-      }), "Show placeholder while scrolling?")), React.createElement(InputRow, null, React.createElement(LabeledInput, {
+      }), "Show placeholder while scrolling?")), /*#__PURE__*/React.createElement(InputRow, null, /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Num cells",
         name: "cellCount",
         onChange: this._onCellCountChange,
         value: cellCount
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Scroll to cell",
         name: "onScrollToCell",
         placeholder: "Index...",
         onChange: this._onScrollToCellChange,
         value: scrollToCell || ''
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Height",
         name: "height",
         onChange: this._onHeightChange,
         value: height
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Horizontal Overscan",
         name: "horizontalOverscanSize",
         onChange: this._onHorizontalOverscanSizeChange,
         value: horizontalOverscanSize
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Vertical Overscan",
         name: "verticalOverscanSize",
         onChange: this._onVerticalOverscanSizeChange,
         value: verticalOverscanSize
-      })), React.createElement(AutoSizer, {
+      })), /*#__PURE__*/React.createElement(AutoSizer, {
         disableHeight: true
       }, function (_ref) {
         var width = _ref.width;
-        return React.createElement(Collection, {
+        return /*#__PURE__*/React.createElement(Collection, {
           cellCount: cellCount,
           cellRenderer: _this2._cellRenderer,
           cellSizeAndPositionGetter: _this2._cellSizeAndPositionGetter,
@@ -134,7 +139,7 @@ function (_React$PureComponent) {
       var datum = list.get(index % list.size); // Customize style
 
       style.backgroundColor = datum.color;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: styles.cell,
         key: key,
         style: style
@@ -177,7 +182,7 @@ function (_React$PureComponent) {
   }, {
     key: "_noContentRenderer",
     value: function _noContentRenderer() {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: styles.noCells
       }, "No cells");
     }

@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = defaultOverscanIndicesGetter;
 exports.SCROLL_DIRECTION_VERTICAL = exports.SCROLL_DIRECTION_HORIZONTAL = exports.SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_BACKWARD = void 0;
+exports["default"] = defaultOverscanIndicesGetter;
 
 /*:: import type {OverscanIndicesGetterParams, OverscanIndices} from './types';*/
 var SCROLL_DIRECTION_BACKWARD = -1;

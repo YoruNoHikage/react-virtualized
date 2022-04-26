@@ -1,9 +1,14 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import * as React from 'react';
 import { ContentBox, ContentBoxHeader, ContentBoxParagraph } from '../demo/ContentBox';
 import AutoSizer from '../AutoSizer';
@@ -17,17 +22,17 @@ var LEFT_COLOR_TO = hexToRgb('#BC3959');
 var TOP_COLOR_FROM = hexToRgb('#000000');
 var TOP_COLOR_TO = hexToRgb('#333333');
 
-var GridExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var GridExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(GridExample, _React$PureComponent);
+
+  var _super = _createSuper(GridExample);
 
   function GridExample(props, context) {
     var _this;
 
     _classCallCheck(this, GridExample);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(GridExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this.state = {
       columnWidth: 75,
       columnCount: 50,
@@ -56,11 +61,11 @@ function (_React$PureComponent) {
           overscanRowCount = _this$state.overscanRowCount,
           rowHeight = _this$state.rowHeight,
           rowCount = _this$state.rowCount;
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "ScrollSync",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/ScrollSync/ScrollSync.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/ScrollSync.md"
-      }), React.createElement(ContentBoxParagraph, null, "High order component that simplifies the process of synchronizing scrolling between two or more virtualized components."), React.createElement(ContentBoxParagraph, null, "This example shows two ", React.createElement("code", null, "Grid"), "s and one ", React.createElement("code", null, "List"), ' ', "configured to mimic a spreadsheet with a fixed header and first column. It also shows how a scroll callback can be used to control UI properties such as background color."), React.createElement(ScrollSync, null, function (_ref) {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "High order component that simplifies the process of synchronizing scrolling between two or more virtualized components."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "This example shows two ", /*#__PURE__*/React.createElement("code", null, "Grid"), "s and one ", /*#__PURE__*/React.createElement("code", null, "List"), ' ', "configured to mimic a spreadsheet with a fixed header and first column. It also shows how a scroll callback can be used to control UI properties such as background color."), /*#__PURE__*/React.createElement(ScrollSync, null, function (_ref) {
         var clientHeight = _ref.clientHeight,
             clientWidth = _ref.clientWidth,
             onScroll = _ref.onScroll,
@@ -76,9 +81,9 @@ function (_React$PureComponent) {
         var topColor = '#ffffff';
         var middleBackgroundColor = mixColors(leftBackgroundColor, topBackgroundColor, 0.5);
         var middleColor = '#ffffff';
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: styles.GridRow
-        }, React.createElement("div", {
+        }, /*#__PURE__*/React.createElement("div", {
           className: styles.LeftSideGridContainer,
           style: {
             position: 'absolute',
@@ -87,7 +92,7 @@ function (_React$PureComponent) {
             color: leftColor,
             backgroundColor: "rgb(".concat(topBackgroundColor.r, ",").concat(topBackgroundColor.g, ",").concat(topBackgroundColor.b, ")")
           }
-        }, React.createElement(Grid, {
+        }, /*#__PURE__*/React.createElement(Grid, {
           cellRenderer: _this2._renderLeftHeaderCell,
           className: styles.HeaderGrid,
           width: columnWidth,
@@ -96,7 +101,7 @@ function (_React$PureComponent) {
           columnWidth: columnWidth,
           rowCount: 1,
           columnCount: 1
-        })), React.createElement("div", {
+        })), /*#__PURE__*/React.createElement("div", {
           className: styles.LeftSideGridContainer,
           style: {
             position: 'absolute',
@@ -105,7 +110,7 @@ function (_React$PureComponent) {
             color: leftColor,
             backgroundColor: "rgb(".concat(leftBackgroundColor.r, ",").concat(leftBackgroundColor.g, ",").concat(leftBackgroundColor.b, ")")
           }
-        }, React.createElement(Grid, {
+        }, /*#__PURE__*/React.createElement(Grid, {
           overscanColumnCount: overscanColumnCount,
           overscanRowCount: overscanRowCount,
           cellRenderer: _this2._renderLeftSideCell,
@@ -117,20 +122,20 @@ function (_React$PureComponent) {
           rowCount: rowCount,
           scrollTop: scrollTop,
           width: columnWidth
-        })), React.createElement("div", {
+        })), /*#__PURE__*/React.createElement("div", {
           className: styles.GridColumn
-        }, React.createElement(AutoSizer, {
+        }, /*#__PURE__*/React.createElement(AutoSizer, {
           disableHeight: true
         }, function (_ref2) {
           var width = _ref2.width;
-          return React.createElement("div", null, React.createElement("div", {
+          return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
             style: {
               backgroundColor: "rgb(".concat(topBackgroundColor.r, ",").concat(topBackgroundColor.g, ",").concat(topBackgroundColor.b, ")"),
               color: topColor,
               height: rowHeight,
               width: width - scrollbarSize()
             }
-          }, React.createElement(Grid, {
+          }, /*#__PURE__*/React.createElement(Grid, {
             className: styles.HeaderGrid,
             columnWidth: columnWidth,
             columnCount: columnCount,
@@ -141,14 +146,14 @@ function (_React$PureComponent) {
             rowCount: 1,
             scrollLeft: scrollLeft,
             width: width - scrollbarSize()
-          })), React.createElement("div", {
+          })), /*#__PURE__*/React.createElement("div", {
             style: {
               backgroundColor: "rgb(".concat(middleBackgroundColor.r, ",").concat(middleBackgroundColor.g, ",").concat(middleBackgroundColor.b, ")"),
               color: middleColor,
               height: height,
               width: width
             }
-          }, React.createElement(Grid, {
+          }, /*#__PURE__*/React.createElement(Grid, {
             className: styles.BodyGrid,
             columnWidth: columnWidth,
             columnCount: columnCount,
@@ -208,7 +213,7 @@ function (_React$PureComponent) {
       var columnIndex = _ref5.columnIndex,
           key = _ref5.key,
           style = _ref5.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: styles.headerCell,
         key: key,
         style: style
@@ -223,7 +228,7 @@ function (_React$PureComponent) {
           style = _ref6.style;
       var rowClass = rowIndex % 2 === 0 ? columnIndex % 2 === 0 ? styles.evenRow : styles.oddRow : columnIndex % 2 !== 0 ? styles.evenRow : styles.oddRow;
       var classNames = clsx(rowClass, styles.cell);
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: classNames,
         key: key,
         style: style

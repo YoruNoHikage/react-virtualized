@@ -1,9 +1,9 @@
 import _extends from "@babel/runtime/helpers/extends";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
@@ -54,12 +54,12 @@ function createCellRenderer(cache, renderCallback) {
         style = _ref.style;
     var height = ALTERNATING_CELL_HEIGHTS[index % ALTERNATING_CELL_HEIGHTS.length];
     var width = CELL_SIZE_MULTIPLIER;
-    return React.createElement(CellMeasurer, {
+    return /*#__PURE__*/React.createElement(CellMeasurer, {
       cache: cache,
       index: index,
       key: key,
       parent: parent
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "cell",
       ref: function ref(_ref2) {
         if (_ref2) {
@@ -74,7 +74,7 @@ function createCellRenderer(cache, renderCallback) {
           });
         }
       },
-      style: _objectSpread({}, style, {
+      style: _objectSpread(_objectSpread({}, style), {}, {
         minHeight: height,
         minWidth: width
       })
@@ -91,7 +91,7 @@ function createCellRenderer(cache, renderCallback) {
 function getMarkup() {
   var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var cellMeasurerCache = props.cellMeasurerCache || createCellMeasurerCache();
-  return React.createElement(Masonry, _extends({
+  return /*#__PURE__*/React.createElement(Masonry, _extends({
     cellCount: 1000,
     cellMeasurerCache: cellMeasurerCache,
     cellPositioner: createCellPositioner(cellMeasurerCache),
@@ -270,13 +270,13 @@ describe('Masonry', function () {
       var cellMeasurerCache = createCellMeasurerCache();
 
       var renderScrollableCell = function renderScrollableCell(index) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           style: {
             height: '50px',
             overflow: 'visible'
           },
           id: "scrollable-cell-".concat(index)
-        }, React.createElement("div", {
+        }, /*#__PURE__*/React.createElement("div", {
           style: {
             height: '500px'
           }
@@ -441,7 +441,7 @@ describe('Masonry', function () {
         var index = _ref3.index,
             key = _ref3.key,
             style = _ref3.style;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index);

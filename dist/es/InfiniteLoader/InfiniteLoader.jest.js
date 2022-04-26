@@ -1,10 +1,16 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+import _asyncToGenerator from "@babel/runtime/helpers/asyncToGenerator";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import _regeneratorRuntime from "@babel/runtime/regenerator";
 import InfiniteLoader, { forceUpdateReactVirtualizedComponent, isRangeVisible, scanForUnloadedRanges } from './InfiniteLoader';
 import * as React from 'react';
@@ -43,7 +49,7 @@ describe('InfiniteLoader', function () {
         key = _ref3.key,
         style = _ref3.style;
     rowRendererCalls.push(index);
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       key: key,
       style: style
     });
@@ -69,7 +75,7 @@ describe('InfiniteLoader', function () {
         _ref4$width = _ref4.width,
         width = _ref4$width === void 0 ? 200 : _ref4$width;
 
-    return React.createElement(InfiniteLoader, {
+    return /*#__PURE__*/React.createElement(InfiniteLoader, {
       isRowLoaded: isRowLoaded,
       loadMoreRows: loadMoreRows,
       minimumBatchSize: minimumBatchSize,
@@ -79,7 +85,7 @@ describe('InfiniteLoader', function () {
       var onRowsRendered = _ref5.onRowsRendered,
           registerChild = _ref5.registerChild;
       innerOnRowsRendered = onRowsRendered;
-      return React.createElement(List, {
+      return /*#__PURE__*/React.createElement(List, {
         ref: registerChild,
         height: height,
         onRowsRendered: onRowsRendered,
@@ -118,73 +124,85 @@ describe('InfiniteLoader', function () {
       stopIndex: 9
     }]);
   });
-  it('should :forceUpdate once rows have loaded if :loadMoreRows returns a Promise', function _callee(done) {
-    var savedResolve, loadMoreRows;
-    return _regeneratorRuntime.async(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            loadMoreRows = function _ref6() {
-              return new Promise(function (resolve) {
-                savedResolve = resolve;
-              });
-            };
+  it('should :forceUpdate once rows have loaded if :loadMoreRows returns a Promise', /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(done) {
+      var savedResolve, loadMoreRows;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              loadMoreRows = function _loadMoreRows() {
+                return new Promise(function (resolve) {
+                  savedResolve = resolve;
+                });
+              };
 
-            render(getMarkup({
-              loadMoreRows: loadMoreRows
-            }));
-            rowRendererCalls.splice(0);
-            _context.next = 5;
-            return _regeneratorRuntime.awrap(savedResolve());
+              render(getMarkup({
+                loadMoreRows: loadMoreRows
+              }));
+              rowRendererCalls.splice(0);
+              _context.next = 5;
+              return savedResolve();
 
-          case 5:
-            expect(rowRendererCalls.length > 0).toEqual(true);
-            done();
+            case 5:
+              expect(rowRendererCalls.length > 0).toEqual(true);
+              done();
 
-          case 7:
-          case "end":
-            return _context.stop();
+            case 7:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    });
-  });
-  it('should not :forceUpdate once rows have loaded rows are no longer visible', function _callee2(done) {
-    var resolves, loadMoreRows;
-    return _regeneratorRuntime.async(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            loadMoreRows = function _ref7() {
-              return new Promise(function (resolve) {
-                resolves.push(resolve);
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref6.apply(this, arguments);
+    };
+  }());
+  it('should not :forceUpdate once rows have loaded rows are no longer visible', /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(done) {
+      var resolves, loadMoreRows;
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              loadMoreRows = function _loadMoreRows2() {
+                return new Promise(function (resolve) {
+                  resolves.push(resolve);
+                });
+              };
+
+              resolves = [];
+              render(getMarkup({
+                loadMoreRows: loadMoreRows
+              })); // Simulate a new range of rows being loaded
+
+              innerOnRowsRendered({
+                startIndex: 100,
+                stopIndex: 101
               });
-            };
+              rowRendererCalls.splice(0);
+              _context2.next = 7;
+              return resolves[0]();
 
-            resolves = [];
-            render(getMarkup({
-              loadMoreRows: loadMoreRows
-            })); // Simulate a new range of rows being loaded
+            case 7:
+              // Resolve the first request only, not the simulated row-change
+              expect(rowRendererCalls.length).toEqual(0);
+              done();
 
-            innerOnRowsRendered({
-              startIndex: 100,
-              stopIndex: 101
-            });
-            rowRendererCalls.splice(0);
-            _context2.next = 7;
-            return _regeneratorRuntime.awrap(resolves[0]());
-
-          case 7:
-            // Resolve the first request only, not the simulated row-change
-            expect(rowRendererCalls.length).toEqual(0);
-            done();
-
-          case 9:
-          case "end":
-            return _context2.stop();
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
         }
-      }
-    });
-  });
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref7.apply(this, arguments);
+    };
+  }());
   describe('minimumBatchSize', function () {
     it('should respect the specified :minimumBatchSize when scrolling down', function () {
       render(getMarkup({
@@ -496,14 +514,12 @@ describe('forceUpdateReactVirtualizedComponent', function () {
   it('should call :recomputeGridSize if defined', function () {
     var recomputeGridSize = jest.fn();
 
-    var TestComponent =
-    /*#__PURE__*/
-    function (_React$Component) {
+    var TestComponent = /*#__PURE__*/function (_React$Component) {
       _inherits(TestComponent, _React$Component);
 
-      function TestComponent() {
-        var _getPrototypeOf2;
+      var _super = _createSuper(TestComponent);
 
+      function TestComponent() {
         var _this;
 
         _classCallCheck(this, TestComponent);
@@ -512,7 +528,7 @@ describe('forceUpdateReactVirtualizedComponent', function () {
           args[_key] = arguments[_key];
         }
 
-        _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TestComponent)).call.apply(_getPrototypeOf2, [this].concat(args)));
+        _this = _super.call.apply(_super, [this].concat(args));
 
         _defineProperty(_assertThisInitialized(_this), "recomputeGridSize", recomputeGridSize);
 
@@ -522,28 +538,26 @@ describe('forceUpdateReactVirtualizedComponent', function () {
       _createClass(TestComponent, [{
         key: "render",
         value: function render() {
-          return React.createElement("div", null);
+          return /*#__PURE__*/React.createElement("div", null);
         }
       }]);
 
       return TestComponent;
     }(React.Component);
 
-    forceUpdateReactVirtualizedComponent(render(React.createElement(TestComponent, null)), 10);
+    forceUpdateReactVirtualizedComponent(render( /*#__PURE__*/React.createElement(TestComponent, null)), 10);
     expect(recomputeGridSize).toHaveBeenCalledTimes(1);
     expect(recomputeGridSize).toHaveBeenCalledWith(10);
   });
   it('should called :recomputeRowHeights if defined', function () {
     var recomputeRowHeights = jest.fn();
 
-    var TestComponent =
-    /*#__PURE__*/
-    function (_React$Component2) {
+    var TestComponent = /*#__PURE__*/function (_React$Component2) {
       _inherits(TestComponent, _React$Component2);
 
-      function TestComponent() {
-        var _getPrototypeOf3;
+      var _super2 = _createSuper(TestComponent);
 
+      function TestComponent() {
         var _this2;
 
         _classCallCheck(this, TestComponent);
@@ -552,7 +566,7 @@ describe('forceUpdateReactVirtualizedComponent', function () {
           args[_key2] = arguments[_key2];
         }
 
-        _this2 = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(TestComponent)).call.apply(_getPrototypeOf3, [this].concat(args)));
+        _this2 = _super2.call.apply(_super2, [this].concat(args));
 
         _defineProperty(_assertThisInitialized(_this2), "recomputeRowHeights", recomputeRowHeights);
 
@@ -562,28 +576,26 @@ describe('forceUpdateReactVirtualizedComponent', function () {
       _createClass(TestComponent, [{
         key: "render",
         value: function render() {
-          return React.createElement("div", null);
+          return /*#__PURE__*/React.createElement("div", null);
         }
       }]);
 
       return TestComponent;
     }(React.Component);
 
-    forceUpdateReactVirtualizedComponent(render(React.createElement(TestComponent, null)), 10);
+    forceUpdateReactVirtualizedComponent(render( /*#__PURE__*/React.createElement(TestComponent, null)), 10);
     expect(recomputeRowHeights).toHaveBeenCalledTimes(1);
     expect(recomputeRowHeights).toHaveBeenCalledWith(10);
   });
   it('should call :forceUpdate otherwise', function () {
     var forceUpdate = jest.fn();
 
-    var TestComponent =
-    /*#__PURE__*/
-    function (_React$Component3) {
+    var TestComponent = /*#__PURE__*/function (_React$Component3) {
       _inherits(TestComponent, _React$Component3);
 
-      function TestComponent() {
-        var _getPrototypeOf4;
+      var _super3 = _createSuper(TestComponent);
 
+      function TestComponent() {
         var _this3;
 
         _classCallCheck(this, TestComponent);
@@ -592,7 +604,7 @@ describe('forceUpdateReactVirtualizedComponent', function () {
           args[_key3] = arguments[_key3];
         }
 
-        _this3 = _possibleConstructorReturn(this, (_getPrototypeOf4 = _getPrototypeOf(TestComponent)).call.apply(_getPrototypeOf4, [this].concat(args)));
+        _this3 = _super3.call.apply(_super3, [this].concat(args));
 
         _defineProperty(_assertThisInitialized(_this3), "forceUpdate", forceUpdate);
 
@@ -602,14 +614,14 @@ describe('forceUpdateReactVirtualizedComponent', function () {
       _createClass(TestComponent, [{
         key: "render",
         value: function render() {
-          return React.createElement("div", null);
+          return /*#__PURE__*/React.createElement("div", null);
         }
       }]);
 
       return TestComponent;
     }(React.Component);
 
-    forceUpdateReactVirtualizedComponent(render(React.createElement(TestComponent, null)), 10);
+    forceUpdateReactVirtualizedComponent(render( /*#__PURE__*/React.createElement(TestComponent, null)), 10);
     expect(forceUpdate).toHaveBeenCalledTimes(1);
   });
 });

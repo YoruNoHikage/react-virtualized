@@ -76,7 +76,7 @@ export default function defaultRowRenderer(_ref) {
     }
   }
 
-  return React.createElement("div", _extends({}, a11yProps, {
+  return /*#__PURE__*/React.createElement("div", _extends({}, a11yProps, {
     className: className,
     key: key,
     role: "row",

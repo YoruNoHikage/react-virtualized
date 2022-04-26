@@ -2,15 +2,23 @@ import _extends from "@babel/runtime/helpers/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+var _excluded = ["rowIndex"],
+    _excluded2 = ["columnIndex", "rowIndex"],
+    _excluded3 = ["columnIndex"],
+    _excluded4 = ["onScroll", "onSectionRendered", "onScrollbarPresenceChange", "scrollLeft", "scrollToColumn", "scrollTop", "scrollToRow"];
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -26,17 +34,17 @@ var SCROLLBAR_SIZE_BUFFER = 20;
  * If sticky columns, 2 sticky header Grids will be rendered.
  */
 
-var MultiGrid =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var MultiGrid = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(MultiGrid, _React$PureComponent);
+
+  var _super = _createSuper(MultiGrid);
 
   function MultiGrid(props, context) {
     var _this;
 
     _classCallCheck(this, MultiGrid);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MultiGrid).call(this, props, context));
+    _this = _super.call(this, props, context);
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       scrollLeft: 0,
@@ -60,7 +68,7 @@ function (_React$PureComponent) {
 
     _defineProperty(_assertThisInitialized(_this), "_cellRendererBottomLeftGrid", function (_ref) {
       var rowIndex = _ref.rowIndex,
-          rest = _objectWithoutProperties(_ref, ["rowIndex"]);
+          rest = _objectWithoutProperties(_ref, _excluded);
 
       var _this$props = _this.props,
           cellRenderer = _this$props.cellRenderer,
@@ -68,14 +76,14 @@ function (_React$PureComponent) {
           rowCount = _this$props.rowCount;
 
       if (rowIndex === rowCount - fixedRowCount) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: rest.key,
-          style: _objectSpread({}, rest.style, {
+          style: _objectSpread(_objectSpread({}, rest.style), {}, {
             height: SCROLLBAR_SIZE_BUFFER
           })
         });
       } else {
-        return cellRenderer(_objectSpread({}, rest, {
+        return cellRenderer(_objectSpread(_objectSpread({}, rest), {}, {
           parent: _assertThisInitialized(_this),
           rowIndex: rowIndex + fixedRowCount
         }));
@@ -85,13 +93,13 @@ function (_React$PureComponent) {
     _defineProperty(_assertThisInitialized(_this), "_cellRendererBottomRightGrid", function (_ref2) {
       var columnIndex = _ref2.columnIndex,
           rowIndex = _ref2.rowIndex,
-          rest = _objectWithoutProperties(_ref2, ["columnIndex", "rowIndex"]);
+          rest = _objectWithoutProperties(_ref2, _excluded2);
 
       var _this$props2 = _this.props,
           cellRenderer = _this$props2.cellRenderer,
           fixedColumnCount = _this$props2.fixedColumnCount,
           fixedRowCount = _this$props2.fixedRowCount;
-      return cellRenderer(_objectSpread({}, rest, {
+      return cellRenderer(_objectSpread(_objectSpread({}, rest), {}, {
         columnIndex: columnIndex + fixedColumnCount,
         parent: _assertThisInitialized(_this),
         rowIndex: rowIndex + fixedRowCount
@@ -100,7 +108,7 @@ function (_React$PureComponent) {
 
     _defineProperty(_assertThisInitialized(_this), "_cellRendererTopRightGrid", function (_ref3) {
       var columnIndex = _ref3.columnIndex,
-          rest = _objectWithoutProperties(_ref3, ["columnIndex"]);
+          rest = _objectWithoutProperties(_ref3, _excluded3);
 
       var _this$props3 = _this.props,
           cellRenderer = _this$props3.cellRenderer,
@@ -108,14 +116,14 @@ function (_React$PureComponent) {
           fixedColumnCount = _this$props3.fixedColumnCount;
 
       if (columnIndex === columnCount - fixedColumnCount) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: rest.key,
-          style: _objectSpread({}, rest.style, {
+          style: _objectSpread(_objectSpread({}, rest.style), {}, {
             width: SCROLLBAR_SIZE_BUFFER
           })
         });
       } else {
-        return cellRenderer(_objectSpread({}, rest, {
+        return cellRenderer(_objectSpread(_objectSpread({}, rest), {}, {
           columnIndex: columnIndex + fixedColumnCount,
           parent: _assertThisInitialized(_this)
         }));
@@ -370,7 +378,7 @@ function (_React$PureComponent) {
           scrollToColumn = _this$props8.scrollToColumn,
           scrollTopProp = _this$props8.scrollTop,
           scrollToRow = _this$props8.scrollToRow,
-          rest = _objectWithoutProperties(_this$props8, ["onScroll", "onSectionRendered", "onScrollbarPresenceChange", "scrollLeft", "scrollToColumn", "scrollTop", "scrollToRow"]);
+          rest = _objectWithoutProperties(_this$props8, _excluded4);
 
       this._prepareForRender(); // Don't render any of our Grids if there are no cells.
       // This mirrors what Grid does,
@@ -385,19 +393,19 @@ function (_React$PureComponent) {
       var _this$state4 = this.state,
           scrollLeft = _this$state4.scrollLeft,
           scrollTop = _this$state4.scrollTop;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         style: this._containerOuterStyle
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         style: this._containerTopStyle
-      }, this._renderTopLeftGrid(rest), this._renderTopRightGrid(_objectSpread({}, rest, {
+      }, this._renderTopLeftGrid(rest), this._renderTopRightGrid(_objectSpread(_objectSpread({}, rest), {}, {
         onScroll: onScroll,
         scrollLeft: scrollLeft
-      }))), React.createElement("div", {
+      }))), /*#__PURE__*/React.createElement("div", {
         style: this._containerBottomStyle
-      }, this._renderBottomLeftGrid(_objectSpread({}, rest, {
+      }, this._renderBottomLeftGrid(_objectSpread(_objectSpread({}, rest), {}, {
         onScroll: onScroll,
         scrollTop: scrollTop
-      })), this._renderBottomRightGrid(_objectSpread({}, rest, {
+      })), this._renderBottomRightGrid(_objectSpread(_objectSpread({}, rest), {}, {
         onScroll: onScroll,
         onSectionRendered: onSectionRendered,
         scrollLeft: scrollLeft,
@@ -623,7 +631,7 @@ function (_React$PureComponent) {
           scrollbarSize = this.state.showVerticalScrollbar ? this.state.scrollbarSize : 0,
           gridWidth = hideBottomLeftGridScrollbar ? width + scrollbarSize : width;
 
-      var bottomLeftGrid = React.createElement(Grid, _extends({}, props, {
+      var bottomLeftGrid = /*#__PURE__*/React.createElement(Grid, _extends({}, props, {
         cellRenderer: this._cellRendererBottomLeftGrid,
         className: this.props.classNameBottomLeftGrid,
         columnCount: fixedColumnCount,
@@ -639,9 +647,9 @@ function (_React$PureComponent) {
       }));
 
       if (hideBottomLeftGridScrollbar) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "BottomLeftGrid_ScrollWrapper",
-          style: _objectSpread({}, this._bottomLeftGridStyle, {
+          style: _objectSpread(_objectSpread({}, this._bottomLeftGridStyle), {}, {
             height: height,
             width: width,
             overflowY: 'hidden'
@@ -660,7 +668,7 @@ function (_React$PureComponent) {
           rowCount = props.rowCount,
           scrollToColumn = props.scrollToColumn,
           scrollToRow = props.scrollToRow;
-      return React.createElement(Grid, _extends({}, props, {
+      return /*#__PURE__*/React.createElement(Grid, _extends({}, props, {
         cellRenderer: this._cellRendererBottomRightGrid,
         className: this.props.classNameBottomRightGrid,
         columnCount: Math.max(0, columnCount - fixedColumnCount),
@@ -688,7 +696,7 @@ function (_React$PureComponent) {
         return null;
       }
 
-      return React.createElement(Grid, _extends({}, props, {
+      return /*#__PURE__*/React.createElement(Grid, _extends({}, props, {
         className: this.props.classNameTopLeftGrid,
         columnCount: fixedColumnCount,
         height: this._getTopGridHeight(props),
@@ -726,12 +734,12 @@ function (_React$PureComponent) {
 
       if (hideTopRightGridScrollbar) {
         gridHeight = height + additionalHeight;
-        style = _objectSpread({}, this._topRightGridStyle, {
+        style = _objectSpread(_objectSpread({}, this._topRightGridStyle), {}, {
           left: 0
         });
       }
 
-      var topRightGrid = React.createElement(Grid, _extends({}, props, {
+      var topRightGrid = /*#__PURE__*/React.createElement(Grid, _extends({}, props, {
         cellRenderer: this._cellRendererTopRightGrid,
         className: this.props.classNameTopRightGrid,
         columnCount: Math.max(0, columnCount - fixedColumnCount) + additionalColumnCount,
@@ -748,9 +756,9 @@ function (_React$PureComponent) {
       }));
 
       if (hideTopRightGridScrollbar) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "TopRightGrid_ScrollWrapper",
-          style: _objectSpread({}, this._topRightGridStyle, {
+          style: _objectSpread(_objectSpread({}, this._topRightGridStyle), {}, {
             height: height,
             width: width,
             overflowX: 'hidden'

@@ -3,6 +3,27 @@
 }(this, function(exports, React, ReactDOM) {
     "use strict";
     var React__default = "default" in React ? React.default : React;
+    function ownKeys(object, enumerableOnly) {
+        var keys = Object.keys(object);
+        if (Object.getOwnPropertySymbols) {
+            var symbols = Object.getOwnPropertySymbols(object);
+            enumerableOnly && (symbols = symbols.filter(function(sym) {
+                return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+            })), keys.push.apply(keys, symbols);
+        }
+        return keys;
+    }
+    function _objectSpread2(target) {
+        for (var i = 1; i < arguments.length; i++) {
+            var source = null != arguments[i] ? arguments[i] : {};
+            i % 2 ? ownKeys(Object(source), !0).forEach(function(key) {
+                _defineProperty(target, key, source[key]);
+            }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
+                Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+            });
+        }
+        return target;
+    }
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
     }
@@ -15,7 +36,9 @@
     }
     function _createClass(Constructor, protoProps, staticProps) {
         return protoProps && _defineProperties(Constructor.prototype, protoProps), staticProps && _defineProperties(Constructor, staticProps), 
-        Constructor;
+        Object.defineProperty(Constructor, "prototype", {
+            writable: !1
+        }), Constructor;
     }
     function _defineProperty(obj, key, value) {
         return key in obj ? Object.defineProperty(obj, key, {
@@ -34,27 +57,6 @@
             return target;
         }).apply(this, arguments);
     }
-    function ownKeys(object, enumerableOnly) {
-        var keys = Object.keys(object);
-        if (Object.getOwnPropertySymbols) {
-            var symbols = Object.getOwnPropertySymbols(object);
-            enumerableOnly && (symbols = symbols.filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-            })), keys.push.apply(keys, symbols);
-        }
-        return keys;
-    }
-    function _objectSpread2(target) {
-        for (var i = 1; i < arguments.length; i++) {
-            var source = null != arguments[i] ? arguments[i] : {};
-            i % 2 ? ownKeys(source, !0).forEach(function(key) {
-                _defineProperty(target, key, source[key]);
-            }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(source).forEach(function(key) {
-                Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-            });
-        }
-        return target;
-    }
     function _inherits(subClass, superClass) {
         if ("function" != typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function");
         subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -63,6 +65,8 @@
                 writable: !0,
                 configurable: !0
             }
+        }), Object.defineProperty(subClass, "prototype", {
+            writable: !1
         }), superClass && _setPrototypeOf(subClass, superClass);
     }
     function _getPrototypeOf(o) {
@@ -93,18 +97,40 @@
         if (void 0 === self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
         return self;
     }
-    function _possibleConstructorReturn(self, call) {
-        return !call || "object" != typeof call && "function" != typeof call ? _assertThisInitialized(self) : call;
+    function _createSuper(Derived) {
+        var hasNativeReflectConstruct = function() {
+            if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
+            if (Reflect.construct.sham) return !1;
+            if ("function" == typeof Proxy) return !0;
+            try {
+                return Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {})), 
+                !0;
+            } catch (e) {
+                return !1;
+            }
+        }();
+        return function() {
+            var result, Super = _getPrototypeOf(Derived);
+            if (hasNativeReflectConstruct) {
+                var NewTarget = _getPrototypeOf(this).constructor;
+                result = Reflect.construct(Super, arguments, NewTarget);
+            } else result = Super.apply(this, arguments);
+            return function(self, call) {
+                if (call && ("object" == typeof call || "function" == typeof call)) return call;
+                if (void 0 !== call) throw new TypeError("Derived constructors may only return object or undefined");
+                return _assertThisInitialized(self);
+            }(this, result);
+        };
     }
     function _slicedToArray(arr, i) {
         return function(arr) {
             if (Array.isArray(arr)) return arr;
         }(arr) || function(arr, i) {
-            if (!(Symbol.iterator in Object(arr) || "[object Arguments]" === Object.prototype.toString.call(arr))) return;
-            var _arr = [], _n = !0, _d = !1, _e = void 0;
+            var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+            if (null == _i) return;
+            var _s, _e, _arr = [], _n = !0, _d = !1;
             try {
-                for (var _s, _i = arr[Symbol.iterator](); !(_n = (_s = _i.next()).done) && (_arr.push(_s.value), 
-                !i || _arr.length !== i); _n = !0) ;
+                for (_i = _i.call(arr); !(_n = (_s = _i.next()).done) && (_arr.push(_s.value), !i || _arr.length !== i); _n = !0) ;
             } catch (err) {
                 _d = !0, _e = err;
             } finally {
@@ -115,8 +141,8 @@
                 }
             }
             return _arr;
-        }(arr, i) || function() {
-            throw new TypeError("Invalid attempt to destructure non-iterable instance");
+        }(arr, i) || _unsupportedIterableToArray(arr, i) || function() {
+            throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
         }
         /**
    * Copyright (c) 2013-present, Facebook, Inc.
@@ -127,15 +153,24 @@
     }
     function _toConsumableArray(arr) {
         return function(arr) {
-            if (Array.isArray(arr)) {
-                for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-                return arr2;
-            }
+            if (Array.isArray(arr)) return _arrayLikeToArray(arr);
         }(arr) || function(iter) {
-            if (Symbol.iterator in Object(iter) || "[object Arguments]" === Object.prototype.toString.call(iter)) return Array.from(iter);
-        }(arr) || function() {
-            throw new TypeError("Invalid attempt to spread non-iterable instance");
+            if ("undefined" != typeof Symbol && null != iter[Symbol.iterator] || null != iter["@@iterator"]) return Array.from(iter);
+        }(arr) || _unsupportedIterableToArray(arr) || function() {
+            throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
         }();
+    }
+    function _unsupportedIterableToArray(o, minLen) {
+        if (o) {
+            if ("string" == typeof o) return _arrayLikeToArray(o, minLen);
+            var n = Object.prototype.toString.call(o).slice(8, -1);
+            return "Object" === n && o.constructor && (n = o.constructor.name), "Map" === n || "Set" === n ? Array.from(o) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? _arrayLikeToArray(o, minLen) : void 0;
+        }
+    }
+    function _arrayLikeToArray(arr, len) {
+        (null == len || len > arr.length) && (len = arr.length);
+        for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+        return arr2;
     }
     function componentWillMount() {
         // Call this.constructor.gDSFP to support sub-classes.
@@ -205,12 +240,14 @@
         return Component;
     }
     componentWillUpdate.__suppressDeprecationWarning = componentWillReceiveProps.__suppressDeprecationWarning = componentWillMount.__suppressDeprecationWarning = !0;
-    var ArrowKeyStepper = function() {
+    var ArrowKeyStepper = function(_React$PureComponent) {
+        _inherits(ArrowKeyStepper, React.PureComponent);
+        var _super = _createSuper(ArrowKeyStepper);
         function ArrowKeyStepper() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, ArrowKeyStepper);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ArrowKeyStepper)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "state", {
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "state", {
                 scrollToColumn: 0,
                 scrollToRow: 0,
                 instanceProps: {
@@ -251,7 +288,7 @@
                 _this._rowStartIndex = rowStartIndex, _this._rowStopIndex = rowStopIndex;
             }), _this;
         }
-        return _inherits(ArrowKeyStepper, React.PureComponent), _createClass(ArrowKeyStepper, [ {
+        return _createClass(ArrowKeyStepper, [ {
             key: "setScrollIndexes",
             value: function(_ref2) {
                 var scrollToColumn = _ref2.scrollToColumn, scrollToRow = _ref2.scrollToRow;
@@ -293,7 +330,7 @@
         } ], [ {
             key: "getDerivedStateFromProps",
             value: function(nextProps, prevState) {
-                return nextProps.isControlled ? {} : nextProps.scrollToColumn !== prevState.instanceProps.prevScrollToColumn || nextProps.scrollToRow !== prevState.instanceProps.prevScrollToRow ? _objectSpread2({}, prevState, {
+                return nextProps.isControlled ? {} : nextProps.scrollToColumn !== prevState.instanceProps.prevScrollToColumn || nextProps.scrollToRow !== prevState.instanceProps.prevScrollToRow ? _objectSpread2(_objectSpread2({}, prevState), {}, {
                     scrollToColumn: nextProps.scrollToColumn,
                     scrollToRow: nextProps.scrollToRow,
                     instanceProps: {
@@ -323,9 +360,9 @@
                 if (!(e.target.className && "function" == typeof e.target.className.indexOf && e.target.className.indexOf("contract-trigger") < 0 && e.target.className.indexOf("expand-trigger") < 0)) {
                     var element = this;
                     resetTriggers(this), this.__resizeRAF__ && cancelFrame(this.__resizeRAF__), this.__resizeRAF__ = requestFrame(function() {
-                        !function(element) {
+                        (function(element) {
                             return element.offsetWidth != element.__resizeLast__.width || element.offsetHeight != element.__resizeLast__.height;
-                        }(element) || (element.__resizeLast__.width = element.offsetWidth, element.__resizeLast__.height = element.offsetHeight, 
+                        })(element) && (element.__resizeLast__.width = element.offsetWidth, element.__resizeLast__.height = element.offsetHeight, 
                         element.__resizeListeners__.forEach(function(fn) {
                             fn.call(element, e);
                         }));
@@ -385,12 +422,14 @@
         scrollToColumn: 0,
         scrollToRow: 0
     }), polyfill(ArrowKeyStepper);
-    var AutoSizer = function() {
+    var AutoSizer = function(_React$Component) {
+        _inherits(AutoSizer, React.Component);
+        var _super = _createSuper(AutoSizer);
         function AutoSizer() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, AutoSizer);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AutoSizer)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "state", {
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "state", {
                 height: _this.props.defaultHeight || 0,
                 width: _this.props.defaultWidth || 0
             }), _defineProperty(_assertThisInitialized(_this), "_parentNode", void 0), _defineProperty(_assertThisInitialized(_this), "_autoSizer", void 0), 
@@ -411,7 +450,7 @@
                 _this._autoSizer = autoSizer;
             }), _this;
         }
-        return _inherits(AutoSizer, React.Component), _createClass(AutoSizer, [ {
+        return _createClass(AutoSizer, [ {
             key: "componentDidMount",
             value: function() {
                 var nonce = this.props.nonce;
@@ -434,7 +473,7 @@
                 childParams.width = width), React.createElement("div", {
                     className: className,
                     ref: this._setRef,
-                    style: _objectSpread2({}, outerStyle, {}, style)
+                    style: _objectSpread2(_objectSpread2({}, outerStyle), style)
                 }, children(childParams));
             }
         } ]), AutoSizer;
@@ -445,12 +484,14 @@
         disableWidth: !1,
         style: {}
     });
-    var CellMeasurer = function() {
+    var CellMeasurer = function(_React$PureComponent) {
+        _inherits(CellMeasurer, React.PureComponent);
+        var _super = _createSuper(CellMeasurer);
         function CellMeasurer() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, CellMeasurer);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CellMeasurer)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "_child", void 0), 
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "_child", void 0), 
             _defineProperty(_assertThisInitialized(_this), "_measure", function() {
                 var _this$props = _this.props, cache = _this$props.cache, _this$props$columnInd = _this$props.columnIndex, columnIndex = void 0 === _this$props$columnInd ? 0 : _this$props$columnInd, parent = _this$props.parent, _this$props$rowIndex = _this$props.rowIndex, rowIndex = void 0 === _this$props$rowIndex ? _this.props.index || 0 : _this$props$rowIndex, _this$_getCellMeasure = _this._getCellMeasurements(), height = _this$_getCellMeasure.height, width = _this$_getCellMeasure.width;
                 height === cache.getHeight(rowIndex, columnIndex) && width === cache.getWidth(rowIndex, columnIndex) || (cache.set(rowIndex, columnIndex, width, height), 
@@ -463,7 +504,7 @@
                 (_this._child = element) && _this._maybeMeasureCell();
             }), _this;
         }
-        return _inherits(CellMeasurer, React.PureComponent), _createClass(CellMeasurer, [ {
+        return _createClass(CellMeasurer, [ {
             key: "componentDidMount",
             value: function() {
                 this._maybeMeasureCell();
@@ -544,8 +585,8 @@
         }
         return _createClass(CellMeasurerCache, [ {
             key: "clear",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0, key = this._keyMapper(rowIndex, columnIndex);
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0, key = this._keyMapper(rowIndex, columnIndex);
                 delete this._cellHeightCache[key], delete this._cellWidthCache[key], this._updateCachedColumnAndRowSizes(rowIndex, columnIndex);
             }
         }, {
@@ -553,6 +594,16 @@
             value: function() {
                 this._cellHeightCache = {}, this._cellWidthCache = {}, this._columnWidthCache = {}, 
                 this._rowHeightCache = {}, this._rowCount = 0, this._columnCount = 0;
+            }
+        }, {
+            key: "defaultHeight",
+            get: function() {
+                return this._defaultHeight;
+            }
+        }, {
+            key: "defaultWidth",
+            get: function() {
+                return this._defaultWidth;
             }
         }, {
             key: "hasFixedHeight",
@@ -566,24 +617,24 @@
             }
         }, {
             key: "getHeight",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0;
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0;
                 if (this._hasFixedHeight) return this._defaultHeight;
                 var _key = this._keyMapper(rowIndex, columnIndex);
                 return void 0 !== this._cellHeightCache[_key] ? Math.max(this._minHeight, this._cellHeightCache[_key]) : this._defaultHeight;
             }
         }, {
             key: "getWidth",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0;
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0;
                 if (this._hasFixedWidth) return this._defaultWidth;
                 var _key2 = this._keyMapper(rowIndex, columnIndex);
                 return void 0 !== this._cellWidthCache[_key2] ? Math.max(this._minWidth, this._cellWidthCache[_key2]) : this._defaultWidth;
             }
         }, {
             key: "has",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0, key = this._keyMapper(rowIndex, columnIndex);
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0, key = this._keyMapper(rowIndex, columnIndex);
                 return void 0 !== this._cellHeightCache[key];
             }
         }, {
@@ -607,152 +658,21 @@
                     this._rowHeightCache[rowKey] = rowHeight;
                 }
             }
-        }, {
-            key: "defaultHeight",
-            get: function() {
-                return this._defaultHeight;
-            }
-        }, {
-            key: "defaultWidth",
-            get: function() {
-                return this._defaultWidth;
-            }
         } ]), CellMeasurerCache;
     }();
     function defaultKeyMapper(rowIndex, columnIndex) {
         return "".concat(rowIndex, "-").concat(columnIndex);
-    }
-    function unwrapExports(x) {
-        return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x.default : x;
     }
     function createCommonjsModule(fn, module) {
         return fn(module = {
             exports: {}
         }, module.exports), module.exports;
     }
-    var reactIs_production_min = createCommonjsModule(function(module, exports) {
-        Object.defineProperty(exports, "__esModule", {
-            value: !0
-        });
-        var b = "function" == typeof Symbol && Symbol.for, c = b ? Symbol.for("react.element") : 60103, d = b ? Symbol.for("react.portal") : 60106, e = b ? Symbol.for("react.fragment") : 60107, f = b ? Symbol.for("react.strict_mode") : 60108, g = b ? Symbol.for("react.profiler") : 60114, h = b ? Symbol.for("react.provider") : 60109, k = b ? Symbol.for("react.context") : 60110, l = b ? Symbol.for("react.async_mode") : 60111, m = b ? Symbol.for("react.concurrent_mode") : 60111, n = b ? Symbol.for("react.forward_ref") : 60112, p = b ? Symbol.for("react.suspense") : 60113, q = b ? Symbol.for("react.suspense_list") : 60120, r = b ? Symbol.for("react.memo") : 60115, t = b ? Symbol.for("react.lazy") : 60116, v = b ? Symbol.for("react.fundamental") : 60117, w = b ? Symbol.for("react.responder") : 60118, x = b ? Symbol.for("react.scope") : 60119;
-        function y(a) {
-            if ("object" == typeof a && null !== a) {
-                var u = a.$$typeof;
-                switch (u) {
-                  case c:
-                    switch (a = a.type) {
-                      case l:
-                      case m:
-                      case e:
-                      case g:
-                      case f:
-                      case p:
-                        return a;
-
-                      default:
-                        switch (a = a && a.$$typeof) {
-                          case k:
-                          case n:
-                          case h:
-                            return a;
-
-                          default:
-                            return u;
-                        }
-                    }
-
-                  case t:
-                  case r:
-                  case d:
-                    return u;
-                }
-            }
-        }
-        function z(a) {
-            return y(a) === m;
-        }
-        exports.typeOf = y, exports.AsyncMode = l, exports.ConcurrentMode = m, exports.ContextConsumer = k, 
-        exports.ContextProvider = h, exports.Element = c, exports.ForwardRef = n, exports.Fragment = e, 
-        exports.Lazy = t, exports.Memo = r, exports.Portal = d, exports.Profiler = g, exports.StrictMode = f, 
-        exports.Suspense = p, exports.isValidElementType = function(a) {
-            return "string" == typeof a || "function" == typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" == typeof a && null !== a && (a.$$typeof === t || a.$$typeof === r || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === v || a.$$typeof === w || a.$$typeof === x);
-        }, exports.isAsyncMode = function(a) {
-            return z(a) || y(a) === l;
-        }, exports.isConcurrentMode = z, exports.isContextConsumer = function(a) {
-            return y(a) === k;
-        }, exports.isContextProvider = function(a) {
-            return y(a) === h;
-        }, exports.isElement = function(a) {
-            return "object" == typeof a && null !== a && a.$$typeof === c;
-        }, exports.isForwardRef = function(a) {
-            return y(a) === n;
-        }, exports.isFragment = function(a) {
-            return y(a) === e;
-        }, exports.isLazy = function(a) {
-            return y(a) === t;
-        }, exports.isMemo = function(a) {
-            return y(a) === r;
-        }, exports.isPortal = function(a) {
-            return y(a) === d;
-        }, exports.isProfiler = function(a) {
-            return y(a) === g;
-        }, exports.isStrictMode = function(a) {
-            return y(a) === f;
-        }, exports.isSuspense = function(a) {
-            return y(a) === p;
-        };
-    });
-    unwrapExports(reactIs_production_min);
-    reactIs_production_min.typeOf, reactIs_production_min.AsyncMode, reactIs_production_min.ConcurrentMode, 
-    reactIs_production_min.ContextConsumer, reactIs_production_min.ContextProvider, 
-    reactIs_production_min.Element, reactIs_production_min.ForwardRef, reactIs_production_min.Fragment, 
-    reactIs_production_min.Lazy, reactIs_production_min.Memo, reactIs_production_min.Portal, 
-    reactIs_production_min.Profiler, reactIs_production_min.StrictMode, reactIs_production_min.Suspense, 
-    reactIs_production_min.isValidElementType, reactIs_production_min.isAsyncMode, reactIs_production_min.isConcurrentMode, 
-    reactIs_production_min.isContextConsumer, reactIs_production_min.isContextProvider, 
-    reactIs_production_min.isElement, reactIs_production_min.isForwardRef, reactIs_production_min.isFragment, 
-    reactIs_production_min.isLazy, reactIs_production_min.isMemo, reactIs_production_min.isPortal, 
-    reactIs_production_min.isProfiler, reactIs_production_min.isStrictMode, reactIs_production_min.isSuspense;
     var reactIs_development = createCommonjsModule(function(module, exports) {
         !function() {
-            Object.defineProperty(exports, "__esModule", {
-                value: !0
-            });
             // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
             // nor polyfill, then a plain number is used for performance.
-            var hasSymbol = "function" == typeof Symbol && Symbol.for, REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103, REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106, REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107, REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108, REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114, REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109, REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110, REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111, REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111, REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112, REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113, REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120, REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115, REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116, REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117, REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118, REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
-            /**
-   * Forked from fbjs/warning:
-   * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
-   *
-   * Only change is we use console.warn instead of console.error,
-   * and do nothing when 'console' is not supported.
-   * This really simplifies the code.
-   * ---
-   * Similar to invariant but only logs a warning if the condition is not met.
-   * This can be used to log issues in development environments in critical
-   * paths. Removing the logging code for production environments will keep the
-   * same logic and follow the same code paths.
-   */
-            var lowPriorityWarningWithoutStack$1 = function(condition, format) {
-                if (void 0 === format) throw new Error("`lowPriorityWarningWithoutStack(condition, format, ...args)` requires a warning message argument");
-                if (!condition) {
-                    for (var _len2 = arguments.length, args = new Array(2 < _len2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) args[_key2 - 2] = arguments[_key2];
-                    (function(format) {
-                        for (var _len = arguments.length, args = new Array(1 < _len ? _len - 1 : 0), _key = 1; _key < _len; _key++) args[_key - 1] = arguments[_key];
-                        var argIndex = 0, message = "Warning: " + format.replace(/%s/g, function() {
-                            return args[argIndex++];
-                        });
-                        "undefined" != typeof console && console.warn(message);
-                        try {
-                            // --- Welcome to debugging React ---
-                            // This error was thrown as a convenience so that you can use this stack
-                            // to find the callsite that caused this warning to fire.
-                            throw new Error(message);
-                        } catch (x) {}
-                    }).apply(void 0, [ format ].concat(args));
-                }
-            };
+            var hasSymbol = "function" == typeof Symbol && Symbol.for, REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103, REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106, REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107, REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108, REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114, REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109, REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110, REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111, REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111, REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112, REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113, REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120, REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115, REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116, REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121, REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117, REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118, REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
             function typeOf(object) {
                 if ("object" == typeof object && null !== object) {
                     var $$typeof = object.$$typeof;
@@ -773,6 +693,8 @@
                             switch ($$typeofType) {
                               case REACT_CONTEXT_TYPE:
                               case REACT_FORWARD_REF_TYPE:
+                              case REACT_LAZY_TYPE:
+                              case REACT_MEMO_TYPE:
                               case REACT_PROVIDER_TYPE:
                                 return $$typeofType;
 
@@ -781,8 +703,6 @@
                             }
                         }
 
-                      case REACT_LAZY_TYPE:
-                      case REACT_MEMO_TYPE:
                       case REACT_PORTAL_TYPE:
                         return $$typeof;
                     }
@@ -793,16 +713,15 @@
             function isConcurrentMode(object) {
                 return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
             }
-            exports.typeOf = typeOf, exports.AsyncMode = AsyncMode, exports.ConcurrentMode = ConcurrentMode, 
-            exports.ContextConsumer = ContextConsumer, exports.ContextProvider = ContextProvider, 
-            exports.Element = Element, exports.ForwardRef = ForwardRef, exports.Fragment = Fragment, 
-            exports.Lazy = Lazy, exports.Memo = Memo, exports.Portal = Portal, exports.Profiler = Profiler, 
-            exports.StrictMode = StrictMode, exports.Suspense = Suspense, exports.isValidElementType = function(type) {
-                return "string" == typeof type || "function" == typeof type || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-                type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || "object" == typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE);
-            }, exports.isAsyncMode = // AsyncMode should be deprecated
+            exports.AsyncMode = AsyncMode, exports.ConcurrentMode = ConcurrentMode, exports.ContextConsumer = ContextConsumer, 
+            exports.ContextProvider = ContextProvider, exports.Element = Element, exports.ForwardRef = ForwardRef, 
+            exports.Fragment = Fragment, exports.Lazy = Lazy, exports.Memo = Memo, exports.Portal = Portal, 
+            exports.Profiler = Profiler, exports.StrictMode = StrictMode, exports.Suspense = Suspense, 
+            exports.isAsyncMode = // AsyncMode should be deprecated
             function(object) {
-                return hasWarnedAboutDeprecatedIsAsyncMode || lowPriorityWarningWithoutStack$1(!(hasWarnedAboutDeprecatedIsAsyncMode = !0), "The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API."), 
+                return hasWarnedAboutDeprecatedIsAsyncMode || (hasWarnedAboutDeprecatedIsAsyncMode = !0, 
+                // Using console['warn'] to evade Babel and ESLint
+                console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), 
                 isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
             }, exports.isConcurrentMode = isConcurrentMode, exports.isContextConsumer = function(object) {
                 return typeOf(object) === REACT_CONTEXT_TYPE;
@@ -826,23 +745,23 @@
                 return typeOf(object) === REACT_STRICT_MODE_TYPE;
             }, exports.isSuspense = function(object) {
                 return typeOf(object) === REACT_SUSPENSE_TYPE;
-            };
+            }, exports.isValidElementType = function(type) {
+                return "string" == typeof type || "function" == typeof type || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+                type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || "object" == typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+            }, exports.typeOf = typeOf;
         }();
-    });
-    unwrapExports(reactIs_development);
-    reactIs_development.typeOf, reactIs_development.AsyncMode, reactIs_development.ConcurrentMode, 
+    }), reactIs = (reactIs_development.AsyncMode, reactIs_development.ConcurrentMode, 
     reactIs_development.ContextConsumer, reactIs_development.ContextProvider, reactIs_development.Element, 
     reactIs_development.ForwardRef, reactIs_development.Fragment, reactIs_development.Lazy, 
     reactIs_development.Memo, reactIs_development.Portal, reactIs_development.Profiler, 
-    reactIs_development.StrictMode, reactIs_development.Suspense, reactIs_development.isValidElementType, 
-    reactIs_development.isAsyncMode, reactIs_development.isConcurrentMode, reactIs_development.isContextConsumer, 
-    reactIs_development.isContextProvider, reactIs_development.isElement, reactIs_development.isForwardRef, 
-    reactIs_development.isFragment, reactIs_development.isLazy, reactIs_development.isMemo, 
-    reactIs_development.isPortal, reactIs_development.isProfiler, reactIs_development.isStrictMode, 
-    reactIs_development.isSuspense;
-    var reactIs = createCommonjsModule(function(module) {
+    reactIs_development.StrictMode, reactIs_development.Suspense, reactIs_development.isAsyncMode, 
+    reactIs_development.isConcurrentMode, reactIs_development.isContextConsumer, reactIs_development.isContextProvider, 
+    reactIs_development.isElement, reactIs_development.isForwardRef, reactIs_development.isFragment, 
+    reactIs_development.isLazy, reactIs_development.isMemo, reactIs_development.isPortal, 
+    reactIs_development.isProfiler, reactIs_development.isStrictMode, reactIs_development.isSuspense, 
+    reactIs_development.isValidElementType, reactIs_development.typeOf, createCommonjsModule(function(module) {
         module.exports = reactIs_development;
-    }), getOwnPropertySymbols = Object.getOwnPropertySymbols, hasOwnProperty = Object.prototype.hasOwnProperty, propIsEnumerable = Object.prototype.propertyIsEnumerable;
+    })), getOwnPropertySymbols = Object.getOwnPropertySymbols, hasOwnProperty = Object.prototype.hasOwnProperty, propIsEnumerable = Object.prototype.propertyIsEnumerable;
     var printWarning, objectAssign = function() {
         try {
             if (!Object.assign) return !1;
@@ -877,7 +796,7 @@
             }
         }
         return to;
-    }, ReactPropTypesSecret_1 = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED", loggedTypeFailures = {}, has = Function.call.bind(Object.prototype.hasOwnProperty);
+    }, ReactPropTypesSecret_1 = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED", has = Function.call.bind(Object.prototype.hasOwnProperty), loggedTypeFailures = {}, has$1 = has;
     /**
    * Copyright (c) 2013-present, Facebook, Inc.
    *
@@ -896,7 +815,7 @@
    * @private
    */
     function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-        for (var typeSpecName in typeSpecs) if (has(typeSpecs, typeSpecName)) {
+        for (var typeSpecName in typeSpecs) if (has$1(typeSpecs, typeSpecName)) {
             var error;
             // Prop type validation may throw. In case they do, we don't want to
             // fail the render phase where it didn't fail before. So we log it.
@@ -905,7 +824,7 @@
                 // This is intentionally an invariant that gets caught. It's the same
                 // behavior as without this statement except with a better message.
                 if ("function" != typeof typeSpecs[typeSpecName]) {
-                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.");
+                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                     throw err.name = "Invariant Violation", err;
                 }
                 error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
@@ -934,11 +853,11 @@
             // This error was thrown as a convenience so that you can use this stack
             // to find the callsite that caused this warning to fire.
             throw new Error(message);
-        } catch (x) {}
+        } catch (x) {/**/}
     }, checkPropTypes.resetWarningCache = function() {
         loggedTypeFailures = {};
     };
-    var printWarning$1, checkPropTypes_1 = checkPropTypes, has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
+    var printWarning$1, checkPropTypes_1 = checkPropTypes;
     function emptyFunctionThatReturnsNull() {
         return null;
     }
@@ -952,203 +871,10 @@
             throw new Error(message);
         } catch (x) {}
     };
-    function factoryWithTypeCheckers(isValidElement, throwOnDirectAccess) {
+    var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
         /* global Symbol */
-        var ITERATOR_SYMBOL = "function" == typeof Symbol && Symbol.iterator, FAUX_ITERATOR_SYMBOL = "@@iterator", ANONYMOUS = "<<anonymous>>", ReactPropTypes = {
-            array: createPrimitiveTypeChecker("array"),
-            bool: createPrimitiveTypeChecker("boolean"),
-            func: createPrimitiveTypeChecker("function"),
-            number: createPrimitiveTypeChecker("number"),
-            object: createPrimitiveTypeChecker("object"),
-            string: createPrimitiveTypeChecker("string"),
-            symbol: createPrimitiveTypeChecker("symbol"),
-            any: createChainableTypeChecker(emptyFunctionThatReturnsNull),
-            arrayOf: function(typeChecker) {
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    if ("function" != typeof typeChecker) return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside arrayOf.");
-                    var propValue = props[propName];
-                    if (!Array.isArray(propValue)) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + getPropType(propValue) + "` supplied to `" + componentName + "`, expected an array.");
-                    for (var i = 0; i < propValue.length; i++) {
-                        var error = typeChecker(propValue, i, componentName, location, propFullName + "[" + i + "]", ReactPropTypesSecret_1);
-                        if (error instanceof Error) return error;
-                    }
-                    return null;
-                });
-            },
-            element: createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                var propValue = props[propName];
-                return isValidElement(propValue) ? null : new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + getPropType(propValue) + "` supplied to `" + componentName + "`, expected a single ReactElement.");
-            }),
-            elementType: createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                var propValue = props[propName];
-                return reactIs.isValidElementType(propValue) ? null : new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + getPropType(propValue) + "` supplied to `" + componentName + "`, expected a single ReactElement type.");
-            }),
-            instanceOf: function(expectedClass) {
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    if (props[propName] instanceof expectedClass) return null;
-                    var expectedClassName = expectedClass.name || ANONYMOUS;
-                    return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + 
-                    // Returns class name of the object, if any.
-                    function(propValue) {
-                        return propValue.constructor && propValue.constructor.name ? propValue.constructor.name : ANONYMOUS;
-                    }(props[propName]) + "` supplied to `" + componentName + "`, expected instance of `" + expectedClassName + "`.");
-                });
-            },
-            node: createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                return isNode(props[propName]) ? null : new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to `" + componentName + "`, expected a ReactNode.");
-            }),
-            objectOf: function(typeChecker) {
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    if ("function" != typeof typeChecker) return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside objectOf.");
-                    var propValue = props[propName], propType = getPropType(propValue);
-                    if ("object" !== propType) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected an object.");
-                    for (var key in propValue) if (has$1(propValue, key)) {
-                        var error = typeChecker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret_1);
-                        if (error instanceof Error) return error;
-                    }
-                    return null;
-                });
-            },
-            oneOf: function(expectedValues) {
-                if (!Array.isArray(expectedValues)) return printWarning$1(1 < arguments.length ? "Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z])." : "Invalid argument supplied to oneOf, expected an array."), 
-                emptyFunctionThatReturnsNull;
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    for (var propValue = props[propName], i = 0; i < expectedValues.length; i++) if (is(propValue, expectedValues[i])) return null;
-                    var valuesString = JSON.stringify(expectedValues, function(key, value) {
-                        return "symbol" === getPreciseType(value) ? String(value) : value;
-                    });
-                    return new PropTypeError("Invalid " + location + " `" + propFullName + "` of value `" + String(propValue) + "` supplied to `" + componentName + "`, expected one of " + valuesString + ".");
-                });
-            },
-            oneOfType: function(arrayOfTypeCheckers) {
-                if (!Array.isArray(arrayOfTypeCheckers)) return printWarning$1("Invalid argument supplied to oneOfType, expected an instance of array."), 
-                emptyFunctionThatReturnsNull;
-                for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-                    var checker = arrayOfTypeCheckers[i];
-                    if ("function" != typeof checker) return printWarning$1("Invalid argument supplied to oneOfType. Expected an array of check functions, but received " + getPostfixForTypeWarning(checker) + " at index " + i + "."), 
-                    emptyFunctionThatReturnsNull;
-                }
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-                        if (null == (0, arrayOfTypeCheckers[i])(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1)) return null;
-                    }
-                    return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to `" + componentName + "`.");
-                });
-            },
-            shape: function(shapeTypes) {
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    var propValue = props[propName], propType = getPropType(propValue);
-                    if ("object" !== propType) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected `object`.");
-                    for (var key in shapeTypes) {
-                        var checker = shapeTypes[key];
-                        if (checker) {
-                            var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret_1);
-                            if (error) return error;
-                        }
-                    }
-                    return null;
-                });
-            },
-            exact: function(shapeTypes) {
-                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
-                    var propValue = props[propName], propType = getPropType(propValue);
-                    if ("object" !== propType) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected `object`.");
-                    // We need to check all keys in case some are required but missing from
-                    // props.
-                                        var allKeys = objectAssign({}, props[propName], shapeTypes);
-                    for (var key in allKeys) {
-                        var checker = shapeTypes[key];
-                        if (!checker) return new PropTypeError("Invalid " + location + " `" + propFullName + "` key `" + key + "` supplied to `" + componentName + "`.\nBad object: " + JSON.stringify(props[propName], null, "  ") + "\nValid keys: " + JSON.stringify(Object.keys(shapeTypes), null, "  "));
-                        var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret_1);
-                        if (error) return error;
-                    }
-                    return null;
-                });
-            }
-        };
+        var ITERATOR_SYMBOL = "function" == typeof Symbol && Symbol.iterator, FAUX_ITERATOR_SYMBOL = "@@iterator";
         /**
-     * inlined Object.is polyfill to avoid requiring consumers ship their own
-     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-     */
-        /*eslint-disable no-self-compare*/
-        function is(x, y) {
-            // SameValue algorithm
-            return x === y ? 0 !== x || 1 / x == 1 / y : x != x && y != y;
-        }
-        /*eslint-enable no-self-compare*/
-        /**
-     * We use an Error-like object for backward compatibility as people may call
-     * PropTypes directly and inspect their output. However, we don't use real
-     * Errors anymore. We don't inspect their stack anyway, and creating them
-     * is prohibitively expensive if they are created too often, such as what
-     * happens in oneOfType() for any type before the one that matched.
-     */        function PropTypeError(message) {
-            this.message = message, this.stack = "";
-        }
-        // Make `instanceof Error` still work for returned errors.
-                function createChainableTypeChecker(validate) {
-            var manualPropTypeCallCache = {}, manualPropTypeWarningCount = 0;
-            function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-                if (componentName = componentName || ANONYMOUS, propFullName = propFullName || propName, 
-                secret !== ReactPropTypesSecret_1) {
-                    if (throwOnDirectAccess) {
-                        // New behavior only for users of `prop-types` package
-                        var err = new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types");
-                        throw err.name = "Invariant Violation", err;
-                    }
-                    if ("undefined" != typeof console) {
-                        // Old behavior for people using React.PropTypes
-                        var cacheKey = componentName + ":" + propName;
-                        !manualPropTypeCallCache[cacheKey] && 
-                        // Avoid spamming the console because they are often not actionable except for lib authors
-                        manualPropTypeWarningCount < 3 && (printWarning$1("You are manually calling a React.PropTypes validation function for the `" + propFullName + "` prop on `" + componentName + "`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."), 
-                        manualPropTypeCallCache[cacheKey] = !0, manualPropTypeWarningCount++);
-                    }
-                }
-                return null == props[propName] ? isRequired ? null === props[propName] ? new PropTypeError("The " + location + " `" + propFullName + "` is marked as required in `" + componentName + "`, but its value is `null`.") : new PropTypeError("The " + location + " `" + propFullName + "` is marked as required in `" + componentName + "`, but its value is `undefined`.") : null : validate(props, propName, componentName, location, propFullName);
-            }
-            var chainedCheckType = checkType.bind(null, !1);
-            return chainedCheckType.isRequired = checkType.bind(null, !0), chainedCheckType;
-        }
-        function createPrimitiveTypeChecker(expectedType) {
-            return createChainableTypeChecker(function(props, propName, componentName, location, propFullName, secret) {
-                var propValue = props[propName];
-                return getPropType(propValue) === expectedType ? null : new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + getPreciseType(propValue) + "` supplied to `" + componentName + "`, expected `" + expectedType + "`.");
-            });
-        }
-        function isNode(propValue) {
-            switch (typeof propValue) {
-              case "number":
-              case "string":
-              case "undefined":
-                return !0;
-
-              case "boolean":
-                return !propValue;
-
-              case "object":
-                if (Array.isArray(propValue)) return propValue.every(isNode);
-                if (null === propValue || isValidElement(propValue)) return !0;
-                var iteratorFn = // Before Symbol spec.
-                /**
-     * Returns the iterator method function contained on the iterable object.
-     *
-     * Be sure to invoke the function with the iterable as context:
-     *
-     *     var iteratorFn = getIteratorFn(myIterable);
-     *     if (iteratorFn) {
-     *       var iterator = iteratorFn.call(myIterable);
-     *       ...
-     *     }
-     *
-     * @param {?object} maybeIterable
-     * @return {?function}
-     */
-                function(maybeIterable) {
-                    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-                    if ("function" == typeof iteratorFn) return iteratorFn;
-                }
-                /**
      * Collection of methods that allow declaration and validation of props that are
      * supplied to React components. Example usage:
      *
@@ -1193,7 +919,219 @@
      *  });
      *
      * @internal
-     */ (propValue);
+     */
+        var ANONYMOUS = "<<anonymous>>", ReactPropTypes = {
+            array: createPrimitiveTypeChecker("array"),
+            bigint: createPrimitiveTypeChecker("bigint"),
+            bool: createPrimitiveTypeChecker("boolean"),
+            func: createPrimitiveTypeChecker("function"),
+            number: createPrimitiveTypeChecker("number"),
+            object: createPrimitiveTypeChecker("object"),
+            string: createPrimitiveTypeChecker("string"),
+            symbol: createPrimitiveTypeChecker("symbol"),
+            any: createChainableTypeChecker(emptyFunctionThatReturnsNull),
+            arrayOf: function(typeChecker) {
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    if ("function" != typeof typeChecker) return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside arrayOf.");
+                    var propValue = props[propName];
+                    if (!Array.isArray(propValue)) {
+                        var propType = getPropType(propValue);
+                        return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected an array.");
+                    }
+                    for (var i = 0; i < propValue.length; i++) {
+                        var error = typeChecker(propValue, i, componentName, location, propFullName + "[" + i + "]", ReactPropTypesSecret_1);
+                        if (error instanceof Error) return error;
+                    }
+                    return null;
+                });
+            },
+            element: createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                var propValue = props[propName];
+                if (isValidElement(propValue)) return null;
+                var propType = getPropType(propValue);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement.");
+            }),
+            elementType: createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                var propValue = props[propName];
+                if (reactIs.isValidElementType(propValue)) return null;
+                var propType = getPropType(propValue);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement type.");
+            }),
+            instanceOf: function(expectedClass) {
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    if (props[propName] instanceof expectedClass) return null;
+                    var expectedClassName = expectedClass.name || ANONYMOUS, actualClassName = (propValue = props[propName], 
+                    propValue.constructor && propValue.constructor.name ? propValue.constructor.name : ANONYMOUS);
+                    // Returns class name of the object, if any.
+                    var propValue;
+                    return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + actualClassName + "` supplied to `" + componentName + "`, expected instance of `" + expectedClassName + "`.");
+                });
+            },
+            node: createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                return isNode(props[propName]) ? null : new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to `" + componentName + "`, expected a ReactNode.");
+            }),
+            objectOf: function(typeChecker) {
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    if ("function" != typeof typeChecker) return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside objectOf.");
+                    var propValue = props[propName], propType = getPropType(propValue);
+                    if ("object" !== propType) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected an object.");
+                    for (var key in propValue) if (has(propValue, key)) {
+                        var error = typeChecker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret_1);
+                        if (error instanceof Error) return error;
+                    }
+                    return null;
+                });
+            },
+            oneOf: function(expectedValues) {
+                if (!Array.isArray(expectedValues)) return 1 < arguments.length ? printWarning$1("Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).") : printWarning$1("Invalid argument supplied to oneOf, expected an array."), 
+                emptyFunctionThatReturnsNull;
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    for (var propValue = props[propName], i = 0; i < expectedValues.length; i++) if (is(propValue, expectedValues[i])) return null;
+                    var valuesString = JSON.stringify(expectedValues, function(key, value) {
+                        var type = getPreciseType(value);
+                        return "symbol" === type ? String(value) : value;
+                    });
+                    return new PropTypeError("Invalid " + location + " `" + propFullName + "` of value `" + String(propValue) + "` supplied to `" + componentName + "`, expected one of " + valuesString + ".");
+                });
+            },
+            oneOfType: function(arrayOfTypeCheckers) {
+                if (!Array.isArray(arrayOfTypeCheckers)) return printWarning$1("Invalid argument supplied to oneOfType, expected an instance of array."), 
+                emptyFunctionThatReturnsNull;
+                for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+                    var checker = arrayOfTypeCheckers[i];
+                    if ("function" != typeof checker) return printWarning$1("Invalid argument supplied to oneOfType. Expected an array of check functions, but received " + getPostfixForTypeWarning(checker) + " at index " + i + "."), 
+                    emptyFunctionThatReturnsNull;
+                }
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    for (var expectedTypes = [], i = 0; i < arrayOfTypeCheckers.length; i++) {
+                        var checker = arrayOfTypeCheckers[i], checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1);
+                        if (null == checkerResult) return null;
+                        checkerResult.data && has(checkerResult.data, "expectedType") && expectedTypes.push(checkerResult.data.expectedType);
+                    }
+                    var expectedTypesMessage = 0 < expectedTypes.length ? ", expected one of type [" + expectedTypes.join(", ") + "]" : "";
+                    return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to `" + componentName + "`" + expectedTypesMessage + ".");
+                });
+            },
+            shape: function(shapeTypes) {
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    var propValue = props[propName], propType = getPropType(propValue);
+                    if ("object" !== propType) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected `object`.");
+                    for (var key in shapeTypes) {
+                        var checker = shapeTypes[key];
+                        if ("function" != typeof checker) return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+                        var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret_1);
+                        if (error) return error;
+                    }
+                    return null;
+                });
+            },
+            exact: function(shapeTypes) {
+                return createChainableTypeChecker(function(props, propName, componentName, location, propFullName) {
+                    var propValue = props[propName], propType = getPropType(propValue);
+                    if ("object" !== propType) return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` supplied to `" + componentName + "`, expected `object`.");
+                    // We need to check all keys in case some are required but missing from props.
+                                        var allKeys = objectAssign({}, props[propName], shapeTypes);
+                    for (var key in allKeys) {
+                        var checker = shapeTypes[key];
+                        if (has(shapeTypes, key) && "function" != typeof checker) return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+                        if (!checker) return new PropTypeError("Invalid " + location + " `" + propFullName + "` key `" + key + "` supplied to `" + componentName + "`.\nBad object: " + JSON.stringify(props[propName], null, "  ") + "\nValid keys: " + JSON.stringify(Object.keys(shapeTypes), null, "  "));
+                        var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret_1);
+                        if (error) return error;
+                    }
+                    return null;
+                });
+            }
+        };
+        // Important!
+        // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+                /**
+     * inlined Object.is polyfill to avoid requiring consumers ship their own
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+     */
+        /*eslint-disable no-self-compare*/
+        function is(x, y) {
+            // SameValue algorithm
+            return x === y ? 0 !== x || 1 / x == 1 / y : x != x && y != y;
+        }
+        /*eslint-enable no-self-compare*/
+        /**
+     * We use an Error-like object for backward compatibility as people may call
+     * PropTypes directly and inspect their output. However, we don't use real
+     * Errors anymore. We don't inspect their stack anyway, and creating them
+     * is prohibitively expensive if they are created too often, such as what
+     * happens in oneOfType() for any type before the one that matched.
+     */        function PropTypeError(message, data) {
+            this.message = message, this.data = data && "object" == typeof data ? data : {}, 
+            this.stack = "";
+        }
+        // Make `instanceof Error` still work for returned errors.
+                function createChainableTypeChecker(validate) {
+            var manualPropTypeCallCache = {}, manualPropTypeWarningCount = 0;
+            function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+                if (componentName = componentName || ANONYMOUS, propFullName = propFullName || propName, 
+                secret !== ReactPropTypesSecret_1) {
+                    if (throwOnDirectAccess) {
+                        // New behavior only for users of `prop-types` package
+                        var err = new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types");
+                        throw err.name = "Invariant Violation", err;
+                    }
+                    if ("undefined" != typeof console) {
+                        // Old behavior for people using React.PropTypes
+                        var cacheKey = componentName + ":" + propName;
+                        !manualPropTypeCallCache[cacheKey] && 
+                        // Avoid spamming the console because they are often not actionable except for lib authors
+                        manualPropTypeWarningCount < 3 && (printWarning$1("You are manually calling a React.PropTypes validation function for the `" + propFullName + "` prop on `" + componentName + "`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."), 
+                        manualPropTypeCallCache[cacheKey] = !0, manualPropTypeWarningCount++);
+                    }
+                }
+                return null == props[propName] ? isRequired ? null === props[propName] ? new PropTypeError("The " + location + " `" + propFullName + "` is marked as required in `" + componentName + "`, but its value is `null`.") : new PropTypeError("The " + location + " `" + propFullName + "` is marked as required in `" + componentName + "`, but its value is `undefined`.") : null : validate(props, propName, componentName, location, propFullName);
+            }
+            var chainedCheckType = checkType.bind(null, !1);
+            return chainedCheckType.isRequired = checkType.bind(null, !0), chainedCheckType;
+        }
+        function createPrimitiveTypeChecker(expectedType) {
+            return createChainableTypeChecker(function(props, propName, componentName, location, propFullName, secret) {
+                var propValue = props[propName];
+                return getPropType(propValue) === expectedType ? null : new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + getPreciseType(propValue) + "` supplied to `" + componentName + "`, expected `" + expectedType + "`.", {
+                    expectedType: expectedType
+                });
+            });
+        }
+        function invalidValidatorError(componentName, location, propFullName, key, type) {
+            return new PropTypeError((componentName || "React class") + ": " + location + " type `" + propFullName + "." + key + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + type + "`.");
+        }
+        function isNode(propValue) {
+            switch (typeof propValue) {
+              case "number":
+              case "string":
+              case "undefined":
+                return !0;
+
+              case "boolean":
+                return !propValue;
+
+              case "object":
+                if (Array.isArray(propValue)) return propValue.every(isNode);
+                if (null === propValue || isValidElement(propValue)) return !0;
+                var iteratorFn = // Before Symbol spec.
+                /**
+     * Returns the iterator method function contained on the iterable object.
+     *
+     * Be sure to invoke the function with the iterable as context:
+     *
+     *     var iteratorFn = getIteratorFn(myIterable);
+     *     if (iteratorFn) {
+     *       var iterator = iteratorFn.call(myIterable);
+     *       ...
+     *     }
+     *
+     * @param {?object} maybeIterable
+     * @return {?function}
+     */
+                function(maybeIterable) {
+                    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+                    if ("function" == typeof iteratorFn) return iteratorFn;
+                }(propValue);
                 if (!iteratorFn) return !1;
                 var step, iterator = iteratorFn.call(propValue);
                 if (iteratorFn !== propValue.entries) {
@@ -1253,8 +1191,7 @@
         }
         return PropTypeError.prototype = Error.prototype, ReactPropTypes.checkPropTypes = checkPropTypes_1, 
         ReactPropTypes.resetWarningCache = checkPropTypes_1.resetWarningCache, ReactPropTypes.PropTypes = ReactPropTypes;
-    }
-    var propTypes = createCommonjsModule(function(module) {
+    }, propTypes = createCommonjsModule(function(module) {
         var ReactIs = reactIs;
         // By explicitly using `prop-types` you are opting into new development behavior.
         // http://fb.me/prop-types-in-prod
@@ -1262,18 +1199,17 @@
     });
     function toVal(mix) {
         var k, y, str = "";
-        if (mix) if ("object" == typeof mix) if (mix.push) for (k = 0; k < mix.length; k++) mix[k] && (y = toVal(mix[k])) && (str && (str += " "), 
-        str += y); else for (k in mix) mix[k] && (y = toVal(k)) && (str && (str += " "), 
-        str += y); else "boolean" == typeof mix || mix.call || (str && (str += " "), str += mix);
+        if ("string" == typeof mix || "number" == typeof mix) str += mix; else if ("object" == typeof mix) if (Array.isArray(mix)) for (k = 0; k < mix.length; k++) mix[k] && (y = toVal(mix[k])) && (str && (str += " "), 
+        str += y); else for (k in mix) mix[k] && (str && (str += " "), str += k);
         return str;
     }
     function clsx() {
-        for (var x, i = 0, str = ""; i < arguments.length; ) (x = toVal(arguments[i++])) && (str && (str += " "), 
+        for (var tmp, x, i = 0, str = ""; i < arguments.length; ) (tmp = arguments[i++]) && (x = toVal(tmp)) && (str && (str += " "), 
         str += x);
         return str;
     }
-    function createCallbackMemoizer(argument_0) {
-        var requireAllKeys = !(0 < arguments.length && void 0 !== argument_0) || argument_0, cachedIndices = {};
+    function createCallbackMemoizer() {
+        var requireAllKeys = !(0 < arguments.length && void 0 !== arguments[0]) || arguments[0], cachedIndices = {};
         return function(_ref) {
             var callback = _ref.callback, indices = _ref.indices, keys = Object.keys(indices), allInitialized = !requireAllKeys || keys.every(function(key) {
                 var value = indices[key];
@@ -1295,12 +1231,14 @@
         }
         return size;
     }
-    var SCROLL_POSITION_CHANGE_REASONS_OBSERVED = "observed", SCROLL_POSITION_CHANGE_REASONS_REQUESTED = "requested", CollectionView = function() {
+    var SCROLL_POSITION_CHANGE_REASONS_OBSERVED = "observed", SCROLL_POSITION_CHANGE_REASONS_REQUESTED = "requested", CollectionView = function(_React$PureComponent) {
+        _inherits(CollectionView, React.PureComponent);
+        var _super = _createSuper(CollectionView);
         function CollectionView() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, CollectionView);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CollectionView)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "state", {
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "state", {
                 isScrolling: !1,
                 scrollLeft: 0,
                 scrollTop: 0
@@ -1353,7 +1291,7 @@
             }), _this._scrollbarSize = scrollbarSize(), void 0 === _this._scrollbarSize ? (_this._scrollbarSizeMeasured = !1, 
             _this._scrollbarSize = 0) : _this._scrollbarSizeMeasured = !0, _this;
         }
-        return _inherits(CollectionView, React.PureComponent), _createClass(CollectionView, [ {
+        return _createClass(CollectionView, [ {
             key: "recomputeCellSizesAndPositions",
             value: function() {
                 this._calculateSizeAndPositionDataOnNextUpdate = !0, this.forceUpdate();
@@ -1393,7 +1331,7 @@
             key: "render",
             value: function() {
                 var _this$props6 = this.props, autoHeight = _this$props6.autoHeight, cellCount = _this$props6.cellCount, cellLayoutManager = _this$props6.cellLayoutManager, className = _this$props6.className, height = _this$props6.height, horizontalOverscanSize = _this$props6.horizontalOverscanSize, id = _this$props6.id, noContentRenderer = _this$props6.noContentRenderer, style = _this$props6.style, verticalOverscanSize = _this$props6.verticalOverscanSize, width = _this$props6.width, _this$state3 = this.state, isScrolling = _this$state3.isScrolling, scrollLeft = _this$state3.scrollLeft, scrollTop = _this$state3.scrollTop;
-                this._lastRenderedCellCount === cellCount && this._lastRenderedCellLayoutManager === cellLayoutManager && !this._calculateSizeAndPositionDataOnNextUpdate || (this._lastRenderedCellCount = cellCount, 
+                (this._lastRenderedCellCount !== cellCount || this._lastRenderedCellLayoutManager !== cellLayoutManager || this._calculateSizeAndPositionDataOnNextUpdate) && (this._lastRenderedCellCount = cellCount, 
                 this._lastRenderedCellLayoutManager = cellLayoutManager, this._calculateSizeAndPositionDataOnNextUpdate = !1, 
                 cellLayoutManager.calculateSizeAndPositionData());
                 var _cellLayoutManager$ge3 = cellLayoutManager.getTotalSize(), totalHeight = _cellLayoutManager$ge3.height, totalWidth = _cellLayoutManager$ge3.width, left = Math.max(0, scrollLeft - horizontalOverscanSize), top = Math.max(0, scrollTop - verticalOverscanSize), right = Math.min(totalWidth, scrollLeft + width + horizontalOverscanSize), bottom = Math.min(totalHeight, scrollTop + height + verticalOverscanSize), childrenToDisplay = 0 < height && 0 < width ? cellLayoutManager.cellRenderers({
@@ -1420,7 +1358,7 @@
                     id: id,
                     onScroll: this._onScroll,
                     role: "grid",
-                    style: _objectSpread2({}, collectionStyle, {}, style),
+                    style: _objectSpread2(_objectSpread2({}, collectionStyle), style),
                     tabIndex: 0
                 }, 0 < cellCount && React.createElement("div", {
                     className: "ReactVirtualized__Collection__innerScrollContainer",
@@ -1636,15 +1574,17 @@
             return Math.max(minOffset, Math.min(maxOffset, currentOffset));
         }
     }
-    var Collection = function() {
+    var Collection = function(_React$PureComponent) {
+        _inherits(Collection, React.PureComponent);
+        var _super = _createSuper(Collection);
         function Collection(props, context) {
             var _this;
-            return _classCallCheck(this, Collection), (_this = _possibleConstructorReturn(this, _getPrototypeOf(Collection).call(this, props, context)))._cellMetadata = [], 
+            return _classCallCheck(this, Collection), (_this = _super.call(this, props, context))._cellMetadata = [], 
             _this._lastRenderedCellIndices = [], _this._cellCache = [], _this._isScrollingChange = _this._isScrollingChange.bind(_assertThisInitialized(_this)), 
             _this._setCollectionViewRef = _this._setCollectionViewRef.bind(_assertThisInitialized(_this)), 
             _this;
         }
-        return _inherits(Collection, React.PureComponent), _createClass(Collection, [ {
+        return _createClass(Collection, [ {
             key: "forceUpdate",
             value: function() {
                 void 0 !== this._collectionView && this._collectionView.forceUpdate();
@@ -1800,13 +1740,15 @@
             });
         }
     });
-    var ColumnSizer = function() {
+    var ColumnSizer = function(_React$PureComponent) {
+        _inherits(ColumnSizer, React.PureComponent);
+        var _super = _createSuper(ColumnSizer);
         function ColumnSizer(props, context) {
             var _this;
-            return _classCallCheck(this, ColumnSizer), (_this = _possibleConstructorReturn(this, _getPrototypeOf(ColumnSizer).call(this, props, context)))._registerChild = _this._registerChild.bind(_assertThisInitialized(_this)), 
+            return _classCallCheck(this, ColumnSizer), (_this = _super.call(this, props, context))._registerChild = _this._registerChild.bind(_assertThisInitialized(_this)), 
             _this;
         }
-        return _inherits(ColumnSizer, React.PureComponent), _createClass(ColumnSizer, [ {
+        return _createClass(ColumnSizer, [ {
             key: "componentDidUpdate",
             value: function(prevProps) {
                 var _this$props = this.props, columnMaxWidth = _this$props.columnMaxWidth, columnMinWidth = _this$props.columnMinWidth, columnCount = _this$props.columnCount, width = _this$props.width;
@@ -1991,9 +1933,9 @@
         } ]), CellSizeAndPositionManager;
     }(), getMaxElementSize = function() {
         return "undefined" != typeof window && window.chrome ? 16777100 : 15e5;
-    }, ScalingCellSizeAndPositionManager = function() {
+    }, _excluded = [ "maxScrollSize" ], ScalingCellSizeAndPositionManager = function() {
         function ScalingCellSizeAndPositionManager(_ref) {
-            var _ref$maxScrollSize = _ref.maxScrollSize, maxScrollSize = void 0 === _ref$maxScrollSize ? getMaxElementSize() : _ref$maxScrollSize, params = _objectWithoutProperties(_ref, [ "maxScrollSize" ]);
+            var _ref$maxScrollSize = _ref.maxScrollSize, maxScrollSize = void 0 === _ref$maxScrollSize ? getMaxElementSize() : _ref$maxScrollSize, params = _objectWithoutProperties(_ref, _excluded);
             _classCallCheck(this, ScalingCellSizeAndPositionManager), _defineProperty(this, "_cellSizeAndPositionManager", void 0), 
             _defineProperty(this, "_maxScrollSize", void 0), this._cellSizeAndPositionManager = new CellSizeAndPositionManager(params), 
             this._maxScrollSize = maxScrollSize;
@@ -2185,10 +2127,12 @@
             })
         };
         return frame;
-    }, SCROLL_POSITION_CHANGE_REASONS$1_OBSERVED = "observed", SCROLL_POSITION_CHANGE_REASONS$1_REQUESTED = "requested", Grid = function() {
+    }, SCROLL_POSITION_CHANGE_REASONS$1_OBSERVED = "observed", SCROLL_POSITION_CHANGE_REASONS$1_REQUESTED = "requested", Grid = function(_React$PureComponent) {
+        _inherits(Grid, React.PureComponent);
+        var _super = _createSuper(Grid);
         function Grid(props) {
             var _this;
-            _classCallCheck(this, Grid), _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, _getPrototypeOf(Grid).call(this, props))), "_onGridRenderedMemoizer", createCallbackMemoizer()), 
+            _classCallCheck(this, Grid), _defineProperty(_assertThisInitialized(_this = _super.call(this, props)), "_onGridRenderedMemoizer", createCallbackMemoizer()), 
             _defineProperty(_assertThisInitialized(_this), "_onScrollMemoizer", createCallbackMemoizer(!1)), 
             _defineProperty(_assertThisInitialized(_this), "_deferredInvalidateColumnIndex", null), 
             _defineProperty(_assertThisInitialized(_this), "_deferredInvalidateRowIndex", null), 
@@ -2266,10 +2210,10 @@
             0 < props.scrollToColumn && (_this._initialScrollLeft = _this._getCalculatedScrollLeft(props, _this.state)), 
             _this;
         }
-        return _inherits(Grid, React.PureComponent), _createClass(Grid, [ {
+        return _createClass(Grid, [ {
             key: "getOffsetForCell",
-            value: function(argument_0) {
-                var _ref = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : {}, _ref$alignment = _ref.alignment, alignment = void 0 === _ref$alignment ? this.props.scrollToAlignment : _ref$alignment, _ref$columnIndex = _ref.columnIndex, columnIndex = void 0 === _ref$columnIndex ? this.props.scrollToColumn : _ref$columnIndex, _ref$rowIndex = _ref.rowIndex, rowIndex = void 0 === _ref$rowIndex ? this.props.scrollToRow : _ref$rowIndex, offsetProps = _objectSpread2({}, this.props, {
+            value: function() {
+                var _ref = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : {}, _ref$alignment = _ref.alignment, alignment = void 0 === _ref$alignment ? this.props.scrollToAlignment : _ref$alignment, _ref$columnIndex = _ref.columnIndex, columnIndex = void 0 === _ref$columnIndex ? this.props.scrollToColumn : _ref$columnIndex, _ref$rowIndex = _ref.rowIndex, rowIndex = void 0 === _ref$rowIndex ? this.props.scrollToRow : _ref$rowIndex, offsetProps = _objectSpread2(_objectSpread2({}, this.props), {}, {
                     scrollToAlignment: alignment,
                     scrollToColumn: columnIndex,
                     scrollToRow: rowIndex
@@ -2330,8 +2274,8 @@
             }
         }, {
             key: "recomputeGridSize",
-            value: function(argument_0) {
-                var _ref4 = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : {}, _ref4$columnIndex = _ref4.columnIndex, columnIndex = void 0 === _ref4$columnIndex ? 0 : _ref4$columnIndex, _ref4$rowIndex = _ref4.rowIndex, rowIndex = void 0 === _ref4$rowIndex ? 0 : _ref4$rowIndex, _this$props3 = this.props, scrollToColumn = _this$props3.scrollToColumn, scrollToRow = _this$props3.scrollToRow, instanceProps = this.state.instanceProps;
+            value: function() {
+                var _ref4 = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : {}, _ref4$columnIndex = _ref4.columnIndex, columnIndex = void 0 === _ref4$columnIndex ? 0 : _ref4$columnIndex, _ref4$rowIndex = _ref4.rowIndex, rowIndex = void 0 === _ref4$rowIndex ? 0 : _ref4$rowIndex, _this$props3 = this.props, scrollToColumn = _this$props3.scrollToColumn, scrollToRow = _this$props3.scrollToRow, instanceProps = this.state.instanceProps;
                 instanceProps.columnSizeAndPositionManager.resetCell(columnIndex), instanceProps.rowSizeAndPositionManager.resetCell(rowIndex), 
                 this._recomputeScrollLeftFlag = 0 <= scrollToColumn && (1 === this.state.scrollDirectionHorizontal ? columnIndex <= scrollToColumn : scrollToColumn <= columnIndex), 
                 this._recomputeScrollTopFlag = 0 <= scrollToRow && (1 === this.state.scrollDirectionVertical ? rowIndex <= scrollToRow : scrollToRow <= rowIndex), 
@@ -2341,9 +2285,9 @@
             key: "scrollToCell",
             value: function(_ref5) {
                 var columnIndex = _ref5.columnIndex, rowIndex = _ref5.rowIndex, columnCount = this.props.columnCount, props = this.props;
-                1 < columnCount && void 0 !== columnIndex && this._updateScrollLeftForScrollToColumn(_objectSpread2({}, props, {
+                1 < columnCount && void 0 !== columnIndex && this._updateScrollLeftForScrollToColumn(_objectSpread2(_objectSpread2({}, props), {}, {
                     scrollToColumn: columnIndex
-                })), void 0 !== rowIndex && this._updateScrollTopForScrollToRow(_objectSpread2({}, props, {
+                })), void 0 !== rowIndex && this._updateScrollTopForScrollToRow(_objectSpread2(_objectSpread2({}, props), {}, {
                     scrollToRow: rowIndex
                 }));
             }
@@ -2353,7 +2297,7 @@
                 var _this$props4 = this.props, getScrollbarSize = _this$props4.getScrollbarSize, height = _this$props4.height, scrollLeft = _this$props4.scrollLeft, scrollToColumn = _this$props4.scrollToColumn, scrollTop = _this$props4.scrollTop, scrollToRow = _this$props4.scrollToRow, width = _this$props4.width, instanceProps = this.state.instanceProps;
                 if (this._initialScrollTop = 0, this._initialScrollLeft = 0, this._handleInvalidatedGridSize(), 
                 instanceProps.scrollbarSizeMeasured || this.setState(function(prevState) {
-                    var stateUpdate = _objectSpread2({}, prevState, {
+                    var stateUpdate = _objectSpread2(_objectSpread2({}, prevState), {}, {
                         needToResetStyleCache: !1
                     });
                     return stateUpdate.instanceProps.scrollbarSize = getScrollbarSize(), stateUpdate.instanceProps.scrollbarSizeMeasured = !0, 
@@ -2462,7 +2406,7 @@
                     id: id,
                     onScroll: this._onScroll,
                     role: role,
-                    style: _objectSpread2({}, gridStyle, {}, style),
+                    style: _objectSpread2(_objectSpread2({}, gridStyle), style),
                     tabIndex: tabIndex
                 }), 0 < childrenToDisplay.length && React.createElement("div", {
                     className: "ReactVirtualized__Grid__innerScrollContainer",
@@ -2480,8 +2424,8 @@
             }
         }, {
             key: "_calculateChildrenToRender",
-            value: function(argument_0, argument_1) {
-                var props = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props, state = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : this.state, cellRenderer = props.cellRenderer, cellRangeRenderer = props.cellRangeRenderer, columnCount = props.columnCount, deferredMeasurementCache = props.deferredMeasurementCache, height = props.height, overscanColumnCount = props.overscanColumnCount, overscanIndicesGetter = props.overscanIndicesGetter, overscanRowCount = props.overscanRowCount, rowCount = props.rowCount, width = props.width, isScrollingOptOut = props.isScrollingOptOut, scrollDirectionHorizontal = state.scrollDirectionHorizontal, scrollDirectionVertical = state.scrollDirectionVertical, instanceProps = state.instanceProps, scrollTop = 0 < this._initialScrollTop ? this._initialScrollTop : state.scrollTop, scrollLeft = 0 < this._initialScrollLeft ? this._initialScrollLeft : state.scrollLeft, isScrolling = this._isScrolling(props, state);
+            value: function() {
+                var props = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props, state = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : this.state, cellRenderer = props.cellRenderer, cellRangeRenderer = props.cellRangeRenderer, columnCount = props.columnCount, deferredMeasurementCache = props.deferredMeasurementCache, height = props.height, overscanColumnCount = props.overscanColumnCount, overscanIndicesGetter = props.overscanIndicesGetter, overscanRowCount = props.overscanRowCount, rowCount = props.rowCount, width = props.width, isScrollingOptOut = props.isScrollingOptOut, scrollDirectionHorizontal = state.scrollDirectionHorizontal, scrollDirectionVertical = state.scrollDirectionVertical, instanceProps = state.instanceProps, scrollTop = 0 < this._initialScrollTop ? this._initialScrollTop : state.scrollTop, scrollLeft = 0 < this._initialScrollLeft ? this._initialScrollLeft : state.scrollLeft, isScrolling = this._isScrolling(props, state);
                 if (this._childrenToDisplay = [], 0 < height && 0 < width) {
                     var visibleColumnIndices = instanceProps.columnSizeAndPositionManager.getVisibleCellRange({
                         containerSize: width,
@@ -2590,8 +2534,8 @@
             }
         }, {
             key: "_isScrolling",
-            value: function(argument_0, argument_1) {
-                var props = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props, state = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : this.state;
+            value: function() {
+                var props = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props, state = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : this.state;
                 return Object.hasOwnProperty.call(props, "isScrolling") ? Boolean(props.isScrolling) : Boolean(state.isScrolling);
             }
         }, {
@@ -2618,20 +2562,20 @@
             }
         }, {
             key: "_getCalculatedScrollLeft",
-            value: function(argument_0, argument_1) {
-                var props = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props, state = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : this.state;
+            value: function() {
+                var props = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props, state = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : this.state;
                 return Grid._getCalculatedScrollLeft(props, state);
             }
         }, {
             key: "_updateScrollLeftForScrollToColumn",
-            value: function(argument_0, argument_1) {
-                var props = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props, state = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : this.state, stateUpdate = Grid._getScrollLeftForScrollToColumnStateUpdate(props, state);
+            value: function() {
+                var props = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props, state = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : this.state, stateUpdate = Grid._getScrollLeftForScrollToColumnStateUpdate(props, state);
                 stateUpdate && (stateUpdate.needToResetStyleCache = !1, this.setState(stateUpdate));
             }
         }, {
             key: "_getCalculatedScrollTop",
-            value: function(argument_0, argument_1) {
-                var props = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props, state = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : this.state;
+            value: function() {
+                var props = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props, state = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : this.state;
                 return Grid._getCalculatedScrollTop(props, state);
             }
         }, {
@@ -2646,8 +2590,8 @@
             }
         }, {
             key: "_updateScrollTopForScrollToRow",
-            value: function(argument_0, argument_1) {
-                var props = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props, state = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : this.state, stateUpdate = Grid._getScrollTopForScrollToRowStateUpdate(props, state);
+            value: function() {
+                var props = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props, state = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : this.state, stateUpdate = Grid._getScrollTopForScrollToRowStateUpdate(props, state);
                 stateUpdate && (stateUpdate.needToResetStyleCache = !1, this.setState(stateUpdate));
             }
         } ], [ {
@@ -2707,7 +2651,7 @@
                 instanceProps.prevScrollToRow = nextProps.scrollToRow, instanceProps.scrollbarSize = nextProps.getScrollbarSize(), 
                 void 0 === instanceProps.scrollbarSize ? (instanceProps.scrollbarSizeMeasured = !1, 
                 instanceProps.scrollbarSize = 0) : instanceProps.scrollbarSizeMeasured = !0, newState.instanceProps = instanceProps, 
-                _objectSpread2({}, newState, {}, maybeStateA, {}, maybeStateB);
+                _objectSpread2(_objectSpread2(_objectSpread2({}, newState), maybeStateA), maybeStateB);
             }
         }, {
             key: "_getEstimatedColumnSize",
@@ -2828,15 +2772,17 @@
             overscanStopIndex: Math.min(cellCount - 1, stopIndex + 1)
         };
     }
-    var InfiniteLoader = function() {
+    var InfiniteLoader = function(_React$PureComponent) {
+        _inherits(InfiniteLoader, React.PureComponent);
+        var _super = _createSuper(InfiniteLoader);
         function InfiniteLoader(props, context) {
             var _this;
-            return _classCallCheck(this, InfiniteLoader), (_this = _possibleConstructorReturn(this, _getPrototypeOf(InfiniteLoader).call(this, props, context)))._loadMoreRowsMemoizer = createCallbackMemoizer(), 
+            return _classCallCheck(this, InfiniteLoader), (_this = _super.call(this, props, context))._loadMoreRowsMemoizer = createCallbackMemoizer(), 
             _this._onRowsRendered = _this._onRowsRendered.bind(_assertThisInitialized(_this)), 
             _this._registerChild = _this._registerChild.bind(_assertThisInitialized(_this)), 
             _this;
         }
-        return _inherits(InfiniteLoader, React.PureComponent), _createClass(InfiniteLoader, [ {
+        return _createClass(InfiniteLoader, [ {
             key: "resetLoadMoreRowsCache",
             value: function(autoReload) {
                 this._loadMoreRowsMemoizer = createCallbackMemoizer(), autoReload && this._doStuff(this._lastRenderedStartIndex, this._lastRenderedStopIndex);
@@ -2856,15 +2802,14 @@
                 unloadedRanges.forEach(function(unloadedRange) {
                     var promise = loadMoreRows(unloadedRange);
                     promise && promise.then(function() {
-                        (function(_ref4) {
-                            var lastRenderedStartIndex = _ref4.lastRenderedStartIndex, lastRenderedStopIndex = _ref4.lastRenderedStopIndex, startIndex = _ref4.startIndex, stopIndex = _ref4.stopIndex;
-                            return !(lastRenderedStopIndex < startIndex || stopIndex < lastRenderedStartIndex);
-                        })({
+                        var _ref4, lastRenderedStartIndex, lastRenderedStopIndex, startIndex, stopIndex;
+                        _ref4 = {
                             lastRenderedStartIndex: _this2._lastRenderedStartIndex,
                             lastRenderedStopIndex: _this2._lastRenderedStopIndex,
                             startIndex: unloadedRange.startIndex,
                             stopIndex: unloadedRange.stopIndex
-                        }) && _this2._registeredChild && function(component) {
+                        }, lastRenderedStartIndex = _ref4.lastRenderedStartIndex, lastRenderedStopIndex = _ref4.lastRenderedStopIndex, 
+                        startIndex = _ref4.startIndex, stopIndex = _ref4.stopIndex, lastRenderedStopIndex < startIndex || stopIndex < lastRenderedStartIndex || _this2._registeredChild && function(component) {
                             var currentIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0, recomputeSize = "function" == typeof component.recomputeGridSize ? component.recomputeGridSize : component.recomputeRowHeights;
                             recomputeSize ? recomputeSize.call(component, currentIndex) : component.forceUpdate();
                         }(_this2._registeredChild, _this2._lastRenderedStartIndex);
@@ -2883,9 +2828,10 @@
             value: function(startIndex, stopIndex) {
                 var _ref2, _this3 = this, _this$props = this.props, isRowLoaded = _this$props.isRowLoaded, minimumBatchSize = _this$props.minimumBatchSize, rowCount = _this$props.rowCount, threshold = _this$props.threshold, unloadedRanges = function(_ref5) {
                     for (var isRowLoaded = _ref5.isRowLoaded, minimumBatchSize = _ref5.minimumBatchSize, rowCount = _ref5.rowCount, startIndex = _ref5.startIndex, stopIndex = _ref5.stopIndex, unloadedRanges = [], rangeStartIndex = null, rangeStopIndex = null, index = startIndex; index <= stopIndex; index++) {
-                        isRowLoaded({
+                        var loaded = isRowLoaded({
                             index: index
-                        }) ? null !== rangeStopIndex && (unloadedRanges.push({
+                        });
+                        loaded ? null !== rangeStopIndex && (unloadedRanges.push({
                             startIndex: rangeStartIndex,
                             stopIndex: rangeStopIndex
                         }), rangeStartIndex = rangeStopIndex = null) : (rangeStopIndex = index, null === rangeStartIndex && (rangeStartIndex = index));
@@ -2944,12 +2890,14 @@
         rowCount: 0,
         threshold: 15
     });
-    var List = function() {
+    var List = function(_React$PureComponent) {
+        _inherits(List, React.PureComponent);
+        var _super = _createSuper(List);
         function List() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, List);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(List)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "Grid", void 0), 
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "Grid", void 0), 
             _defineProperty(_assertThisInitialized(_this), "_cellRenderer", function(_ref) {
                 var parent = _ref.parent, rowIndex = _ref.rowIndex, style = _ref.style, isScrolling = _ref.isScrolling, isVisible = _ref.isVisible, key = _ref.key, rowRenderer = _this.props.rowRenderer, widthDescriptor = Object.getOwnPropertyDescriptor(style, "width");
                 return widthDescriptor && widthDescriptor.writable && (style.width = "100%"), rowRenderer({
@@ -2979,7 +2927,7 @@
                 });
             }), _this;
         }
-        return _inherits(List, React.PureComponent), _createClass(List, [ {
+        return _createClass(List, [ {
             key: "forceUpdateGrid",
             value: function() {
                 this.Grid && this.Grid.forceUpdate();
@@ -3010,8 +2958,8 @@
             }
         }, {
             key: "recomputeGridSize",
-            value: function(argument_0) {
-                var _ref6 = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : {}, _ref6$columnIndex = _ref6.columnIndex, columnIndex = void 0 === _ref6$columnIndex ? 0 : _ref6$columnIndex, _ref6$rowIndex = _ref6.rowIndex, rowIndex = void 0 === _ref6$rowIndex ? 0 : _ref6$rowIndex;
+            value: function() {
+                var _ref6 = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : {}, _ref6$columnIndex = _ref6.columnIndex, columnIndex = void 0 === _ref6$columnIndex ? 0 : _ref6$columnIndex, _ref6$rowIndex = _ref6.rowIndex, rowIndex = void 0 === _ref6$rowIndex ? 0 : _ref6$rowIndex;
                 this.Grid && this.Grid.recomputeGridSize({
                     rowIndex: rowIndex,
                     columnIndex: columnIndex
@@ -3019,8 +2967,8 @@
             }
         }, {
             key: "recomputeRowHeights",
-            value: function(argument_0) {
-                var index = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : 0;
+            value: function() {
+                var index = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.Grid && this.Grid.recomputeGridSize({
                     rowIndex: index,
                     columnIndex: 0
@@ -3028,16 +2976,16 @@
             }
         }, {
             key: "scrollToPosition",
-            value: function(argument_0) {
-                var scrollTop = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : 0;
+            value: function() {
+                var scrollTop = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.Grid && this.Grid.scrollToPosition({
                     scrollTop: scrollTop
                 });
             }
         }, {
             key: "scrollToRow",
-            value: function(argument_0) {
-                var index = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : 0;
+            value: function() {
+                var index = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.Grid && this.Grid.scrollToCell({
                     columnIndex: 0,
                     rowIndex: index
@@ -3081,13 +3029,13 @@
             return "function" == typeof c ? function(a, l, h, y, c) {
                 for (var i = h + 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    0 <= c(a[m], y) ? h = (i = m) - 1 : l = 1 + m;
+                    0 <= c(a[m], y) ? h = (i = m) - 1 : l = m + 1;
                 }
                 return i;
             }(a, void 0 === l ? 0 : 0 | l, void 0 === h ? a.length - 1 : 0 | h, y, c) : function(a, l, h, y) {
                 for (var i = h + 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    y <= a[m] ? h = (i = m) - 1 : l = 1 + m;
+                    y <= a[m] ? h = (i = m) - 1 : l = m + 1;
                 }
                 return i;
             }(a, void 0 === c ? 0 : 0 | c, void 0 === l ? a.length - 1 : 0 | l, y);
@@ -3096,13 +3044,13 @@
             return "function" == typeof c ? function(a, l, h, y, c) {
                 for (var i = h + 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    0 < c(a[m], y) ? h = (i = m) - 1 : l = 1 + m;
+                    0 < c(a[m], y) ? h = (i = m) - 1 : l = m + 1;
                 }
                 return i;
             }(a, void 0 === l ? 0 : 0 | l, void 0 === h ? a.length - 1 : 0 | h, y, c) : function(a, l, h, y) {
                 for (var i = h + 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    y < a[m] ? h = (i = m) - 1 : l = 1 + m;
+                    y < a[m] ? h = (i = m) - 1 : l = m + 1;
                 }
                 return i;
             }(a, void 0 === c ? 0 : 0 | c, void 0 === l ? a.length - 1 : 0 | l, y);
@@ -3111,13 +3059,13 @@
             return "function" == typeof c ? function(a, l, h, y, c) {
                 for (var i = l - 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    c(a[m], y) < 0 ? l = 1 + (i = m) : h = m - 1;
+                    c(a[m], y) < 0 ? l = (i = m) + 1 : h = m - 1;
                 }
                 return i;
             }(a, void 0 === l ? 0 : 0 | l, void 0 === h ? a.length - 1 : 0 | h, y, c) : function(a, l, h, y) {
                 for (var i = l - 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    a[m] < y ? l = 1 + (i = m) : h = m - 1;
+                    a[m] < y ? l = (i = m) + 1 : h = m - 1;
                 }
                 return i;
             }(a, void 0 === c ? 0 : 0 | c, void 0 === l ? a.length - 1 : 0 | l, y);
@@ -3126,13 +3074,13 @@
             return "function" == typeof c ? function(a, l, h, y, c) {
                 for (var i = l - 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    c(a[m], y) <= 0 ? l = 1 + (i = m) : h = m - 1;
+                    c(a[m], y) <= 0 ? l = (i = m) + 1 : h = m - 1;
                 }
                 return i;
             }(a, void 0 === l ? 0 : 0 | l, void 0 === h ? a.length - 1 : 0 | h, y, c) : function(a, l, h, y) {
                 for (var i = l - 1; l <= h; ) {
                     var m = l + h >>> 1;
-                    a[m] <= y ? l = 1 + (i = m) : h = m - 1;
+                    a[m] <= y ? l = (i = m) + 1 : h = m - 1;
                 }
                 return i;
             }(a, void 0 === c ? 0 : 0 | c, void 0 === l ? a.length - 1 : 0 | l, y);
@@ -3142,14 +3090,14 @@
                 for (;l <= h; ) {
                     var m = l + h >>> 1, p = c(a[m], y);
                     if (0 === p) return m;
-                    p <= 0 ? l = 1 + m : h = m - 1;
+                    p <= 0 ? l = m + 1 : h = m - 1;
                 }
                 return -1;
             }(a, void 0 === l ? 0 : 0 | l, void 0 === h ? a.length - 1 : 0 | h, y, c) : function(a, l, h, y) {
                 for (;l <= h; ) {
                     var m = l + h >>> 1, x = a[m];
                     if (x === y) return m;
-                    x <= y ? l = 1 + m : h = m - 1;
+                    x <= y ? l = m + 1 : h = m - 1;
                 }
                 return -1;
             }(a, void 0 === c ? 0 : 0 | c, void 0 === l ? a.length - 1 : 0 | l, y);
@@ -3226,7 +3174,7 @@
         this.right && this.right.intervals(result), result;
     }, proto.insert = function(interval) {
         var weight = this.count - this.leftPoints.length;
-        if (this.count += 1, interval[1] < this.mid) this.left ? 4 * (this.left.count + 1) > 3 * (1 + weight) ? rebuildWithInterval(this, interval) : this.left.insert(interval) : this.left = createIntervalTree([ interval ]); else if (interval[0] > this.mid) this.right ? 4 * (this.right.count + 1) > 3 * (1 + weight) ? rebuildWithInterval(this, interval) : this.right.insert(interval) : this.right = createIntervalTree([ interval ]); else {
+        if (this.count += 1, interval[1] < this.mid) this.left ? 4 * (this.left.count + 1) > 3 * (weight + 1) ? rebuildWithInterval(this, interval) : this.left.insert(interval) : this.left = createIntervalTree([ interval ]); else if (interval[0] > this.mid) this.right ? 4 * (this.right.count + 1) > 3 * (weight + 1) ? rebuildWithInterval(this, interval) : this.right.insert(interval) : this.right = createIntervalTree([ interval ]); else {
             var l = bounds.ge(this.leftPoints, interval, compareBegin), r = bounds.ge(this.rightPoints, interval, compareEnd);
             this.leftPoints.splice(l, 0, interval), this.rightPoints.splice(r, 0, interval);
         }
@@ -3300,10 +3248,10 @@
     });
     var PositionCache = function() {
         function PositionCache() {
+            var intervals;
             _classCallCheck(this, PositionCache), _defineProperty(this, "_columnSizeMap", {}), 
-            _defineProperty(this, "_intervalTree", function(intervals) {
-                return intervals && 0 !== intervals.length ? new IntervalTree(createIntervalTree(intervals)) : new IntervalTree(null);
-            }()), _defineProperty(this, "_leftMap", {});
+            _defineProperty(this, "_intervalTree", intervals && 0 !== intervals.length ? new IntervalTree(createIntervalTree(intervals)) : new IntervalTree(null)), 
+            _defineProperty(this, "_leftMap", {});
         }
         return _createClass(PositionCache, [ {
             key: "estimateTotalHeight",
@@ -3353,12 +3301,14 @@
                 return size;
             }
         } ]), PositionCache;
-    }(), Masonry = function() {
+    }(), Masonry = function(_React$PureComponent) {
+        _inherits(Masonry, React.PureComponent);
+        var _super = _createSuper(Masonry);
         function Masonry() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, Masonry);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Masonry)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "state", {
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "state", {
                 isScrolling: !1,
                 scrollTop: 0
             }), _defineProperty(_assertThisInitialized(_this), "_debounceResetIsScrollingId", void 0), 
@@ -3381,7 +3331,7 @@
                 }));
             }), _this;
         }
-        return _inherits(Masonry, React.PureComponent), _createClass(Masonry, [ {
+        return _createClass(Masonry, [ {
             key: "clearCellPositions",
             value: function() {
                 this._positionCache = new PositionCache(), this.forceUpdate();
@@ -3408,7 +3358,7 @@
             }
         }, {
             key: "componentDidUpdate",
-            value: function(prevProps) {
+            value: function(prevProps, prevState) {
                 this._checkInvalidateOnUpdate(), this._invokeOnScrollCallback(), this._invokeOnCellsRenderedCallback(), 
                 this.props.scrollTop !== prevProps.scrollTop && this._debounceResetIsScrolling();
             }
@@ -3582,6 +3532,16 @@
                 this._cellMeasurerCache.clearAll();
             }
         }, {
+            key: "defaultHeight",
+            get: function() {
+                return this._cellMeasurerCache.defaultHeight;
+            }
+        }, {
+            key: "defaultWidth",
+            get: function() {
+                return this._cellMeasurerCache.defaultWidth;
+            }
+        }, {
             key: "hasFixedHeight",
             value: function() {
                 return this._cellMeasurerCache.hasFixedHeight();
@@ -3593,20 +3553,20 @@
             }
         }, {
             key: "getHeight",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0;
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0;
                 return this._cellMeasurerCache.getHeight(rowIndex + this._rowIndexOffset, columnIndex + this._columnIndexOffset);
             }
         }, {
             key: "getWidth",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0;
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0;
                 return this._cellMeasurerCache.getWidth(rowIndex + this._rowIndexOffset, columnIndex + this._columnIndexOffset);
             }
         }, {
             key: "has",
-            value: function(rowIndex, argument_1) {
-                var columnIndex = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : 0;
+            value: function(rowIndex) {
+                var columnIndex = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0;
                 return this._cellMeasurerCache.has(rowIndex + this._rowIndexOffset, columnIndex + this._columnIndexOffset);
             }
         }, {
@@ -3614,21 +3574,13 @@
             value: function(rowIndex, columnIndex, width, height) {
                 this._cellMeasurerCache.set(rowIndex + this._rowIndexOffset, columnIndex + this._columnIndexOffset, width, height);
             }
-        }, {
-            key: "defaultHeight",
-            get: function() {
-                return this._cellMeasurerCache.defaultHeight;
-            }
-        }, {
-            key: "defaultWidth",
-            get: function() {
-                return this._cellMeasurerCache.defaultWidth;
-            }
         } ]), CellMeasurerCacheDecorator;
-    }(), MultiGrid = function() {
+    }(), _excluded$1 = [ "rowIndex" ], _excluded2 = [ "columnIndex", "rowIndex" ], _excluded3 = [ "columnIndex" ], _excluded4 = [ "onScroll", "onSectionRendered", "onScrollbarPresenceChange", "scrollLeft", "scrollToColumn", "scrollTop", "scrollToRow" ], MultiGrid = function(_React$PureComponent) {
+        _inherits(MultiGrid, React.PureComponent);
+        var _super = _createSuper(MultiGrid);
         function MultiGrid(props, context) {
             var _this;
-            _classCallCheck(this, MultiGrid), _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, _getPrototypeOf(MultiGrid).call(this, props, context))), "state", {
+            _classCallCheck(this, MultiGrid), _defineProperty(_assertThisInitialized(_this = _super.call(this, props, context)), "state", {
                 scrollLeft: 0,
                 scrollTop: 0,
                 scrollbarSize: 0,
@@ -3641,31 +3593,31 @@
             }), _defineProperty(_assertThisInitialized(_this), "_bottomRightGridRef", function(ref) {
                 _this._bottomRightGrid = ref;
             }), _defineProperty(_assertThisInitialized(_this), "_cellRendererBottomLeftGrid", function(_ref) {
-                var rowIndex = _ref.rowIndex, rest = _objectWithoutProperties(_ref, [ "rowIndex" ]), _this$props = _this.props, cellRenderer = _this$props.cellRenderer, fixedRowCount = _this$props.fixedRowCount;
+                var rowIndex = _ref.rowIndex, rest = _objectWithoutProperties(_ref, _excluded$1), _this$props = _this.props, cellRenderer = _this$props.cellRenderer, fixedRowCount = _this$props.fixedRowCount;
                 return rowIndex === _this$props.rowCount - fixedRowCount ? React.createElement("div", {
                     key: rest.key,
-                    style: _objectSpread2({}, rest.style, {
+                    style: _objectSpread2(_objectSpread2({}, rest.style), {}, {
                         height: 20
                     })
-                }) : cellRenderer(_objectSpread2({}, rest, {
+                }) : cellRenderer(_objectSpread2(_objectSpread2({}, rest), {}, {
                     parent: _assertThisInitialized(_this),
                     rowIndex: rowIndex + fixedRowCount
                 }));
             }), _defineProperty(_assertThisInitialized(_this), "_cellRendererBottomRightGrid", function(_ref2) {
-                var columnIndex = _ref2.columnIndex, rowIndex = _ref2.rowIndex, rest = _objectWithoutProperties(_ref2, [ "columnIndex", "rowIndex" ]), _this$props2 = _this.props, cellRenderer = _this$props2.cellRenderer, fixedColumnCount = _this$props2.fixedColumnCount, fixedRowCount = _this$props2.fixedRowCount;
-                return cellRenderer(_objectSpread2({}, rest, {
+                var columnIndex = _ref2.columnIndex, rowIndex = _ref2.rowIndex, rest = _objectWithoutProperties(_ref2, _excluded2), _this$props2 = _this.props, cellRenderer = _this$props2.cellRenderer, fixedColumnCount = _this$props2.fixedColumnCount, fixedRowCount = _this$props2.fixedRowCount;
+                return cellRenderer(_objectSpread2(_objectSpread2({}, rest), {}, {
                     columnIndex: columnIndex + fixedColumnCount,
                     parent: _assertThisInitialized(_this),
                     rowIndex: rowIndex + fixedRowCount
                 }));
             }), _defineProperty(_assertThisInitialized(_this), "_cellRendererTopRightGrid", function(_ref3) {
-                var columnIndex = _ref3.columnIndex, rest = _objectWithoutProperties(_ref3, [ "columnIndex" ]), _this$props3 = _this.props, cellRenderer = _this$props3.cellRenderer, columnCount = _this$props3.columnCount, fixedColumnCount = _this$props3.fixedColumnCount;
+                var columnIndex = _ref3.columnIndex, rest = _objectWithoutProperties(_ref3, _excluded3), _this$props3 = _this.props, cellRenderer = _this$props3.cellRenderer, columnCount = _this$props3.columnCount, fixedColumnCount = _this$props3.fixedColumnCount;
                 return columnIndex === columnCount - fixedColumnCount ? React.createElement("div", {
                     key: rest.key,
-                    style: _objectSpread2({}, rest.style, {
+                    style: _objectSpread2(_objectSpread2({}, rest.style), {}, {
                         width: 20
                     })
-                }) : cellRenderer(_objectSpread2({}, rest, {
+                }) : cellRenderer(_objectSpread2(_objectSpread2({}, rest), {}, {
                     columnIndex: columnIndex + fixedColumnCount,
                     parent: _assertThisInitialized(_this)
                 }));
@@ -3734,7 +3686,7 @@
                 rowIndexOffset: 0
             }) : deferredMeasurementCache), _this;
         }
-        return _inherits(MultiGrid, React.PureComponent), _createClass(MultiGrid, [ {
+        return _createClass(MultiGrid, [ {
             key: "forceUpdateGrids",
             value: function() {
                 this._bottomLeftGrid && this._bottomLeftGrid.forceUpdate(), this._bottomRightGrid && this._bottomRightGrid.forceUpdate(), 
@@ -3742,8 +3694,8 @@
             }
         }, {
             key: "invalidateCellSizeAfterRender",
-            value: function(argument_0) {
-                var _ref7 = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : {}, _ref7$columnIndex = _ref7.columnIndex, columnIndex = void 0 === _ref7$columnIndex ? 0 : _ref7$columnIndex, _ref7$rowIndex = _ref7.rowIndex, rowIndex = void 0 === _ref7$rowIndex ? 0 : _ref7$rowIndex;
+            value: function() {
+                var _ref7 = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : {}, _ref7$columnIndex = _ref7.columnIndex, columnIndex = void 0 === _ref7$columnIndex ? 0 : _ref7$columnIndex, _ref7$rowIndex = _ref7.rowIndex, rowIndex = void 0 === _ref7$rowIndex ? 0 : _ref7$rowIndex;
                 this._deferredInvalidateColumnIndex = "number" == typeof this._deferredInvalidateColumnIndex ? Math.min(this._deferredInvalidateColumnIndex, columnIndex) : columnIndex, 
                 this._deferredInvalidateRowIndex = "number" == typeof this._deferredInvalidateRowIndex ? Math.min(this._deferredInvalidateRowIndex, rowIndex) : rowIndex;
             }
@@ -3755,8 +3707,8 @@
             }
         }, {
             key: "recomputeGridSize",
-            value: function(argument_0) {
-                var _ref8 = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : {}, _ref8$columnIndex = _ref8.columnIndex, columnIndex = void 0 === _ref8$columnIndex ? 0 : _ref8$columnIndex, _ref8$rowIndex = _ref8.rowIndex, rowIndex = void 0 === _ref8$rowIndex ? 0 : _ref8$rowIndex, _this$props6 = this.props, fixedColumnCount = _this$props6.fixedColumnCount, fixedRowCount = _this$props6.fixedRowCount, adjustedColumnIndex = Math.max(0, columnIndex - fixedColumnCount), adjustedRowIndex = Math.max(0, rowIndex - fixedRowCount);
+            value: function() {
+                var _ref8 = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : {}, _ref8$columnIndex = _ref8.columnIndex, columnIndex = void 0 === _ref8$columnIndex ? 0 : _ref8$columnIndex, _ref8$rowIndex = _ref8.rowIndex, rowIndex = void 0 === _ref8$rowIndex ? 0 : _ref8$rowIndex, _this$props6 = this.props, fixedColumnCount = _this$props6.fixedColumnCount, fixedRowCount = _this$props6.fixedRowCount, adjustedColumnIndex = Math.max(0, columnIndex - fixedColumnCount), adjustedRowIndex = Math.max(0, rowIndex - fixedRowCount);
                 this._bottomLeftGrid && this._bottomLeftGrid.recomputeGridSize({
                     columnIndex: columnIndex,
                     rowIndex: adjustedRowIndex
@@ -3792,22 +3744,22 @@
             value: function() {
                 var _this$props8 = this.props, onScroll = _this$props8.onScroll, onSectionRendered = _this$props8.onSectionRendered, scrollToColumn = (_this$props8.onScrollbarPresenceChange, 
                 _this$props8.scrollLeft, _this$props8.scrollToColumn), scrollToRow = (_this$props8.scrollTop, 
-                _this$props8.scrollToRow), rest = _objectWithoutProperties(_this$props8, [ "onScroll", "onSectionRendered", "onScrollbarPresenceChange", "scrollLeft", "scrollToColumn", "scrollTop", "scrollToRow" ]);
+                _this$props8.scrollToRow), rest = _objectWithoutProperties(_this$props8, _excluded4);
                 if (this._prepareForRender(), 0 === this.props.width || 0 === this.props.height) return null;
                 var _this$state4 = this.state, scrollLeft = _this$state4.scrollLeft, scrollTop = _this$state4.scrollTop;
                 return React.createElement("div", {
                     style: this._containerOuterStyle
                 }, React.createElement("div", {
                     style: this._containerTopStyle
-                }, this._renderTopLeftGrid(rest), this._renderTopRightGrid(_objectSpread2({}, rest, {
+                }, this._renderTopLeftGrid(rest), this._renderTopRightGrid(_objectSpread2(_objectSpread2({}, rest), {}, {
                     onScroll: onScroll,
                     scrollLeft: scrollLeft
                 }))), React.createElement("div", {
                     style: this._containerBottomStyle
-                }, this._renderBottomLeftGrid(_objectSpread2({}, rest, {
+                }, this._renderBottomLeftGrid(_objectSpread2(_objectSpread2({}, rest), {}, {
                     onScroll: onScroll,
                     scrollTop: scrollTop
-                })), this._renderBottomRightGrid(_objectSpread2({}, rest, {
+                })), this._renderBottomRightGrid(_objectSpread2(_objectSpread2({}, rest), {}, {
                     onScroll: onScroll,
                     onSectionRendered: onSectionRendered,
                     scrollLeft: scrollLeft,
@@ -3879,7 +3831,7 @@
                     overflow: "visible",
                     position: "relative",
                     width: width
-                }), !resetAll && styleBottomLeftGrid === this._lastRenderedStyleBottomLeftGrid || (this._bottomLeftGridStyle = _objectSpread2({
+                }), (resetAll || styleBottomLeftGrid !== this._lastRenderedStyleBottomLeftGrid) && (this._bottomLeftGridStyle = _objectSpread2({
                     left: 0,
                     overflowX: "hidden",
                     overflowY: enableFixedColumnScroll ? "auto" : "hidden",
@@ -3887,7 +3839,7 @@
                 }, styleBottomLeftGrid)), (resetAll || leftSizeChange || styleBottomRightGrid !== this._lastRenderedStyleBottomRightGrid) && (this._bottomRightGridStyle = _objectSpread2({
                     left: this._getLeftGridWidth(this.props),
                     position: "absolute"
-                }, styleBottomRightGrid)), !resetAll && styleTopLeftGrid === this._lastRenderedStyleTopLeftGrid || (this._topLeftGridStyle = _objectSpread2({
+                }, styleBottomRightGrid)), (resetAll || styleTopLeftGrid !== this._lastRenderedStyleTopLeftGrid) && (this._topLeftGridStyle = _objectSpread2({
                     left: 0,
                     overflowX: "hidden",
                     overflowY: "hidden",
@@ -3935,7 +3887,7 @@
                 }));
                 return hideBottomLeftGridScrollbar ? React.createElement("div", {
                     className: "BottomLeftGrid_ScrollWrapper",
-                    style: _objectSpread2({}, this._bottomLeftGridStyle, {
+                    style: _objectSpread2(_objectSpread2({}, this._bottomLeftGridStyle), {}, {
                         height: height,
                         width: width,
                         overflowY: "hidden"
@@ -3985,7 +3937,7 @@
                 var columnCount = props.columnCount, enableFixedRowScroll = props.enableFixedRowScroll, fixedColumnCount = props.fixedColumnCount, fixedRowCount = props.fixedRowCount, scrollLeft = props.scrollLeft, hideTopRightGridScrollbar = props.hideTopRightGridScrollbar, _this$state5 = this.state, showHorizontalScrollbar = _this$state5.showHorizontalScrollbar, scrollbarSize = _this$state5.scrollbarSize;
                 if (!fixedRowCount) return null;
                 var additionalColumnCount = showHorizontalScrollbar ? 1 : 0, height = this._getTopGridHeight(props), width = this._getRightGridWidth(props), additionalHeight = showHorizontalScrollbar ? scrollbarSize : 0, gridHeight = height, style = this._topRightGridStyle;
-                hideTopRightGridScrollbar && (gridHeight = height + additionalHeight, style = _objectSpread2({}, this._topRightGridStyle, {
+                hideTopRightGridScrollbar && (gridHeight = height + additionalHeight, style = _objectSpread2(_objectSpread2({}, this._topRightGridStyle), {}, {
                     left: 0
                 }));
                 var topRightGrid = React.createElement(Grid, _extends({}, props, {
@@ -4005,7 +3957,7 @@
                 }));
                 return hideTopRightGridScrollbar ? React.createElement("div", {
                     className: "TopRightGrid_ScrollWrapper",
-                    style: _objectSpread2({}, this._topRightGridStyle, {
+                    style: _objectSpread2(_objectSpread2({}, this._topRightGridStyle), {}, {
                         height: height,
                         width: width,
                         overflowX: "hidden"
@@ -4058,10 +4010,12 @@
         hideTopRightGridScrollbar: !1,
         hideBottomLeftGridScrollbar: !1
     }), polyfill(MultiGrid);
-    var ScrollSync = function() {
+    var ScrollSync = function(_React$PureComponent) {
+        _inherits(ScrollSync, React.PureComponent);
+        var _super = _createSuper(ScrollSync);
         function ScrollSync(props, context) {
             var _this;
-            return _classCallCheck(this, ScrollSync), (_this = _possibleConstructorReturn(this, _getPrototypeOf(ScrollSync).call(this, props, context))).state = {
+            return _classCallCheck(this, ScrollSync), (_this = _super.call(this, props, context)).state = {
                 clientHeight: 0,
                 clientWidth: 0,
                 scrollHeight: 0,
@@ -4070,7 +4024,7 @@
                 scrollWidth: 0
             }, _this._onScroll = _this._onScroll.bind(_assertThisInitialized(_this)), _this;
         }
-        return _inherits(ScrollSync, React.PureComponent), _createClass(ScrollSync, [ {
+        return _createClass(ScrollSync, [ {
             key: "render",
             value: function() {
                 var children = this.props.children, _this$state = this.state, clientHeight = _this$state.clientHeight, clientWidth = _this$state.clientWidth, scrollHeight = _this$state.scrollHeight, scrollLeft = _this$state.scrollLeft, scrollTop = _this$state.scrollTop, scrollWidth = _this$state.scrollWidth;
@@ -4197,11 +4151,13 @@
     SortIndicator.propTypes = {
         sortDirection: propTypes.oneOf([ SortDirection.ASC, SortDirection.DESC ])
     };
-    var Column = function() {
+    var Column = function(_React$Component) {
+        _inherits(Column, React.Component);
+        var _super = _createSuper(Column);
         function Column() {
-            return _classCallCheck(this, Column), _possibleConstructorReturn(this, _getPrototypeOf(Column).apply(this, arguments));
+            return _classCallCheck(this, Column), _super.apply(this, arguments);
         }
-        return _inherits(Column, React.Component), Column;
+        return _createClass(Column);
     }();
     _defineProperty(Column, "propTypes", {
         "aria-label": propTypes.string,
@@ -4232,17 +4188,19 @@
         headerRenderer: defaultHeaderRenderer,
         style: {}
     });
-    var Table = function() {
+    var Table = function(_React$PureComponent) {
+        _inherits(Table, React.PureComponent);
+        var _super = _createSuper(Table);
         function Table(props) {
             var _this;
-            return _classCallCheck(this, Table), (_this = _possibleConstructorReturn(this, _getPrototypeOf(Table).call(this, props))).state = {
+            return _classCallCheck(this, Table), (_this = _super.call(this, props)).state = {
                 scrollbarWidth: 0
             }, _this._createColumn = _this._createColumn.bind(_assertThisInitialized(_this)), 
             _this._createRow = _this._createRow.bind(_assertThisInitialized(_this)), _this._onScroll = _this._onScroll.bind(_assertThisInitialized(_this)), 
             _this._onSectionRendered = _this._onSectionRendered.bind(_assertThisInitialized(_this)), 
             _this._setRef = _this._setRef.bind(_assertThisInitialized(_this)), _this;
         }
-        return _inherits(Table, React.PureComponent), _createClass(Table, [ {
+        return _createClass(Table, [ {
             key: "forceUpdateGrid",
             value: function() {
                 this.Grid && this.Grid.forceUpdate();
@@ -4272,8 +4230,8 @@
             }
         }, {
             key: "recomputeGridSize",
-            value: function(argument_0) {
-                var _ref3 = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : {}, _ref3$columnIndex = _ref3.columnIndex, columnIndex = void 0 === _ref3$columnIndex ? 0 : _ref3$columnIndex, _ref3$rowIndex = _ref3.rowIndex, rowIndex = void 0 === _ref3$rowIndex ? 0 : _ref3$rowIndex;
+            value: function() {
+                var _ref3 = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : {}, _ref3$columnIndex = _ref3.columnIndex, columnIndex = void 0 === _ref3$columnIndex ? 0 : _ref3$columnIndex, _ref3$rowIndex = _ref3.rowIndex, rowIndex = void 0 === _ref3$rowIndex ? 0 : _ref3$rowIndex;
                 this.Grid && this.Grid.recomputeGridSize({
                     rowIndex: rowIndex,
                     columnIndex: columnIndex
@@ -4281,24 +4239,24 @@
             }
         }, {
             key: "recomputeRowHeights",
-            value: function(argument_0) {
-                var index = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : 0;
+            value: function() {
+                var index = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.Grid && this.Grid.recomputeGridSize({
                     rowIndex: index
                 });
             }
         }, {
             key: "scrollToPosition",
-            value: function(argument_0) {
-                var scrollTop = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : 0;
+            value: function() {
+                var scrollTop = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.Grid && this.Grid.scrollToPosition({
                     scrollTop: scrollTop
                 });
             }
         }, {
             key: "scrollToRow",
-            value: function(argument_0) {
-                var index = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : 0;
+            value: function() {
+                var index = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.Grid && this.Grid.scrollToCell({
                     columnIndex: 0,
                     rowIndex: index
@@ -4370,7 +4328,7 @@
                     role: "rowgroup",
                     scrollbarWidth: scrollbarWidth,
                     scrollToRow: scrollToIndex,
-                    style: _objectSpread2({}, gridStyle, {
+                    style: _objectSpread2(_objectSpread2({}, gridStyle), {}, {
                         overflowX: "hidden"
                     })
                 })));
@@ -4414,7 +4372,7 @@
             value: function(_ref5) {
                 var headerOnClick, headerOnKeyDown, headerTabIndex, headerAriaSort, headerAriaLabel, column = _ref5.column, index = _ref5.index, _this$props2 = this.props, headerClassName = _this$props2.headerClassName, headerStyle = _this$props2.headerStyle, onHeaderClick = _this$props2.onHeaderClick, sort = _this$props2.sort, sortBy = _this$props2.sortBy, sortDirection = _this$props2.sortDirection, _column$props2 = column.props, columnData = _column$props2.columnData, dataKey = _column$props2.dataKey, defaultSortDirection = _column$props2.defaultSortDirection, disableSort = _column$props2.disableSort, headerRenderer = _column$props2.headerRenderer, id = _column$props2.id, label = _column$props2.label, sortEnabled = !disableSort && sort, classNames = clsx("ReactVirtualized__Table__headerColumn", headerClassName, column.props.headerClassName, {
                     ReactVirtualized__Table__sortableHeaderColumn: sortEnabled
-                }), style = this._getFlexStyleForColumn(column, _objectSpread2({}, headerStyle, {}, column.props.headerStyle)), renderedHeader = headerRenderer({
+                }), style = this._getFlexStyleForColumn(column, _objectSpread2(_objectSpread2({}, headerStyle), column.props.headerStyle)), renderedHeader = headerRenderer({
                     columnData: columnData,
                     dataKey: dataKey,
                     disableSort: disableSort,
@@ -4473,7 +4431,7 @@
                         rowIndex: index,
                         scrollbarWidth: scrollbarWidth
                     });
-                }), className = clsx("ReactVirtualized__Table__row", rowClass), flattenedStyle = _objectSpread2({}, style, {
+                }), className = clsx("ReactVirtualized__Table__row", rowClass), flattenedStyle = _objectSpread2(_objectSpread2({}, style), {}, {
                     height: this._getRowHeight(index),
                     overflow: "hidden",
                     paddingRight: scrollbarWidth
@@ -4495,8 +4453,8 @@
             }
         }, {
             key: "_getFlexStyleForColumn",
-            value: function(column, argument_1) {
-                var customStyle = 1 < arguments.length && void 0 !== argument_1 ? argument_1 : {}, flexValue = "".concat(column.props.flexGrow, " ").concat(column.props.flexShrink, " ").concat(column.props.width, "px"), style = _objectSpread2({}, customStyle, {
+            value: function(column) {
+                var customStyle = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, flexValue = "".concat(column.props.flexGrow, " ").concat(column.props.flexShrink, " ").concat(column.props.width, "px"), style = _objectSpread2(_objectSpread2({}, customStyle), {}, {
                     flex: flexValue,
                     msFlex: flexValue,
                     WebkitFlex: flexValue
@@ -4695,15 +4653,17 @@
     }
     var getWindow = function() {
         return "undefined" != typeof window ? window : void 0;
-    }, WindowScroller = function() {
+    }, WindowScroller = function(_React$PureComponent) {
+        _inherits(WindowScroller, React.PureComponent);
+        var _super = _createSuper(WindowScroller);
         function WindowScroller() {
-            var _getPrototypeOf2, _this;
+            var _this;
             _classCallCheck(this, WindowScroller);
             for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _defineProperty(_assertThisInitialized(_this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(WindowScroller)).call.apply(_getPrototypeOf2, [ this ].concat(args)))), "_window", getWindow()), 
+            return _defineProperty(_assertThisInitialized(_this = _super.call.apply(_super, [ this ].concat(args))), "_window", getWindow()), 
             _defineProperty(_assertThisInitialized(_this), "_isMounted", !1), _defineProperty(_assertThisInitialized(_this), "_positionFromTop", 0), 
             _defineProperty(_assertThisInitialized(_this), "_positionFromLeft", 0), _defineProperty(_assertThisInitialized(_this), "_detectElementResize", void 0), 
-            _defineProperty(_assertThisInitialized(_this), "_child", void 0), _defineProperty(_assertThisInitialized(_this), "state", _objectSpread2({}, getDimensions(_this.props.scrollElement, _this.props), {
+            _defineProperty(_assertThisInitialized(_this), "_child", void 0), _defineProperty(_assertThisInitialized(_this), "state", _objectSpread2(_objectSpread2({}, getDimensions(_this.props.scrollElement, _this.props)), {}, {
                 isScrolling: !1,
                 scrollLeft: 0,
                 scrollTop: 0
@@ -4743,10 +4703,10 @@
                 });
             }), _this;
         }
-        return _inherits(WindowScroller, React.PureComponent), _createClass(WindowScroller, [ {
+        return _createClass(WindowScroller, [ {
             key: "updatePosition",
-            value: function(argument_0) {
-                var scrollElement = 0 < arguments.length && void 0 !== argument_0 ? argument_0 : this.props.scrollElement, onResize = this.props.onResize, _this$state = this.state, height = _this$state.height, width = _this$state.width, thisNode = this._child || ReactDOM.findDOMNode(this);
+            value: function() {
+                var scrollElement = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.props.scrollElement, onResize = this.props.onResize, _this$state = this.state, height = _this$state.height, width = _this$state.width, thisNode = this._child || ReactDOM.findDOMNode(this);
                 if (thisNode instanceof Element && scrollElement) {
                     var offset = function(element, container) {
                         if (isWindow(container) && document.documentElement) {
@@ -4784,7 +4744,7 @@
             }
         }, {
             key: "componentDidUpdate",
-            value: function(prevProps) {
+            value: function(prevProps, prevState) {
                 var scrollElement = this.props.scrollElement, prevScrollElement = prevProps.scrollElement;
                 prevScrollElement !== scrollElement && null != prevScrollElement && null != scrollElement && (this.updatePosition(scrollElement), 
                 unregisterScrollListener(this, prevScrollElement), registerScrollListener(this, scrollElement), 
@@ -4858,11 +4818,9 @@
                 sortBy.push(dataKey)); else if (event.ctrlKey || event.metaKey) {
                     var index = sortBy.indexOf(dataKey);
                     0 <= index && (sortBy.splice(index, 1), delete sortDirection[dataKey]);
-                } else {
-                    sortBy.length = 0, sortBy.push(dataKey), Object.keys(sortDirection).forEach(function(key) {
-                        key !== dataKey && delete sortDirection[key];
-                    }), void 0 !== sortDirection[dataKey] ? sortDirection[dataKey] = "ASC" === sortDirection[dataKey] ? "DESC" : "ASC" : sortDirection[dataKey] = defaultSortDirection;
-                }
+                } else sortBy.length = 0, sortBy.push(dataKey), Object.keys(sortDirection).forEach(function(key) {
+                    key !== dataKey && delete sortDirection[key];
+                }), void 0 !== sortDirection[dataKey] ? sortDirection[dataKey] = "ASC" === sortDirection[dataKey] ? "DESC" : "ASC" : sortDirection[dataKey] = defaultSortDirection;
                 sortCallback({
                     sortBy: sortBy,
                     sortDirection: sortDirection

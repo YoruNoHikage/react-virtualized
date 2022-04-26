@@ -20,9 +20,7 @@ var SECTION_SIZE = 100;
  * Grows (and adds Sections) dynamically as cells are registered.
  * Automatically adds cells to the appropriate Section(s).
  */
-var SectionManager =
-/*#__PURE__*/
-function () {
+var SectionManager = /*#__PURE__*/function () {
   function SectionManager() {
     var sectionSize = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SECTION_SIZE;
 

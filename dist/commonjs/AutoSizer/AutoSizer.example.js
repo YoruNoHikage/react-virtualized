@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -15,13 +15,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -39,14 +39,20 @@ var _List = _interopRequireDefault(require("../List"));
 
 var _AutoSizerExample = _interopRequireDefault(require("./AutoSizer.example.css"));
 
-var AutoSizerExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var AutoSizerExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(AutoSizerExample, _React$PureComponent);
 
-  function AutoSizerExample() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(AutoSizerExample);
 
+  function AutoSizerExample() {
     var _this;
 
     (0, _classCallCheck2["default"])(this, AutoSizerExample);
@@ -55,7 +61,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(AutoSizerExample)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
       hideDescription: false
     });
@@ -65,7 +71,7 @@ function (_React$PureComponent) {
           style = _ref.style;
       var list = _this.context.list;
       var row = list.get(index);
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: key,
         className: _AutoSizerExample["default"].row,
         style: style
@@ -81,17 +87,17 @@ function (_React$PureComponent) {
 
       var list = this.context.list;
       var hideDescription = this.state.hideDescription;
-      return React.createElement(_ContentBox.ContentBox, (0, _extends2["default"])({}, this.props, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, (0, _extends2["default"])({}, this.props, {
         style: {
           height: 400
         }
-      }), React.createElement(_ContentBox.ContentBoxHeader, {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "AutoSizer",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/AutoSizer/AutoSizer.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/AutoSizer.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: _AutoSizerExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Hide description (to show resize)?",
         className: _AutoSizerExample["default"].checkbox,
         type: "checkbox",
@@ -101,15 +107,15 @@ function (_React$PureComponent) {
             hideDescription: event.target.checked
           });
         }
-      }), "Hide description (to show resize)?")), !hideDescription && React.createElement(_ContentBox.ContentBoxParagraph, null, "This component decorates ", React.createElement("code", null, "List"), ", ", React.createElement("code", null, "Table"), ", or any other component and automatically manages its width and height. It uses Sebastian Decima's", ' ', React.createElement("a", {
+      }), "Hide description (to show resize)?")), !hideDescription && /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "This component decorates ", /*#__PURE__*/React.createElement("code", null, "List"), ", ", /*#__PURE__*/React.createElement("code", null, "Table"), ", or any other component and automatically manages its width and height. It uses Sebastian Decima's", ' ', /*#__PURE__*/React.createElement("a", {
         href: "https://github.com/sdecima/javascript-detect-element-resize",
         target: "_blank"
-      }, "element resize event"), ' ', "to determine the appropriate size. In this example", ' ', React.createElement("code", null, "AutoSizer"), " grows to fill the remaining width and height of this flex column."), React.createElement("div", {
+      }, "element resize event"), ' ', "to determine the appropriate size. In this example", ' ', /*#__PURE__*/React.createElement("code", null, "AutoSizer"), " grows to fill the remaining width and height of this flex column."), /*#__PURE__*/React.createElement("div", {
         className: _AutoSizerExample["default"].AutoSizerWrapper
-      }, React.createElement(_AutoSizer["default"], null, function (_ref2) {
+      }, /*#__PURE__*/React.createElement(_AutoSizer["default"], null, function (_ref2) {
         var width = _ref2.width,
             height = _ref2.height;
-        return React.createElement(_List["default"], {
+        return /*#__PURE__*/React.createElement(_List["default"], {
           className: _AutoSizerExample["default"].List,
           height: height,
           rowCount: list.size,

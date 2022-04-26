@@ -30,9 +30,7 @@ export var DEFAULT_WIDTH = 100; // Enables more intelligent mapping of a given c
 /**
  * Caches measurements for a given cell.
  */
-var CellMeasurerCache =
-/*#__PURE__*/
-function () {
+var CellMeasurerCache = /*#__PURE__*/function () {
   function CellMeasurerCache() {
     var _this = this;
 
@@ -139,6 +137,20 @@ function () {
       this._rowHeightCache = {};
       this._rowCount = 0;
       this._columnCount = 0;
+    }
+  }, {
+    key: "defaultHeight",
+    get: function get()
+    /*: number*/
+    {
+      return this._defaultHeight;
+    }
+  }, {
+    key: "defaultWidth",
+    get: function get()
+    /*: number*/
+    {
+      return this._defaultWidth;
     }
   }, {
     key: "hasFixedHeight",
@@ -270,20 +282,6 @@ function () {
 
         this._rowHeightCache[rowKey] = rowHeight;
       }
-    }
-  }, {
-    key: "defaultHeight",
-    get: function get()
-    /*: number*/
-    {
-      return this._defaultHeight;
-    }
-  }, {
-    key: "defaultWidth",
-    get: function get()
-    /*: number*/
-    {
-      return this._defaultWidth;
     }
   }]);
 

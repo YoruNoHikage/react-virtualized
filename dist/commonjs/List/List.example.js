@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -13,13 +13,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -41,16 +41,24 @@ var _ContentBox = require("../demo/ContentBox");
 
 var _LabeledInput = require("../demo/LabeledInput");
 
-var ListExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var ListExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(ListExample, _React$PureComponent);
+
+  var _super = _createSuper(ListExample);
 
   function ListExample(props, context) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, ListExample);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ListExample).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this.state = {
       listHeight: 300,
       listRowHeight: 50,
@@ -81,13 +89,13 @@ function (_React$PureComponent) {
           scrollToIndex = _this$state.scrollToIndex,
           showScrollingPlaceholder = _this$state.showScrollingPlaceholder,
           useDynamicRowHeight = _this$state.useDynamicRowHeight;
-      return React.createElement(_ContentBox.ContentBox, null, React.createElement(_ContentBox.ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, null, /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "List",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/List/List.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/List.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, "The list below is windowed (or \"virtualized\") meaning that only the visible rows are rendered. Adjust its configurable properties below to see how it reacts."), React.createElement(_ContentBox.ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "The list below is windowed (or \"virtualized\") meaning that only the visible rows are rendered. Adjust its configurable properties below to see how it reacts."), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: _ListExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Use dynamic row heights?",
         checked: useDynamicRowHeight,
         className: _ListExample["default"].checkbox,
@@ -97,9 +105,9 @@ function (_React$PureComponent) {
             useDynamicRowHeight: event.target.checked
           });
         }
-      }), "Use dynamic row heights?"), React.createElement("label", {
+      }), "Use dynamic row heights?"), /*#__PURE__*/React.createElement("label", {
         className: _ListExample["default"].checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Show scrolling placeholder?",
         checked: showScrollingPlaceholder,
         className: _ListExample["default"].checkbox,
@@ -109,18 +117,18 @@ function (_React$PureComponent) {
             showScrollingPlaceholder: event.target.checked
           });
         }
-      }), "Show scrolling placeholder?")), React.createElement(_LabeledInput.InputRow, null, React.createElement(_LabeledInput.LabeledInput, {
+      }), "Show scrolling placeholder?")), /*#__PURE__*/React.createElement(_LabeledInput.InputRow, null, /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Num rows",
         name: "rowCount",
         onChange: this._onRowCountChange,
         value: rowCount
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Scroll to",
         name: "onScrollToRow",
         placeholder: "Index...",
         onChange: this._onScrollToRowChange,
         value: scrollToIndex || ''
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "List height",
         name: "listHeight",
         onChange: function onChange(event) {
@@ -129,7 +137,7 @@ function (_React$PureComponent) {
           });
         },
         value: listHeight
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         disabled: useDynamicRowHeight,
         label: "Row height",
         name: "listRowHeight",
@@ -139,7 +147,7 @@ function (_React$PureComponent) {
           });
         },
         value: listRowHeight
-      }), React.createElement(_LabeledInput.LabeledInput, {
+      }), /*#__PURE__*/React.createElement(_LabeledInput.LabeledInput, {
         label: "Overscan",
         name: "overscanRowCount",
         onChange: function onChange(event) {
@@ -148,11 +156,11 @@ function (_React$PureComponent) {
           });
         },
         value: overscanRowCount
-      })), React.createElement("div", null, React.createElement(_AutoSizer["default"], {
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_AutoSizer["default"], {
         disableHeight: true
       }, function (_ref) {
         var width = _ref.width;
-        return React.createElement(_List["default"], {
+        return /*#__PURE__*/React.createElement(_List["default"], {
           ref: "List",
           className: _ListExample["default"].List,
           height: listHeight,
@@ -181,7 +189,7 @@ function (_React$PureComponent) {
   }, {
     key: "_noRowsRenderer",
     value: function _noRowsRenderer() {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _ListExample["default"].noRows
       }, "No rows");
     }
@@ -219,7 +227,7 @@ function (_React$PureComponent) {
           useDynamicRowHeight = _this$state2.useDynamicRowHeight;
 
       if (showScrollingPlaceholder && isScrolling) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: (0, _clsx["default"])(_ListExample["default"].row, _ListExample["default"].isScrollingPlaceholder),
           key: key,
           style: style
@@ -233,29 +241,29 @@ function (_React$PureComponent) {
       if (useDynamicRowHeight) {
         switch (datum.size) {
           case 75:
-            additionalContent = React.createElement("div", null, "It is medium-sized.");
+            additionalContent = /*#__PURE__*/React.createElement("div", null, "It is medium-sized.");
             break;
 
           case 100:
-            additionalContent = React.createElement("div", null, "It is large-sized.", React.createElement("br", null), "It has a 3rd row.");
+            additionalContent = /*#__PURE__*/React.createElement("div", null, "It is large-sized.", /*#__PURE__*/React.createElement("br", null), "It has a 3rd row.");
             break;
         }
       }
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _ListExample["default"].row,
         key: key,
         style: style
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         className: _ListExample["default"].letter,
         style: {
           backgroundColor: datum.color
         }
-      }, datum.name.charAt(0)), React.createElement("div", null, React.createElement("div", {
+      }, datum.name.charAt(0)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
         className: _ListExample["default"].name
-      }, datum.name), React.createElement("div", {
+      }, datum.name), /*#__PURE__*/React.createElement("div", {
         className: _ListExample["default"].index
-      }, "This is row ", index), additionalContent), useDynamicRowHeight && React.createElement("span", {
+      }, "This is row ", index), additionalContent), useDynamicRowHeight && /*#__PURE__*/React.createElement("span", {
         className: _ListExample["default"].height
       }, datum.size, "px"));
     }

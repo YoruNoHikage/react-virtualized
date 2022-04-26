@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -22,9 +22,13 @@ var _Masonry = _interopRequireDefault(require("./Masonry"));
 
 var _CellMeasurer = require("../CellMeasurer");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 var ALTERNATING_CELL_HEIGHTS = [100, 50, 100, 150];
 var CELL_SIZE_MULTIPLIER = 50;
@@ -68,12 +72,12 @@ function createCellRenderer(cache, renderCallback) {
         style = _ref.style;
     var height = ALTERNATING_CELL_HEIGHTS[index % ALTERNATING_CELL_HEIGHTS.length];
     var width = CELL_SIZE_MULTIPLIER;
-    return React.createElement(_CellMeasurer.CellMeasurer, {
+    return /*#__PURE__*/React.createElement(_CellMeasurer.CellMeasurer, {
       cache: cache,
       index: index,
       key: key,
       parent: parent
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "cell",
       ref: function ref(_ref2) {
         if (_ref2) {
@@ -88,7 +92,7 @@ function createCellRenderer(cache, renderCallback) {
           });
         }
       },
-      style: _objectSpread({}, style, {
+      style: _objectSpread(_objectSpread({}, style), {}, {
         minHeight: height,
         minWidth: width
       })
@@ -105,7 +109,7 @@ function createCellRenderer(cache, renderCallback) {
 function getMarkup() {
   var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var cellMeasurerCache = props.cellMeasurerCache || createCellMeasurerCache();
-  return React.createElement(_Masonry["default"], (0, _extends2["default"])({
+  return /*#__PURE__*/React.createElement(_Masonry["default"], (0, _extends2["default"])({
     cellCount: 1000,
     cellMeasurerCache: cellMeasurerCache,
     cellPositioner: createCellPositioner(cellMeasurerCache),
@@ -285,13 +289,13 @@ describe('Masonry', function () {
       var cellMeasurerCache = createCellMeasurerCache();
 
       var renderScrollableCell = function renderScrollableCell(index) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           style: {
             height: '50px',
             overflow: 'visible'
           },
           id: "scrollable-cell-".concat(index)
-        }, React.createElement("div", {
+        }, /*#__PURE__*/React.createElement("div", {
           style: {
             height: '500px'
           }
@@ -458,7 +462,7 @@ describe('Masonry', function () {
         var index = _ref3.index,
             key = _ref3.key,
             style = _ref3.style;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index);

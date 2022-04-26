@@ -2,7 +2,7 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 var React = _interopRequireWildcard(require("react"));
 
@@ -13,6 +13,10 @@ var _TestUtils = require("../TestUtils");
 var _ColumnSizer = _interopRequireDefault(require("./ColumnSizer"));
 
 var _Grid = _interopRequireDefault(require("../Grid"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 describe('ColumnSizer', function () {
   function getMarkup() {
@@ -31,14 +35,14 @@ describe('ColumnSizer', function () {
           key = _ref2.key,
           rowIndex = _ref2.rowIndex,
           style = _ref2.style;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "gridItem",
         key: key,
         style: style
       }, "row:".concat(rowIndex, ", column:").concat(columnIndex));
     }
 
-    return React.createElement(_ColumnSizer["default"], {
+    return /*#__PURE__*/React.createElement(_ColumnSizer["default"], {
       columnMinWidth: columnMinWidth,
       columnMaxWidth: columnMaxWidth,
       columnCount: columnCount,
@@ -47,7 +51,7 @@ describe('ColumnSizer', function () {
       var adjustedWidth = _ref3.adjustedWidth,
           columnWidth = _ref3.columnWidth,
           registerChild = _ref3.registerChild;
-      return React.createElement("div", null, React.createElement(_Grid["default"], {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_Grid["default"], {
         columnCount: columnCount,
         columnWidth: columnWidth,
         height: 50,
@@ -56,7 +60,7 @@ describe('ColumnSizer', function () {
         rowHeight: 50,
         rowCount: 1,
         width: adjustedWidth
-      }), React.createElement("div", {
+      }), /*#__PURE__*/React.createElement("div", {
         className: "debug"
       }, "adjustedWidth:".concat(adjustedWidth, " columnWidth:").concat(columnWidth)));
     });
@@ -122,14 +126,14 @@ describe('ColumnSizer', function () {
   it('should error if the registered child is not a Grid or a MultiGrid', function () {
     spyOn(console, 'error');
     expect(function () {
-      (0, _TestUtils.render)(React.createElement(_ColumnSizer["default"], {
+      (0, _TestUtils.render)( /*#__PURE__*/React.createElement(_ColumnSizer["default"], {
         columnMinWidth: 100,
         columnMaxWidth: 100,
         columnCount: 100,
         width: 100
       }, function (_ref4) {
         var registerChild = _ref4.registerChild;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           ref: registerChild
         });
       }));

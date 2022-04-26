@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -13,14 +18,12 @@ import CellMeasurerCache from './CellMeasurerCache';
 import { Column, Table } from '../Table';
 import styles from './CellMeasurer.example.css';
 
-var DynamicHeightTableColumn =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var DynamicHeightTableColumn = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(DynamicHeightTableColumn, _React$PureComponent);
 
-  function DynamicHeightTableColumn() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(DynamicHeightTableColumn);
 
+  function DynamicHeightTableColumn() {
     var _this;
 
     _classCallCheck(this, DynamicHeightTableColumn);
@@ -29,7 +32,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DynamicHeightTableColumn)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "_cache", new CellMeasurerCache({
       fixedWidth: true,
@@ -45,13 +48,13 @@ function (_React$PureComponent) {
       var list = _this.props.list;
       var datum = list.get(rowIndex % list.size);
       var content = rowIndex % 5 === 0 ? '' : datum.randomLong;
-      return React.createElement(CellMeasurer, {
+      return /*#__PURE__*/React.createElement(CellMeasurer, {
         cache: _this._cache,
         columnIndex: 0,
         key: dataKey,
         parent: parent,
         rowIndex: rowIndex
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         className: styles.tableColumn,
         style: {
           whiteSpace: 'normal'
@@ -79,7 +82,7 @@ function (_React$PureComponent) {
         this._cache.clearAll();
       }
 
-      return React.createElement(Table, {
+      return /*#__PURE__*/React.createElement(Table, {
         deferredMeasurementCache: this._cache,
         headerHeight: 20,
         height: 400,
@@ -89,17 +92,17 @@ function (_React$PureComponent) {
         rowGetter: this._rowGetter,
         rowCount: 1000,
         width: width
-      }, React.createElement(Column, {
+      }, /*#__PURE__*/React.createElement(Column, {
         className: styles.tableColumn,
         dataKey: "name",
         label: "Name",
         width: 125
-      }), React.createElement(Column, {
+      }), /*#__PURE__*/React.createElement(Column, {
         className: styles.tableColumn,
         dataKey: "color",
         label: "Color",
         width: 75
-      }), React.createElement(Column, {
+      }), /*#__PURE__*/React.createElement(Column, {
         width: width - 200,
         dataKey: "random",
         label: "Dynamic text",

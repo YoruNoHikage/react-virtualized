@@ -1,14 +1,18 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -37,15 +41,13 @@ var SCROLL_POSITION_CHANGE_REASONS = {
  * This component does not render any visible content itself; it defers to the specified :cellLayoutManager.
  */
 
-var CollectionView =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var CollectionView = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(CollectionView, _React$PureComponent);
+
+  var _super = _createSuper(CollectionView);
 
   // Invokes callbacks only when their values have changed.
   function CollectionView() {
-    var _getPrototypeOf2;
-
     var _this;
 
     _classCallCheck(this, CollectionView);
@@ -54,7 +56,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CollectionView)).call.apply(_getPrototypeOf2, [this].concat(args))); // If this component is being rendered server-side, getScrollbarSize() will return undefined.
+    _this = _super.call.apply(_super, [this].concat(args)); // If this component is being rendered server-side, getScrollbarSize() will return undefined.
     // We handle this case in componentDidMount()
 
     _defineProperty(_assertThisInitialized(_this), "state", {
@@ -352,16 +354,16 @@ function (_React$PureComponent) {
 
       collectionStyle.overflowX = totalWidth + verticalScrollBarSize <= width ? 'hidden' : 'auto';
       collectionStyle.overflowY = totalHeight + horizontalScrollBarSize <= height ? 'hidden' : 'auto';
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         ref: this._setScrollingContainerRef,
         "aria-label": this.props['aria-label'],
         className: clsx('ReactVirtualized__Collection', className),
         id: id,
         onScroll: this._onScroll,
         role: "grid",
-        style: _objectSpread({}, collectionStyle, {}, style),
+        style: _objectSpread(_objectSpread({}, collectionStyle), style),
         tabIndex: 0
-      }, cellCount > 0 && React.createElement("div", {
+      }, cellCount > 0 && /*#__PURE__*/React.createElement("div", {
         className: "ReactVirtualized__Collection__innerScrollContainer",
         style: {
           height: totalHeight,

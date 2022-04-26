@@ -1,12 +1,14 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof3 = require("@babel/runtime/helpers/typeof");
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
@@ -26,16 +28,20 @@ var _Collection = _interopRequireDefault(require("./Collection"));
 
 var _TestData = require("./TestData");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof3(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 describe('Collection', function () {
   function defaultCellRenderer(_ref) {
     var index = _ref.index,
         key = _ref.key,
         style = _ref.style;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "cell",
       key: key,
       style: style
@@ -53,7 +59,7 @@ describe('Collection', function () {
       return _TestData.CELLS[index];
     }
 
-    return React.createElement(_Collection["default"], (0, _extends2["default"])({
+    return /*#__PURE__*/React.createElement(_Collection["default"], (0, _extends2["default"])({
       cellCount: cellCount,
       cellRenderer: defaultCellRenderer,
       cellSizeAndPositionGetter: defaultCellSizeAndPositionGetter,
@@ -108,7 +114,7 @@ describe('Collection', function () {
         if (index > 2) {
           return null;
         } else {
-          return React.createElement("div", {
+          return /*#__PURE__*/React.createElement("div", {
             className: "cell",
             key: key,
             style: style
@@ -322,7 +328,7 @@ describe('Collection', function () {
     it('should call :noContentRenderer if :cellCount is 0', function () {
       var list = (0, _reactDom.findDOMNode)((0, _TestUtils.render)(getMarkup({
         noContentRenderer: function noContentRenderer() {
-          return React.createElement("div", null, "No data");
+          return /*#__PURE__*/React.createElement("div", null, "No data");
         },
         cellCount: 0
       })));
@@ -350,7 +356,7 @@ describe('Collection', function () {
         cellCount: 1,
         cellSizeAndPositionGetter: cellSizeAndPositionGetter,
         noContentRenderer: function noContentRenderer() {
-          return React.createElement("div", null, "No data");
+          return /*#__PURE__*/React.createElement("div", null, "No data");
         }
       })));
       expect(list.textContent).not.toEqual('No data');
@@ -573,7 +579,7 @@ describe('Collection', function () {
         var index = _ref5.index,
             key = _ref5.key,
             style = _ref5.style;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: style
         }, index);
@@ -584,7 +590,7 @@ describe('Collection', function () {
         cellGroupRenderer: function cellGroupRenderer(params) {
           cellGroupRendererParams = params;
           cellGroupRendererCalled++;
-          return [React.createElement("div", {
+          return [/*#__PURE__*/React.createElement("div", {
             key: "0"
           }, "Fake content")];
         }
@@ -595,52 +601,58 @@ describe('Collection', function () {
       compareArrays(cellGroupRendererParams.indices, [0, 1, 2, 3]);
     });
   });
-  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', function _callee(done) {
-    var cellRendererCalls, cellRenderer, collection;
-    return _regenerator["default"].async(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            cellRenderer = function _ref7(_ref6) {
-              var index = _ref6.index,
-                  isScrolling = _ref6.isScrolling,
-                  key = _ref6.key,
-                  style = _ref6.style;
-              cellRendererCalls.push(isScrolling);
-              return defaultCellRenderer({
-                index: index,
-                key: key,
-                style: style
+  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', /*#__PURE__*/function () {
+    var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(done) {
+      var cellRendererCalls, cellRenderer, collection;
+      return _regenerator["default"].wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              cellRenderer = function _cellRenderer(_ref7) {
+                var index = _ref7.index,
+                    isScrolling = _ref7.isScrolling,
+                    key = _ref7.key,
+                    style = _ref7.style;
+                cellRendererCalls.push(isScrolling);
+                return defaultCellRenderer({
+                  index: index,
+                  key: key,
+                  style: style
+                });
+              };
+
+              cellRendererCalls = [];
+              collection = (0, _TestUtils.render)(getMarkup({
+                cellRenderer: cellRenderer
+              }));
+              expect(cellRendererCalls[0]).toEqual(false);
+              cellRendererCalls.splice(0);
+              simulateScroll({
+                collection: collection,
+                scrollTop: 1
+              }); // Give React time to process the queued setState()
+
+              _context.next = 8;
+              return new Promise(function (resolve) {
+                return setTimeout(resolve, 1);
               });
-            };
 
-            cellRendererCalls = [];
-            collection = (0, _TestUtils.render)(getMarkup({
-              cellRenderer: cellRenderer
-            }));
-            expect(cellRendererCalls[0]).toEqual(false);
-            cellRendererCalls.splice(0);
-            simulateScroll({
-              collection: collection,
-              scrollTop: 1
-            }); // Give React time to process the queued setState()
+            case 8:
+              expect(cellRendererCalls[0]).toEqual(true);
+              done();
 
-            _context.next = 8;
-            return _regenerator["default"].awrap(new Promise(function (resolve) {
-              return setTimeout(resolve, 1);
-            }));
-
-          case 8:
-            expect(cellRendererCalls[0]).toEqual(true);
-            done();
-
-          case 10:
-          case "end":
-            return _context.stop();
+            case 10:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    });
-  });
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref6.apply(this, arguments);
+    };
+  }());
   describe('horizontalOverscanSize and verticalOverscanSize', function () {
     it('should include the horizontal and vertical overscan size when rendering cells', function () {
       var indices;
@@ -722,7 +734,7 @@ describe('Collection', function () {
         return expect(call.isScrolling).toEqual(false);
       });
       cellRendererCalls.splice(0);
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         foo: 'bar' // Force re-render
 
       })));
@@ -769,7 +781,7 @@ describe('Collection', function () {
       cellRendererCalls.splice(0); // At this point cells 4 and 5 have been rendered,
       // But cells 7, 8, and 9 have not.
 
-      (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
+      (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
         scrollLeft: 1,
         scrollTop: 3
       })));
@@ -778,68 +790,74 @@ describe('Collection', function () {
         return expect(call.isScrolling).toEqual(true);
       });
     });
-    it('should clear cache once :isScrolling is false', function _callee2(done) {
-      var cellRendererCalls, cellRenderer, props, collection;
-      return _regenerator["default"].async(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              cellRenderer = function _ref11(_ref10) {
-                var isScrolling = _ref10.isScrolling,
-                    index = _ref10.index,
-                    key = _ref10.key,
-                    style = _ref10.style;
-                cellRendererCalls.push({
-                  isScrolling: isScrolling,
-                  index: index
+    it('should clear cache once :isScrolling is false', /*#__PURE__*/function () {
+      var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(done) {
+        var cellRendererCalls, cellRenderer, props, collection;
+        return _regenerator["default"].wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                cellRenderer = function _cellRenderer2(_ref11) {
+                  var isScrolling = _ref11.isScrolling,
+                      index = _ref11.index,
+                      key = _ref11.key,
+                      style = _ref11.style;
+                  cellRendererCalls.push({
+                    isScrolling: isScrolling,
+                    index: index
+                  });
+                  return defaultCellRenderer({
+                    isScrolling: isScrolling,
+                    index: index,
+                    key: key,
+                    style: style
+                  });
+                };
+
+                cellRendererCalls = [];
+                props = {
+                  cellRenderer: cellRenderer,
+                  scrollLeft: 0,
+                  scrollTop: 0
+                };
+                collection = (0, _TestUtils.render)(getMarkup(props));
+                simulateScroll({
+                  collection: collection,
+                  scrollTop: 1
+                }); // Allow scrolling timeout to complete so that cell cache is reset
+
+                _context2.next = 7;
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, 500);
                 });
-                return defaultCellRenderer({
-                  isScrolling: isScrolling,
-                  index: index,
-                  key: key,
-                  style: style
-                });
-              };
 
-              cellRendererCalls = [];
-              props = {
-                cellRenderer: cellRenderer,
-                scrollLeft: 0,
-                scrollTop: 0
-              };
-              collection = (0, _TestUtils.render)(getMarkup(props));
-              simulateScroll({
-                collection: collection,
-                scrollTop: 1
-              }); // Allow scrolling timeout to complete so that cell cache is reset
+              case 7:
+                cellRendererCalls.splice(0);
+                (0, _TestUtils.render)(getMarkup(_objectSpread(_objectSpread({}, props), {}, {
+                  scrollTop: 1
+                })));
+                expect(cellRendererCalls.length).not.toEqual(0);
+                done();
 
-              _context2.next = 7;
-              return _regenerator["default"].awrap(new Promise(function (resolve) {
-                return setTimeout(resolve, 500);
-              }));
-
-            case 7:
-              cellRendererCalls.splice(0);
-              (0, _TestUtils.render)(getMarkup(_objectSpread({}, props, {
-                scrollTop: 1
-              })));
-              expect(cellRendererCalls.length).not.toEqual(0);
-              done();
-
-            case 11:
-            case "end":
-              return _context2.stop();
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
           }
-        }
-      });
-    });
+        }, _callee2);
+      }));
+
+      return function (_x2) {
+        return _ref10.apply(this, arguments);
+      };
+    }());
   }); // See issue #568 for more
 
   it('forceUpdate will also forceUpdate the inner CollectionView', function () {
     var cellRenderer = jest.fn();
     cellRenderer.mockImplementation(function (_ref12) {
       var key = _ref12.key;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: key
       });
     });

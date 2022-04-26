@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -13,13 +13,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -39,19 +39,27 @@ var _List = _interopRequireDefault(require("../List"));
 
 var _InfiniteLoaderExample = _interopRequireDefault(require("./InfiniteLoader.example.css"));
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var STATUS_LOADING = 1;
 var STATUS_LOADED = 2;
 
-var InfiniteLoaderExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var InfiniteLoaderExample = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2["default"])(InfiniteLoaderExample, _React$PureComponent);
+
+  var _super = _createSuper(InfiniteLoaderExample);
 
   function InfiniteLoaderExample(props) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, InfiniteLoaderExample);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(InfiniteLoaderExample).call(this, props));
+    _this = _super.call(this, props);
     _this.state = {
       loadedRowCount: 0,
       loadedRowsMap: {},
@@ -81,29 +89,29 @@ function (_React$PureComponent) {
       var _this$state = this.state,
           loadedRowCount = _this$state.loadedRowCount,
           loadingRowCount = _this$state.loadingRowCount;
-      return React.createElement(_ContentBox.ContentBox, null, React.createElement(_ContentBox.ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(_ContentBox.ContentBox, null, /*#__PURE__*/React.createElement(_ContentBox.ContentBoxHeader, {
         text: "InfiniteLoader",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/InfiniteLoader/InfiniteLoader.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/InfiniteLoader.md"
-      }), React.createElement(_ContentBox.ContentBoxParagraph, null, "This component manages just-in-time data fetching to ensure that the all visible rows have been loaded. It also uses a threshold to determine how early to pre-fetch rows (before a user scrolls to them)."), React.createElement(_ContentBox.ContentBoxParagraph, null, React.createElement("div", {
+      }), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, "This component manages just-in-time data fetching to ensure that the all visible rows have been loaded. It also uses a threshold to determine how early to pre-fetch rows (before a user scrolls to them)."), /*#__PURE__*/React.createElement(_ContentBox.ContentBoxParagraph, null, /*#__PURE__*/React.createElement("div", {
         className: _InfiniteLoaderExample["default"].cacheButtonAndCountRow
-      }, React.createElement("button", {
+      }, /*#__PURE__*/React.createElement("button", {
         className: _InfiniteLoaderExample["default"].button,
         onClick: this._clearData
-      }, "Flush Cached Data"), React.createElement("div", {
+      }, "Flush Cached Data"), /*#__PURE__*/React.createElement("div", {
         className: _InfiniteLoaderExample["default"].cacheCountRow
-      }, loadingRowCount, " loading, ", loadedRowCount, " loaded"))), React.createElement(_InfiniteLoader["default"], {
+      }, loadingRowCount, " loading, ", loadedRowCount, " loaded"))), /*#__PURE__*/React.createElement(_InfiniteLoader["default"], {
         isRowLoaded: this._isRowLoaded,
         loadMoreRows: this._loadMoreRows,
         rowCount: list.size
       }, function (_ref) {
         var onRowsRendered = _ref.onRowsRendered,
             registerChild = _ref.registerChild;
-        return React.createElement(_AutoSizer["default"], {
+        return /*#__PURE__*/React.createElement(_AutoSizer["default"], {
           disableHeight: true
         }, function (_ref2) {
           var width = _ref2.width;
-          return React.createElement(_List["default"], {
+          return /*#__PURE__*/React.createElement(_List["default"], {
             ref: registerChild,
             className: _InfiniteLoaderExample["default"].List,
             height: 200,
@@ -188,7 +196,7 @@ function (_React$PureComponent) {
       if (loadedRowsMap[index] === STATUS_LOADED) {
         content = row.name;
       } else {
-        content = React.createElement("div", {
+        content = /*#__PURE__*/React.createElement("div", {
           className: _InfiniteLoaderExample["default"].placeholder,
           style: {
             width: row.size
@@ -196,7 +204,7 @@ function (_React$PureComponent) {
         });
       }
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: _InfiniteLoaderExample["default"].row,
         key: key,
         style: style

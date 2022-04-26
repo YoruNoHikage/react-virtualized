@@ -1,9 +1,14 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -12,17 +17,17 @@ import CellMeasurerCache from './CellMeasurerCache';
 import List from '../List';
 import styles from './CellMeasurer.example.css';
 
-var DynamicHeightList =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var DynamicHeightList = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(DynamicHeightList, _React$PureComponent);
+
+  var _super = _createSuper(DynamicHeightList);
 
   function DynamicHeightList(props, context) {
     var _this;
 
     _classCallCheck(this, DynamicHeightList);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DynamicHeightList).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this._cache = new CellMeasurerCache({
       fixedWidth: true,
       minHeight: 50
@@ -35,7 +40,7 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var width = this.props.width;
-      return React.createElement(List, {
+      return /*#__PURE__*/React.createElement(List, {
         className: styles.BodyGrid,
         deferredMeasurementCache: this._cache,
         height: 400,
@@ -64,7 +69,7 @@ function (_React$PureComponent) {
       var imageWidth = 300;
       var imageHeight = datum.size * (1 + index % 3);
       var source = "https://www.fillmurray.com/".concat(imageWidth, "/").concat(imageHeight);
-      return React.createElement(CellMeasurer, {
+      return /*#__PURE__*/React.createElement(CellMeasurer, {
         cache: this._cache,
         columnIndex: 0,
         key: key,
@@ -73,11 +78,11 @@ function (_React$PureComponent) {
       }, function (_ref2) {
         var measure = _ref2.measure,
             registerChild = _ref2.registerChild;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           ref: registerChild,
           className: classNames,
           style: style
-        }, React.createElement("img", {
+        }, /*#__PURE__*/React.createElement("img", {
           onLoad: measure,
           src: source,
           style: {

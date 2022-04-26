@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -18,6 +18,10 @@ var _MultiGrid = _interopRequireDefault(require("./MultiGrid"));
 
 var _CellMeasurer = require("../CellMeasurer");
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 // These tests only focus on what MultiGrid does specifically.
 // The inner Grid component is tested in depth elsewhere.
 describe('MultiGrid', function () {
@@ -26,7 +30,7 @@ describe('MultiGrid', function () {
         key = _ref.key,
         rowIndex = _ref.rowIndex,
         style = _ref.style;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "gridItem",
       key: key,
       style: style
@@ -35,7 +39,7 @@ describe('MultiGrid', function () {
 
   function getMarkup() {
     var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return React.createElement(_MultiGrid["default"], (0, _extends2["default"])({
+    return /*#__PURE__*/React.createElement(_MultiGrid["default"], (0, _extends2["default"])({
       cellRenderer: defaultCellRenderer,
       columnCount: 50,
       columnWidth: 50,
@@ -334,7 +338,7 @@ describe('MultiGrid', function () {
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (_ref5) {
         var key = _ref5.key;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: {}
         });
@@ -357,7 +361,7 @@ describe('MultiGrid', function () {
       var cellRenderer = jest.fn();
       cellRenderer.mockImplementation(function (_ref6) {
         var key = _ref6.key;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: {}
         });
@@ -385,7 +389,7 @@ describe('MultiGrid', function () {
         var key = _ref7.key,
             parent = _ref7.parent;
         savedParent = parent;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           key: key,
           style: {}
         });

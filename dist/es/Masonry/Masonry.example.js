@@ -1,14 +1,18 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
@@ -22,17 +26,17 @@ import createCellPositioner from './createCellPositioner';
 import Masonry from './Masonry';
 import styles from './Masonry.example.css';
 
-var GridExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var GridExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(GridExample, _React$PureComponent);
+
+  var _super = _createSuper(GridExample);
 
   function GridExample(props, context) {
     var _this;
 
     _classCallCheck(this, GridExample);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(GridExample).call(this, props, context));
+    _this = _super.call(this, props, context);
 
     _defineProperty(_assertThisInitialized(_this), "_resetList", function () {
       var ROW_HEIGHTS = [25, 50, 75, 100];
@@ -83,7 +87,7 @@ function (_React$PureComponent) {
       var child;
 
       if (windowScrollerEnabled) {
-        child = React.createElement(WindowScroller, {
+        child = /*#__PURE__*/React.createElement(WindowScroller, {
           overscanByPixels: overscanByPixels
         }, this._renderAutoSizer);
       } else {
@@ -92,13 +96,13 @@ function (_React$PureComponent) {
         });
       }
 
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "Masonry",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/Masonry/Masonry.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/Masonry.md"
-      }), React.createElement(ContentBoxParagraph, null, "Optimized for masonry layouts. Cells are j.i.t. measured and layed out as a user scrolls. Sizes are cached so that resize/reflow is fast and does not require re-measuring."), React.createElement(ContentBoxParagraph, null, React.createElement("label", {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "Optimized for masonry layouts. Cells are j.i.t. measured and layed out as a user scrolls. Sizes are cached so that resize/reflow is fast and does not require re-measuring."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Use WindowScroller?",
         checked: windowScrollerEnabled,
         className: styles.checkbox,
@@ -112,11 +116,11 @@ function (_React$PureComponent) {
             windowScrollerEnabled: event.target.checked
           });
         }
-      }), "Use ", React.createElement("code", null, "WindowScroller"), "?"), React.createElement("label", {
+      }), "Use ", /*#__PURE__*/React.createElement("code", null, "WindowScroller"), "?"), /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("button", {
+      }, /*#__PURE__*/React.createElement("button", {
         onClick: this._resetList
-      }, "Reset List Data"))), React.createElement(InputRow, null, React.createElement(LabeledInput, {
+      }, "Reset List Data"))), /*#__PURE__*/React.createElement(InputRow, null, /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Height",
         name: "height",
         onChange: function onChange(event) {
@@ -125,7 +129,7 @@ function (_React$PureComponent) {
           });
         },
         value: height
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Column Width",
         name: "columnWidth",
         onChange: function onChange(event) {
@@ -142,7 +146,7 @@ function (_React$PureComponent) {
           });
         },
         value: columnWidth
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Gutter Size",
         name: "gutterSize",
         onChange: function onChange(event) {
@@ -157,7 +161,7 @@ function (_React$PureComponent) {
           });
         },
         value: gutterSize
-      }), React.createElement(LabeledInput, {
+      }), /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Overscan (px)",
         name: "overscanByPixels",
         onChange: function onChange(event) {
@@ -186,17 +190,17 @@ function (_React$PureComponent) {
       var list = this.context.list;
       var columnWidth = this.state.columnWidth;
       var datum = list.get(index % list.size);
-      return React.createElement(CellMeasurer, {
+      return /*#__PURE__*/React.createElement(CellMeasurer, {
         cache: this._cache,
         index: index,
         key: key,
         parent: parent
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         className: styles.Cell,
-        style: _objectSpread({}, style, {
+        style: _objectSpread(_objectSpread({}, style), {}, {
           width: columnWidth
         })
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         style: {
           backgroundColor: datum.color,
           borderRadius: '0.5rem',
@@ -246,7 +250,7 @@ function (_React$PureComponent) {
       this._height = height;
       this._scrollTop = scrollTop;
       var overscanByPixels = this.state.overscanByPixels;
-      return React.createElement(AutoSizer, {
+      return /*#__PURE__*/React.createElement(AutoSizer, {
         disableHeight: true,
         height: height,
         onResize: this._onResize,
@@ -268,7 +272,7 @@ function (_React$PureComponent) {
           height = _this$state4.height,
           overscanByPixels = _this$state4.overscanByPixels,
           windowScrollerEnabled = _this$state4.windowScrollerEnabled;
-      return React.createElement(Masonry, {
+      return /*#__PURE__*/React.createElement(Masonry, {
         autoHeight: windowScrollerEnabled,
         cellCount: 1000,
         cellMeasurerCache: this._cache,

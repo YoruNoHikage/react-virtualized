@@ -5,12 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function get() {
-    return _Grid["default"];
-  }
-});
 Object.defineProperty(exports, "Grid", {
   enumerable: true,
   get: function get() {
@@ -21,6 +15,12 @@ Object.defineProperty(exports, "accessibilityOverscanIndicesGetter", {
   enumerable: true,
   get: function get() {
     return _accessibilityOverscanIndicesGetter["default"];
+  }
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function get() {
+    return _Grid["default"];
   }
 });
 Object.defineProperty(exports, "defaultCellRangeRenderer", {

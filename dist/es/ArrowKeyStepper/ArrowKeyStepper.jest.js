@@ -12,14 +12,14 @@ function renderTextContent(scrollToColumn, scrollToRow) {
 function ChildComponent(_ref) {
   var scrollToColumn = _ref.scrollToColumn,
       scrollToRow = _ref.scrollToRow;
-  return React.createElement("div", null, renderTextContent(scrollToColumn, scrollToRow));
+  return /*#__PURE__*/React.createElement("div", null, renderTextContent(scrollToColumn, scrollToRow));
 }
 
 describe('ArrowKeyStepper', function () {
   function renderHelper() {
     var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var onSectionRenderedCallback;
-    var component = render(React.createElement(ArrowKeyStepper, _extends({
+    var component = render( /*#__PURE__*/React.createElement(ArrowKeyStepper, _extends({
       columnCount: 10,
       mode: "edges",
       rowCount: 10
@@ -28,7 +28,7 @@ describe('ArrowKeyStepper', function () {
           scrollToColumn = _ref2.scrollToColumn,
           scrollToRow = _ref2.scrollToRow;
       onSectionRenderedCallback = onSectionRendered;
-      return React.createElement(ChildComponent, {
+      return /*#__PURE__*/React.createElement(ChildComponent, {
         scrollToColumn: scrollToColumn,
         scrollToRow: scrollToRow
       });

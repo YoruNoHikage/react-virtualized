@@ -9,9 +9,7 @@ import _createClass from "@babel/runtime/helpers/createClass";
  * This enables us to more quickly determine which cells to display in a given region of the Window.
  * Sections have a fixed size and contain 0 to many cells (tracked by their indices).
  */
-var Section =
-/*#__PURE__*/
-function () {
+var Section = /*#__PURE__*/function () {
   function Section(_ref) {
     var height = _ref.height,
         width = _ref.width,

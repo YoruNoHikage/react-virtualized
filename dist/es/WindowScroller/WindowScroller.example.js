@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import clsx from 'clsx';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
@@ -20,14 +25,12 @@ import styles from './WindowScroller.example.css';
   showHeaderText: boolean,
 };*/
 
-var WindowScrollerExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var WindowScrollerExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(WindowScrollerExample, _React$PureComponent);
 
-  function WindowScrollerExample() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(WindowScrollerExample);
 
+  function WindowScrollerExample() {
     var _this;
 
     _classCallCheck(this, WindowScrollerExample);
@@ -36,7 +39,7 @@ function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(WindowScrollerExample)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       scrollToIndex: -1,
@@ -68,7 +71,7 @@ function (_React$PureComponent) {
       var list = _this.context.list;
       var row = list.get(index);
       var className = clsx(styles.row, (_clsx = {}, _defineProperty(_clsx, styles.rowScrolling, isScrolling), _defineProperty(_clsx, "isVisible", isVisible), _clsx));
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: key,
         className: className,
         style: style
@@ -113,27 +116,27 @@ function (_React$PureComponent) {
       var _this$state = this.state,
           scrollToIndex = _this$state.scrollToIndex,
           showHeaderText = _this$state.showHeaderText;
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "WindowScroller",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/WindowScroller/WindowScroller.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/WindowScroller.md"
-      }), showHeaderText && React.createElement(ContentBoxParagraph, null, "This component decorates ", React.createElement("code", null, "List"), ", ", React.createElement("code", null, "Table"), ", or any other component and manages the window scroll to scroll through the list"), showHeaderText && React.createElement(ContentBoxParagraph, null, React.createElement("button", {
+      }), showHeaderText && /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "This component decorates ", /*#__PURE__*/React.createElement("code", null, "List"), ", ", /*#__PURE__*/React.createElement("code", null, "Table"), ", or any other component and manages the window scroll to scroll through the list"), showHeaderText && /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("button", {
         onClick: this._hideHeader
-      }, "Hide header text")), React.createElement(ContentBoxParagraph, null, React.createElement("label", {
+      }, "Hide header text")), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("label", {
         className: styles.checkboxLabel
-      }, React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("input", {
         "aria-label": "Use custom element for scrolling",
         className: styles.checkbox,
         type: "checkbox",
         checked: isScrollingCustomElement,
         onChange: this._onCheckboxChange
-      }), "Use custom element for scrolling")), React.createElement(InputRow, null, React.createElement(LabeledInput, {
+      }), "Use custom element for scrolling")), /*#__PURE__*/React.createElement(InputRow, null, /*#__PURE__*/React.createElement(LabeledInput, {
         label: "Scroll to",
         name: "onScrollToRow",
         placeholder: "Index...",
         onChange: this._onScrollToRowChange,
         value: scrollToIndex || ''
-      })), React.createElement(WindowScroller, {
+      })), /*#__PURE__*/React.createElement(WindowScroller, {
         ref: this._setRef,
         scrollElement: isScrollingCustomElement ? customElement : window
       }, function (_ref2) {
@@ -142,15 +145,15 @@ function (_React$PureComponent) {
             registerChild = _ref2.registerChild,
             onChildScroll = _ref2.onChildScroll,
             scrollTop = _ref2.scrollTop;
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: styles.WindowScrollerWrapper
-        }, React.createElement(AutoSizer, {
+        }, /*#__PURE__*/React.createElement(AutoSizer, {
           disableHeight: true
         }, function (_ref3) {
           var width = _ref3.width;
-          return React.createElement("div", {
+          return /*#__PURE__*/React.createElement("div", {
             ref: registerChild
-          }, React.createElement(List, {
+          }, /*#__PURE__*/React.createElement(List, {
             ref: function ref(el) {
               window.listEl = el;
             },

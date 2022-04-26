@@ -1,10 +1,15 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ContentBox, ContentBoxHeader, ContentBoxParagraph } from '../demo/ContentBox';
@@ -16,17 +21,17 @@ import styles from './InfiniteLoader.example.css';
 var STATUS_LOADING = 1;
 var STATUS_LOADED = 2;
 
-var InfiniteLoaderExample =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var InfiniteLoaderExample = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(InfiniteLoaderExample, _React$PureComponent);
+
+  var _super = _createSuper(InfiniteLoaderExample);
 
   function InfiniteLoaderExample(props) {
     var _this;
 
     _classCallCheck(this, InfiniteLoaderExample);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(InfiniteLoaderExample).call(this, props));
+    _this = _super.call(this, props);
     _this.state = {
       loadedRowCount: 0,
       loadedRowsMap: {},
@@ -56,29 +61,29 @@ function (_React$PureComponent) {
       var _this$state = this.state,
           loadedRowCount = _this$state.loadedRowCount,
           loadingRowCount = _this$state.loadingRowCount;
-      return React.createElement(ContentBox, null, React.createElement(ContentBoxHeader, {
+      return /*#__PURE__*/React.createElement(ContentBox, null, /*#__PURE__*/React.createElement(ContentBoxHeader, {
         text: "InfiniteLoader",
         sourceLink: "https://github.com/bvaughn/react-virtualized/blob/master/source/InfiniteLoader/InfiniteLoader.example.js",
         docsLink: "https://github.com/bvaughn/react-virtualized/blob/master/docs/InfiniteLoader.md"
-      }), React.createElement(ContentBoxParagraph, null, "This component manages just-in-time data fetching to ensure that the all visible rows have been loaded. It also uses a threshold to determine how early to pre-fetch rows (before a user scrolls to them)."), React.createElement(ContentBoxParagraph, null, React.createElement("div", {
+      }), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, "This component manages just-in-time data fetching to ensure that the all visible rows have been loaded. It also uses a threshold to determine how early to pre-fetch rows (before a user scrolls to them)."), /*#__PURE__*/React.createElement(ContentBoxParagraph, null, /*#__PURE__*/React.createElement("div", {
         className: styles.cacheButtonAndCountRow
-      }, React.createElement("button", {
+      }, /*#__PURE__*/React.createElement("button", {
         className: styles.button,
         onClick: this._clearData
-      }, "Flush Cached Data"), React.createElement("div", {
+      }, "Flush Cached Data"), /*#__PURE__*/React.createElement("div", {
         className: styles.cacheCountRow
-      }, loadingRowCount, " loading, ", loadedRowCount, " loaded"))), React.createElement(InfiniteLoader, {
+      }, loadingRowCount, " loading, ", loadedRowCount, " loaded"))), /*#__PURE__*/React.createElement(InfiniteLoader, {
         isRowLoaded: this._isRowLoaded,
         loadMoreRows: this._loadMoreRows,
         rowCount: list.size
       }, function (_ref) {
         var onRowsRendered = _ref.onRowsRendered,
             registerChild = _ref.registerChild;
-        return React.createElement(AutoSizer, {
+        return /*#__PURE__*/React.createElement(AutoSizer, {
           disableHeight: true
         }, function (_ref2) {
           var width = _ref2.width;
-          return React.createElement(List, {
+          return /*#__PURE__*/React.createElement(List, {
             ref: registerChild,
             className: styles.List,
             height: 200,
@@ -163,7 +168,7 @@ function (_React$PureComponent) {
       if (loadedRowsMap[index] === STATUS_LOADED) {
         content = row.name;
       } else {
-        content = React.createElement("div", {
+        content = /*#__PURE__*/React.createElement("div", {
           className: styles.placeholder,
           style: {
             width: row.size
@@ -171,7 +176,7 @@ function (_React$PureComponent) {
         });
       }
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: styles.row,
         key: key,
         style: style

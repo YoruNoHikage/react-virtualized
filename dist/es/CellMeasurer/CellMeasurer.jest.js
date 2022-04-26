@@ -45,10 +45,10 @@ function renderHelper() {
     fixedWidth: true
   }) : _ref3$cache,
       _ref3$children = _ref3.children,
-      children = _ref3$children === void 0 ? React.createElement("div", null) : _ref3$children,
+      children = _ref3$children === void 0 ? /*#__PURE__*/React.createElement("div", null) : _ref3$children,
       parent = _ref3.parent;
 
-  render(React.createElement(CellMeasurer, {
+  render( /*#__PURE__*/React.createElement(CellMeasurer, {
     cache: cache,
     columnIndex: 0,
     parent: parent,
@@ -246,7 +246,7 @@ describe('CellMeasurer', function () {
     var cache = new CellMeasurerCache({
       fixedWidth: true
     });
-    var children = jest.fn().mockReturnValue(React.createElement("div", null));
+    var children = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", null));
     renderHelper({
       cache: cache,
       children: children
@@ -279,14 +279,14 @@ describe('CellMeasurer', function () {
     var parent = createParent({
       cache: cache
     });
-    var child = jest.fn().mockReturnValue(React.createElement("div", {
+    var child = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", {
       style: {
         width: 100,
         height: 30
       }
     }));
     var measurer;
-    var node = findDOMNode(render(React.createElement(CellMeasurer, {
+    var node = findDOMNode(render( /*#__PURE__*/React.createElement(CellMeasurer, {
       ref: function ref(_ref6) {
         measurer = _ref6;
       },
@@ -334,13 +334,13 @@ describe('CellMeasurer', function () {
     var parent = createParent({
       cache: cache
     });
-    var child = jest.fn().mockReturnValue(React.createElement("div", {
+    var child = jest.fn().mockReturnValue( /*#__PURE__*/React.createElement("div", {
       style: {
         width: 100,
         height: 30
       }
     }));
-    var node = findDOMNode(render(React.createElement(CellMeasurer, {
+    var node = findDOMNode(render( /*#__PURE__*/React.createElement(CellMeasurer, {
       cache: cache,
       columnIndex: 0,
       parent: parent,

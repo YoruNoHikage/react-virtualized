@@ -1,15 +1,19 @@
 import _extends from "@babel/runtime/helpers/extends";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 /*:: import type {CellPosition} from '../Grid';*/
 import clsx from 'clsx';
@@ -26,17 +30,17 @@ import SortDirection from './SortDirection';
  * This component expects explicit width, height, and padding parameters.
  */
 
-var Table =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var Table = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(Table, _React$PureComponent);
+
+  var _super = _createSuper(Table);
 
   function Table(props) {
     var _this;
 
     _classCallCheck(this, Table);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Table).call(this, props));
+    _this = _super.call(this, props);
     _this.state = {
       scrollbarWidth: 0
     };
@@ -221,7 +225,7 @@ function (_React$PureComponent) {
       // This is done because Grid is a pure component and won't update unless its properties or state has changed.
       // Any property that should trigger a re-render of Grid then is specified here to avoid a stale display.
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         "aria-label": this.props['aria-label'],
         "aria-labelledby": this.props['aria-labelledby'],
         "aria-colcount": React.Children.toArray(children).length,
@@ -239,7 +243,7 @@ function (_React$PureComponent) {
           paddingRight: scrollbarWidth,
           width: width
         }, rowStyleObject)
-      }), React.createElement(Grid, _extends({}, this.props, {
+      }), /*#__PURE__*/React.createElement(Grid, _extends({}, this.props, {
         "aria-readonly": null,
         autoContainerWidth: true,
         className: clsx('ReactVirtualized__Table__Grid', gridClassName),
@@ -255,7 +259,7 @@ function (_React$PureComponent) {
         role: "rowgroup",
         scrollbarWidth: scrollbarWidth,
         scrollToRow: scrollToIndex,
-        style: _objectSpread({}, gridStyle, {
+        style: _objectSpread(_objectSpread({}, gridStyle), {}, {
           overflowX: 'hidden'
         })
       })));
@@ -306,7 +310,7 @@ function (_React$PureComponent) {
       // Since it results in an extra method call to 'babel-runtime/helpers/extends'
       // See PR https://github.com/bvaughn/react-virtualized/pull/942
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         "aria-colindex": columnIndex + 1,
         "aria-describedby": id,
         className: clsx('ReactVirtualized__Table__rowColumn', className),
@@ -342,7 +346,7 @@ function (_React$PureComponent) {
         ReactVirtualized__Table__sortableHeaderColumn: sortEnabled
       });
 
-      var style = this._getFlexStyleForColumn(column, _objectSpread({}, headerStyle, {}, column.props.headerStyle));
+      var style = this._getFlexStyleForColumn(column, _objectSpread(_objectSpread({}, headerStyle), column.props.headerStyle));
 
       var renderedHeader = headerRenderer({
         columnData: columnData,
@@ -395,7 +399,7 @@ function (_React$PureComponent) {
       // See PR https://github.com/bvaughn/react-virtualized/pull/942
 
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         "aria-label": headerAriaLabel,
         "aria-sort": headerAriaSort,
         className: classNames,
@@ -452,7 +456,7 @@ function (_React$PureComponent) {
       });
       var className = clsx('ReactVirtualized__Table__row', rowClass);
 
-      var flattenedStyle = _objectSpread({}, style, {
+      var flattenedStyle = _objectSpread(_objectSpread({}, style), {}, {
         height: this._getRowHeight(index),
         overflow: 'hidden',
         paddingRight: scrollbarWidth
@@ -483,7 +487,7 @@ function (_React$PureComponent) {
       var customStyle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var flexValue = "".concat(column.props.flexGrow, " ").concat(column.props.flexShrink, " ").concat(column.props.width, "px");
 
-      var style = _objectSpread({}, customStyle, {
+      var style = _objectSpread(_objectSpread({}, customStyle), {}, {
         flex: flexValue,
         msFlex: flexValue,
         WebkitFlex: flexValue

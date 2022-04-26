@@ -1,11 +1,16 @@
 import _toConsumableArray from "@babel/runtime/helpers/toConsumableArray";
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import createCallbackMemoizer from '../utils/createCallbackMemoizer';
@@ -15,17 +20,17 @@ import createCallbackMemoizer from '../utils/createCallbackMemoizer';
  * It is intended as a convenience component; fork it if you'd like finer-grained control over data-loading.
  */
 
-var InfiniteLoader =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var InfiniteLoader = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(InfiniteLoader, _React$PureComponent);
+
+  var _super = _createSuper(InfiniteLoader);
 
   function InfiniteLoader(props, context) {
     var _this;
 
     _classCallCheck(this, InfiniteLoader);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(InfiniteLoader).call(this, props, context));
+    _this = _super.call(this, props, context);
     _this._loadMoreRowsMemoizer = createCallbackMemoizer();
     _this._onRowsRendered = _this._onRowsRendered.bind(_assertThisInitialized(_this));
     _this._registerChild = _this._registerChild.bind(_assertThisInitialized(_this));

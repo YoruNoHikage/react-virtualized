@@ -8,9 +8,7 @@ import createIntervalTree from '../vendor/intervalTree';
 // Position cache requirements:
 //   O(log(n)) lookup of cells to render for a given viewport size
 //   O(1) lookup of shortest measured column (so we know when to enter phase 1)
-var PositionCache =
-/*#__PURE__*/
-function () {
+var PositionCache = /*#__PURE__*/function () {
   function PositionCache() {
     _classCallCheck(this, PositionCache);
 
